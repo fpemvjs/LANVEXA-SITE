@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.vite/
+test-results/
+playwright-report/
+*.log
+lighthouse-*.json
+/final-*.png
+/review-*.png
+/phase2-*.png
+/qa-*.png
+/*-review.jpg
+.env
+.env.*
+!.env.example

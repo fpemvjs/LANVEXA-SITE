@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 88" role="img" aria-labelledby="title desc">
+  <title id="title">LANVEXA</title>
+  <desc id="desc">LANVEXA wordmark for dark backgrounds</desc>
+  <g fill="#f5f7f8">
+    <path d="M8 17h10v43h31v10H8V17Zm55 53 24-53h11l24 53h-12l-5-12H80l-5 12H63Zm21-22h17L92.5 29 84 48Zm52-31h10l30 35V17h11v53h-10l-30-35v35h-11V17Zm70 0h42v10h-31v12h28v10h-28v11h32v10h-43V17Zm144 0h12l24 53h-12l-5-12h-25l-5 12h-12l23-53Zm-2 31h17l-8.5-19-8.5 19Z"/>
+  </g>
+  <g transform="translate(259 8) scale(.73)">
+    <path fill="#f5f7f8" d="M7 7h18l25 29-11 13L7 7ZM7 89h18l25-29-11-13L7 89Z"/>
+    <path fill="#97d700" d="M89 7H71L46 36l11 13L89 7ZM89 89H71L46 60l11-13 32 42Z"/>
+  </g>
+</svg>
