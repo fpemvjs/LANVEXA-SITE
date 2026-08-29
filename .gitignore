@@ -3,12 +3,14 @@ dist/
 .vite/
 test-results/
 playwright-report/
+.launch-check/
 *.log
 lighthouse-*.json
 /final-*.png
 /review-*.png
 /phase2-*.png
 /qa-*.png
+/launch-qa-*.png
 /*-review.jpg
 .env
 .env.*

@@ -4,8 +4,10 @@ Static, multi-page Vite site for the early LANVEXA Windows Ethernet diagnostic p
 
 ## Local development
 
+Deployment baseline: Node.js 22.x (`.nvmrc` and `netlify.toml`). The declared compatibility range is Node 22–24.
+
 ```powershell
-npm install
+npm ci
 npm run dev
 ```
 
@@ -16,6 +18,12 @@ npm run build
 npm run preview
 ```
 
+Pre-deployment verification:
+
+```powershell
+npm run verify:launch
+```
+
 Output: `dist/`
 
 The build includes the homepage, FAQ, Privacy, Security, 404, and all documentation pages.
@@ -24,14 +32,11 @@ The build includes the homepage, FAQ, Privacy, Security, 404, and all documentat
 
 No production domain has been confirmed, so the default build intentionally omits canonical and `og:url` tags instead of publishing a fake URL.
 
-Set one build-time value when the domain is known:
+Set `LANVEXA_SITE_URL` to the confirmed HTTPS production origin in the hosting build environment, then run the production build.
 
-```powershell
-$env:LANVEXA_SITE_URL='https://confirmed-domain.example'
-npm run build
-```
+With that value, `vite.config.mjs` adds page-specific canonical/OG URLs, converts social-image metadata to an absolute URL, and generates `sitemap.xml` plus a sitemap-aware `robots.txt`. The build rejects HTTP, localhost, and placeholder origins.
 
-With that value, `vite.config.js` adds page-specific canonical/OG URLs, converts social-image metadata to an absolute URL, and generates `sitemap.xml` plus a sitemap-aware `robots.txt`. Do not put a placeholder domain in production configuration.
+Optional centralized values are `LANVEXA_PUBLISHER_NAME`, `LANVEXA_SUPPORT_EMAIL`, `LANVEXA_SECURITY_EMAIL`, and `LANVEXA_PRIVACY_EMAIL`. Unset values are omitted; never use template identities or addresses.
 
 ## Recommended deployment: Netlify
 
@@ -42,13 +47,16 @@ Netlify is the direct fit because the email-only beta form uses Netlify Forms an
 3. Import the local Git repository.
 4. Verify build command `npm run build` and publish directory `dist`.
 5. Deploy a preview.
-6. Test the `beta-access` form and configure an authorized notification recipient.
-7. Test CSP headers, the branded 404, all documentation routes, and the generated sitemap before production promotion.
+6. Confirm Netlify detects the `beta-access` form.
+7. Under **Project configuration → Notifications → Form submission notifications**, configure only the approved recipient.
+8. Submit and delete a test request using the approved operations process.
+9. Set `VITE_LANVEXA_ENABLE_BETA_FORM=true` only after that test succeeds.
+10. Test CSP headers, the branded 404, all documentation routes, and the generated sitemap before production promotion.
 
 CLI preview deployment:
 
 ```powershell
-npm install
+npm ci
 npm run build
 npx netlify-cli login
 npx netlify-cli deploy --dir=dist
@@ -60,8 +68,12 @@ Do not run a production deploy until the domain, privacy owner, form workflow, a
 
 - Form name: `beta-access`
 - Required user fields: email only
-- Localhost submission: intentionally disabled
+- Unconfigured JavaScript submission: intentionally disabled
+- JavaScript submission: disabled unless `VITE_LANVEXA_ENABLE_BETA_FORM=true` at build time
 - External API keys: none
+- Encoding: `application/x-www-form-urlencoded`
+- Honeypot field: `company-website`
+- JavaScript disabled: native required-email validation and normal form POST remain available
 
 Before public use, confirm the legal publisher, privacy contact, retention/deletion process, notification recipient, success email, and spam handling.
 
@@ -88,7 +100,7 @@ No authentic screenshot or video currently exists in this repository. Reserved l
 - `public/media/lanvexa-demo-poster.png`
 - `public/media/lanvexa-product-screenshot.png`
 
-Do not populate those locations with generated or reconstructed product screenshots.
+Do not populate those locations with generated or reconstructed product screenshots. The build automatically uses valid authentic media and otherwise retains the interactive HTML example.
 
 ## Content locations
 
@@ -99,7 +111,10 @@ Do not populate those locations with generated or reconstructed product screensh
 - Security disclosure: `security.html`
 - Beta-form privacy notice: `privacy.html`
 - Documentation: `docs/`
-- Build inputs and domain metadata: `vite.config.js`
+- Build inputs, contacts, publisher, and domain metadata: `vite.config.mjs`
+- Environment validation: `config/site.mjs`
+- Pre-deployment checks: `scripts/verify-launch.mjs`
+- Internal launch operations: `docs-internal/`
 - Hosting configuration: `netlify.toml`
 
 ## Required before controlled beta distribution

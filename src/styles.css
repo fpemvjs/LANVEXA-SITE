@@ -49,6 +49,35 @@ button {
 img {
   max-width: 100%;
 }
+[hidden] {
+  display: none !important;
+}
+.interactive-example {
+  display: contents;
+}
+.authentic-media {
+  margin: 0;
+}
+.authentic-media video,
+.authentic-media img {
+  display: block;
+  width: 100%;
+  background: var(--graphite);
+  border: 1px solid #303a3f;
+}
+.authentic-media figcaption {
+  margin-top: 9px;
+  color: var(--muted);
+  font: 650 10px var(--mono);
+}
+.public-contact,
+.publisher-identity {
+  font-size: 12px;
+}
+.public-contact a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .sr-only {
   position: absolute;
   width: 1px;

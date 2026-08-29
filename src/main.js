@@ -59,6 +59,7 @@ function setExample(name) {
 document.querySelectorAll('.example-control').forEach((button) => button.addEventListener('click', () => setExample(button.dataset.example)));
 document.querySelectorAll('.mobile-nav a').forEach((link) => link.addEventListener('click', () => link.closest('details').removeAttribute('open')));
 
+document.querySelector('#beta-form')?.setAttribute('novalidate', '');
 document.querySelector('#beta-form')?.addEventListener('submit', async (event) => {
   event.preventDefault();
   const form = event.currentTarget;
@@ -81,7 +82,7 @@ document.querySelector('#beta-form')?.addEventListener('submit', async (event) =
   const label = button.innerHTML;
   button.textContent = 'Sending…';
   try {
-    if (['127.0.0.1', 'localhost'].includes(location.hostname)) throw new Error('LOCAL_PREVIEW');
+    if (import.meta.env.VITE_LANVEXA_ENABLE_BETA_FORM !== 'true') throw new Error('FORM_NOT_CONFIGURED');
     const response = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(form)).toString() });
     if (!response.ok) throw new Error('FORM_SUBMISSION_FAILED');
     form.reset();
@@ -90,7 +91,7 @@ document.querySelector('#beta-form')?.addEventListener('submit', async (event) =
     button.textContent = 'Request received';
   } catch (error) {
     form.classList.add('error');
-    status.textContent = error.message === 'LOCAL_PREVIEW' ? 'Local preview does not submit. The form activates after a configured Netlify deployment.' : 'The request could not be sent. Check the connection and try again.';
+    status.textContent = error.message === 'FORM_NOT_CONFIGURED' ? 'Beta requests are not enabled on this deployment yet.' : 'The request could not be sent. Check the connection and try again.';
     button.innerHTML = label;
     button.disabled = false;
   } finally {

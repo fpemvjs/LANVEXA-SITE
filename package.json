@@ -5,7 +5,11 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
-    "preview": "vite preview --host 127.0.0.1"
+    "preview": "vite preview --host 127.0.0.1",
+    "verify:launch": "npm run build && node scripts/verify-launch.mjs"
+  },
+  "engines": {
+    "node": ">=22 <25"
   },
   "devDependencies": {
     "vite": "^8.0.0"
