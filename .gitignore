@@ -4,6 +4,7 @@ dist/
 test-results/
 playwright-report/
 .launch-check/
+artifacts/
 *.log
 lighthouse-*.json
 /final-*.png

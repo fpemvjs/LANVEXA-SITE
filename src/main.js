@@ -85,10 +85,7 @@ document.querySelector('#beta-form')?.addEventListener('submit', async (event) =
     if (import.meta.env.VITE_LANVEXA_ENABLE_BETA_FORM !== 'true') throw new Error('FORM_NOT_CONFIGURED');
     const response = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(form)).toString() });
     if (!response.ok) throw new Error('FORM_SUBMISSION_FAILED');
-    form.reset();
-    form.classList.add('success');
-    status.textContent = 'Request received. We will email installation information and feedback expectations before any software is distributed.';
-    button.textContent = 'Request received';
+    window.location.assign(form.action);
   } catch (error) {
     form.classList.add('error');
     status.textContent = error.message === 'FORM_NOT_CONFIGURED' ? 'Beta requests are not enabled on this deployment yet.' : 'The request could not be sent. Check the connection and try again.';

@@ -24,9 +24,17 @@ Pre-deployment verification:
 npm run verify:launch
 ```
 
+Deployed-site verification (after a preview exists):
+
+```powershell
+npm run verify:deployed -- https://preview-url
+```
+
+Add `--canonical-origin https://approved-origin` when preview metadata targets a different approved origin, and `--alternate-origin https://alternate-host` after the www/apex redirect is configured. HTTPS is required outside the script's explicit local-test mode.
+
 Output: `dist/`
 
-The build includes the homepage, FAQ, Privacy, Security, 404, and all documentation pages.
+The build includes the homepage, beta-request confirmation, FAQ, Privacy, Security, 404, and all documentation pages. The confirmation route is `noindex` and excluded from the sitemap.
 
 ## Production-domain metadata
 
@@ -52,6 +60,7 @@ Netlify is the direct fit because the email-only beta form uses Netlify Forms an
 8. Submit and delete a test request using the approved operations process.
 9. Set `VITE_LANVEXA_ENABLE_BETA_FORM=true` only after that test succeeds.
 10. Test CSP headers, the branded 404, all documentation routes, and the generated sitemap before production promotion.
+11. Run `npm run verify:deployed -- https://preview-url`, visually review, then repeat against production after promotion.
 
 CLI preview deployment:
 
@@ -74,6 +83,7 @@ Do not run a production deploy until the domain, privacy owner, form workflow, a
 - Encoding: `application/x-www-form-urlencoded`
 - Honeypot field: `company-website`
 - JavaScript disabled: native required-email validation and normal form POST remain available
+- Successful form destination: `/beta-requested.html`
 
 Before public use, confirm the legal publisher, privacy contact, retention/deletion process, notification recipient, success email, and spam handling.
 
@@ -114,6 +124,7 @@ Do not populate those locations with generated or reconstructed product screensh
 - Build inputs, contacts, publisher, and domain metadata: `vite.config.mjs`
 - Environment validation: `config/site.mjs`
 - Pre-deployment checks: `scripts/verify-launch.mjs`
+- Deployed-site checks: `scripts/verify-deployed.mjs`
 - Internal launch operations: `docs-internal/`
 - Hosting configuration: `netlify.toml`
 
@@ -127,3 +138,7 @@ Do not populate those locations with generated or reconstructed product screensh
 - Replace or supplement the interactive example with authentic LANVEXA screenshots and recordings.
 
 All demo infrastructure must use `example.net`, RFC1918 addresses, or locally administered identifiers.
+
+## Website SBOM
+
+`npm run sbom` uses npm's built-in CycloneDX output and writes an ignored release artifact at `artifacts/lanvexa-site.cdx.json`. The site has no npm runtime dependency; Vite and its locked graph are build-only.

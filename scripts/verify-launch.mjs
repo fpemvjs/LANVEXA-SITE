@@ -12,12 +12,23 @@ const expectedPages = [
   'index.html', 'faq.html', 'security.html', 'privacy.html', '404.html',
   'docs/index.html', 'docs/understanding-results.html',
   'docs/lldp-cdp-discovery.html', 'docs/not-tested.html',
-  'docs/no-neighbor.html',
+  'docs/no-neighbor.html', 'beta-requested.html',
 ];
 const requiredAssets = [
   'brand/lanvexa-wordmark.svg', 'brand/lanvexa-wordmark-reverse.svg',
   'brand/lanvexa-x.svg', 'brand/lanvexa-x-small.svg',
   'lanvexa-social.png',
+];
+const requiredInternalDocs = [
+  'BETA-OPERATIONS.md', 'NPCAP-DECISION.md', 'ROLLBACK.md',
+  'PUBLICATION-INCIDENT.md', 'OWNERSHIP.md', 'RELEASE-PROCESS.md',
+  'WEB-RELEASE-LOG.md', 'SECURITY-PUBLICATION-CHECKLIST.md',
+  'THREAT-MODEL.md', 'RELEASE-INTEGRITY.md', 'DEPENDENCY-INVENTORY.md',
+  'DOMAIN-PREFLIGHT.md', 'PRIVACY-DATA-FLOW.md', 'DATA-DELETION.md',
+  'PRODUCT-MEDIA-STANDARD.md', 'SUPPORT-MODEL.md',
+  'BETA-SUCCESS-CRITERIA.md', 'LAUNCH-READINESS.md',
+  'templates/BETA-ACCEPTANCE.md', 'templates/BETA-WAITLIST.md',
+  'templates/INSTALLATION-INSTRUCTIONS.md', 'templates/FEEDBACK-REQUEST.md',
 ];
 const internalPatterns = [
   ['UT Dallas identifier', /utdallas|\bUTD\b|swroc/i],
@@ -88,8 +99,9 @@ function checkNoDomainBuild(directory) {
   else pass('empty-domain robots.txt contains no fake sitemap');
 }
 function checkDomainBuild(directory, origin) {
-  for (const page of expectedPages.filter((page) => page !== '404.html')) requireFile(directory, page);
-  for (const page of expectedPages.filter((page) => page !== '404.html')) {
+  const indexablePages = expectedPages.filter((page) => !['404.html', 'beta-requested.html'].includes(page));
+  for (const page of indexablePages) requireFile(directory, page);
+  for (const page of indexablePages) {
     const html = readFileSync(resolve(directory, page), 'utf8');
     const route = page === 'index.html' ? '/' : page.endsWith('/index.html') ? `/${page.slice(0, -10)}` : `/${page}`;
     const url = `${origin}${route}`;
@@ -99,7 +111,7 @@ function checkDomainBuild(directory, origin) {
   }
   const sitemap = readFileSync(resolve(directory, 'sitemap.xml'), 'utf8');
   const listed = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
-  if (listed.length !== expectedPages.length - 1) fail('sitemap route count does not match public routes');
+  if (listed.length !== indexablePages.length) fail('sitemap route count does not match public routes');
   else pass('sitemap contains every public route and excludes 404/internal documents');
   for (const url of listed) {
     const route = new URL(url).pathname;
@@ -113,12 +125,16 @@ function checkDomainBuild(directory, origin) {
   const security = readFileSync(resolve(directory, 'security.html'), 'utf8');
   const privacy = readFileSync(resolve(directory, 'privacy.html'), 'utf8');
   const home = readFileSync(resolve(directory, 'index.html'), 'utf8');
+  const confirmation = readFileSync(resolve(directory, 'beta-requested.html'), 'utf8');
   security.includes('mailto:security@lanvexa.invalid') ? pass('configured security contact is injected') : fail('configured security contact is missing');
   privacy.includes('mailto:privacy@lanvexa.invalid') ? pass('configured privacy contact is injected') : fail('configured privacy contact is missing');
   home.includes('mailto:support@lanvexa.invalid') && home.includes('Published by Launch Check Publisher') ? pass('configured support contact and publisher are injected') : fail('configured support contact or publisher is missing');
+  /name="robots" content="noindex,nofollow"/.test(confirmation) ? pass('beta confirmation route is noindex') : fail('beta confirmation route is indexable');
+  !listed.some((url) => url.endsWith('/beta-requested.html')) ? pass('beta confirmation route is excluded from sitemap') : fail('beta confirmation route appears in sitemap');
 }
 
 console.log('LANVEXA launch verification');
+requiredInternalDocs.forEach((file) => requireFile(resolve(root, 'docs-internal'), file));
 if (!existsSync(dist)) fail('dist does not exist; run npm run build first');
 else {
   expectedPages.forEach((file) => requireFile(dist, file));
@@ -137,6 +153,18 @@ else {
   const unapprovedEmails = emailMatches.filter((entry) => !approvedEmails.has(entry.split(': ').at(-1).toLowerCase()));
   if (unapprovedEmails.length) fail(`unapproved public email address(es): ${unapprovedEmails.join(', ')}`);
   else pass('production output contains no unapproved email addresses');
+  const home = readFileSync(resolve(dist, 'index.html'), 'utf8');
+  /name="beta-access"[\s\S]*?action="\/beta-requested\.html"[\s\S]*?data-netlify-honeypot="company-website"/.test(home)
+    ? pass('beta form has confirmation route and honeypot')
+    : fail('beta form fallback action or honeypot is missing');
+  const emittedInternal = textFiles(dist).filter((file) => relative(dist, file).startsWith('docs-internal'));
+  emittedInternal.length ? fail('internal documentation was emitted into dist') : pass('internal documentation is absent from dist');
+  const forbiddenFiles = readdirSync(dist, { recursive: true }).filter((entry) => /npcap.*\.(?:exe|msi|dll)|(?:installer|setup).*\.(?:exe|msi)/i.test(String(entry)));
+  forbiddenFiles.length ? fail(`unauthorized installer/binary in dist: ${forbiddenFiles.join(', ')}`) : pass('no Npcap installer or unauthorized installer binary is present');
+  const scripts = textFiles(dist).filter((file) => extname(file) === '.js').map((file) => readFileSync(file, 'utf8')).join('\n');
+  /google-analytics|googletagmanager|plausible\.io|posthog|segment\.com|clarity\.ms/i.test(scripts)
+    ? fail('analytics/tracking signature found in production JavaScript')
+    : pass('no analytics provider signature is present');
 }
 
 const netlify = readFileSync(resolve(root, 'netlify.toml'), 'utf8');

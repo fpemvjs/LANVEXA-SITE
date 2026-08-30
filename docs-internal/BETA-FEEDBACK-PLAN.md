@@ -21,9 +21,13 @@ ticket. Do not add this as a long pre-access website questionnaire.
 - Which check, label, or state was confusing or incorrect?
 - What failed: install, interface selection, connectivity test, discovery, or interpretation?
 
+The primary outcome question is: **Did LANVEXA change what you did next?** Classify the answer as one or more of: identified advertised switch/port; confirmed basic connectivity; isolated a DNS or gateway problem; escalated with better evidence; still required another tool; result was misleading; could not run the product; no change.
+
 ## Evidence to retain
 
 Prefer structured answers, release identifier, Windows version, adapter model,
 and high-level environment type. Do not request credentials, packet captures,
 internal hostnames, full ticket text, or screenshots containing sensitive
 infrastructure unless a secure, approved process exists.
+
+Aggregate only after preserving the denominator and release identifier. Separate “no advertisement existed” from a product capture failure; do not treat all no-neighbor results as discovery defects.

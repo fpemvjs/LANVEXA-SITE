@@ -1,39 +1,25 @@
-# Security publication checklist
+# Security publication verification matrix
 
-Internal document. Claims may move to the public Security page only after evidence is reviewed.
+Internal document. Unknowns are gates, not assumed negatives. Roles remain unassigned until `OWNERSHIP.md` is completed.
 
-## Verified
+| Claim/area | Current evidence | Status | Required test | Owner |
+|---|---|---|---|---|
+| Windows/.NET 8/WPF prototype | Product description | VERIFIED FOR PROTOTYPE | Confirm release build | PRODUCT OWNER |
+| Npcap/SharpPcap architecture | Product description | VERIFIED FOR PROTOTYPE | Confirm locked release dependencies | RELEASE OWNER |
+| LLDP/CDP observation | Prototype capability | VERIFIED FOR PROTOTYPE | Source + packet test | SECURITY CONTACT |
+| Capture filter | None reviewed here | UNVERIFIED | Source inspection and runtime capture validation | SECURITY CONTACT |
+| Packet lifecycle/retention | None | UNVERIFIED | Source, memory, file and registry inspection | SECURITY CONTACT |
+| Telemetry | None | UNVERIFIED | Source/build review and network observation | SECURITY CONTACT |
+| Application logging | None | UNVERIFIED | Runtime, crash and uninstall tests | SECURITY CONTACT |
+| DNS/TCP targets | Described only as configured checks | UNVERIFIED | Configuration and packet observation | PRODUCT OWNER |
+| Permissions/elevation | None | UNVERIFIED | clean-machine standard/admin matrix | RELEASE OWNER |
+| Npcap runtime/install behavior | Architecture statement only | UNVERIFIED | clean-machine and service/driver tests | RELEASE OWNER |
+| Npcap packaging/license | Official publisher materials reviewed; no LANVEXA decision | BLOCKED | Legal/product decision per `NPCAP-DECISION.md` | PRODUCT OWNER |
+| Dependency versions/licenses | Website lockfile; app repository out of scope | PARTIAL | Release inventories for website and app | RELEASE OWNER |
+| Authenticode | No release evidence | UNVERIFIED | Signed installer/binary validation | RELEASE OWNER |
+| Release hashes | No release exists | UNVERIFIED | Generate and verify release SHA-256 | RELEASE OWNER |
+| Update method | No reviewed design | UNVERIFIED | Architecture/threat/rollback review | SECURITY CONTACT |
+| Defender/enterprise EDR | No test evidence | UNVERIFIED | Representative release-package tests | SECURITY CONTACT |
+| Vulnerability reporting | No published contact | BLOCKED | Assign address and response owner | SECURITY CONTACT |
 
-| Item | Evidence currently available |
-|---|---|
-| Prototype platform | Windows, .NET 8, WPF |
-| Capture components | Npcap and SharpPcap |
-| Discovery protocols | Passive LLDP/CDP observation |
-| Active checks represented | Gateway, DNS, configured TCP/443 |
-
-## Unverified
-
-| Item | Evidence required |
-|---|---|
-| Packet capture filter | Source review and captured-filter validation |
-| Packet lifecycle | Source review including buffers and disposal |
-| Telemetry | Source, build configuration, and network observation |
-| Logging | Source, runtime, install, and crash-path review |
-| Retention | File/registry/database inspection and policy decision |
-| DNS target | Product configuration and packet observation |
-| TCP target | Product configuration and packet observation |
-| Permissions | Clean-machine install and runtime test |
-| Elevation | Standard-user and administrator test matrix |
-| Npcap behavior | Install options, runtime service, capture permissions |
-| Dependency versions | Locked release dependency inventory |
-| Code signing | Authenticode certificate and signed release |
-| Release hashes | Reproducible checksum publication process |
-| Update method | Design, transport, signing, rollback, and failure behavior |
-| Microsoft Defender | Tested release package and documented result |
-| Enterprise EDR | Representative controlled validation |
-| Npcap licensing | Written packaging/redistribution decision |
-| Vulnerability reporting | Approved public security contact and process |
-
-## Not applicable
-
-Nothing is classified as not applicable yet. Move an item here only with a short rationale and reviewer.
+Nothing is classified NOT APPLICABLE yet. Any such change requires a rationale and reviewer.

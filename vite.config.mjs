@@ -89,6 +89,7 @@ export default defineConfig({
         privacy: resolve(root, 'privacy.html'),
         security: resolve(root, 'security.html'),
         notFound: resolve(root, '404.html'),
+        betaRequested: resolve(root, 'beta-requested.html'),
         docs: resolve(root, 'docs/index.html'),
         results: resolve(root, 'docs/understanding-results.html'),
         discovery: resolve(root, 'docs/lldp-cdp-discovery.html'),

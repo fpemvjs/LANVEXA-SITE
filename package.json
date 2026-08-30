@@ -6,7 +6,9 @@
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "verify:launch": "npm run build && node scripts/verify-launch.mjs"
+    "verify:launch": "npm run build && node scripts/verify-launch.mjs",
+    "verify:deployed": "node scripts/verify-deployed.mjs",
+    "sbom": "node scripts/generate-sbom.mjs"
   },
   "engines": {
     "node": ">=22 <25"
