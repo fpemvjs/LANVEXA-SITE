@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#0f1417" />
+    <meta
+      name="description"
+      content="Practical ways to identify the connected switch and advertised Port ID from a Windows laptop, including LLDP/CDP, packet analysis, switch-side lookup, and dedicated testers."
+    />
+    <title>Identify a connected switch port from Windows — LANVEXA</title>
+    <link rel="icon" href="/brand/lanvexa-x-small.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="LANVEXA home"
+        ><img
+          src="/brand/lanvexa-wordmark.svg"
+          alt="LANVEXA"
+          width="420"
+          height="88"
+      /></a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="/">Product</a><a href="/faq.html">FAQ</a
+        ><a href="/security.html">Security</a>
+      </nav>
+    </header>
+    <main class="docs-shell" id="main">
+      <nav class="docs-nav" aria-label="Documentation">
+        <strong>DOCUMENTATION</strong><a href="/docs/">Getting started</a
+        ><a href="/docs/understanding-results.html">Understanding results</a
+        ><a href="/docs/connectivity-checks.html">Connectivity checks</a
+        ><a href="/docs/lldp-cdp-discovery.html">LLDP/CDP discovery</a
+        ><a href="/docs/lldp-vs-cdp.html">LLDP vs CDP</a
+        ><a href="/docs/identify-switch-port-windows.html" aria-current="page"
+          >Identify an advertised port</a
+        ><a href="/docs/no-neighbor.html">No neighbor detected</a
+        ><a href="/docs/not-tested.html">What LANVEXA does not test</a
+        ><a href="/security.html">Security</a
+        ><a href="/privacy.html">Privacy</a>
+      </nav>
+      <article class="docs-article">
+        <p class="section-index">WINDOWS / SWITCH DISCOVERY</p>
+        <h1>
+          How to identify the connected switch or port from a Windows laptop
+        </h1>
+        <p class="doc-lede">
+          A laptop can provide useful clues about the neighboring switch, but no
+          single method guarantees a physical-port mapping in every environment.
+          Treat an advertised Port ID as evidence to corroborate, not certainty.
+        </p>
+        <h2>Common approaches</h2>
+        <h3>Switch-side MAC-table lookup</h3>
+        <p>
+          A network administrator can look for the laptop adapter's MAC address
+          in the switching environment. This can be authoritative within the
+          observed topology, but it requires management access and careful
+          handling of uplinks, learned addresses, and recent moves.
+        </p>
+        <h3>LLDP/CDP observation</h3>
+        <p>
+          A directly connected switch may advertise its identity and Port ID.
+          This requires the protocol to be enabled, an advertisement to arrive,
+          and the Windows capture environment to expose it.
+        </p>
+        <h3>Packet analysis</h3>
+        <p>
+          A packet analyzer can inspect discovery frames directly. This is
+          flexible and detailed, but the operator must select the correct
+          interface, capture safely, and interpret the protocol fields.
+        </p>
+        <h3>Dedicated network tester</h3>
+        <p>
+          Depending on the device, a dedicated tester may combine neighbor
+          discovery with physical-layer functions such as wiremap, TDR,
+          qualification, or PoE loading.
+        </p>
+        <h3>LANVEXA's intended workflow</h3>
+        <p>
+          LANVEXA is designed to combine passive LLDP/CDP observation with a
+          repeatable set of basic connectivity checks on the Windows laptop
+          already onsite. It aims to make the narrow first pass easier to read;
+          it does not replace switch management or physical-layer testing.
+        </p>
+        <h2>A practical first pass</h2>
+        <ol>
+          <li>Connect the intended wired adapter to the wall jack.</li>
+          <li>Confirm the selected adapter and link state.</li>
+          <li>Review addressing and configured connectivity checks.</li>
+          <li>Allow time for an LLDP/CDP advertisement.</li>
+          <li>
+            Record the protocol, neighboring identity, and advertised Port ID
+            when present.
+          </li>
+          <li>
+            Corroborate the observation through switch-side data or deeper tools
+            when the ticket requires certainty.
+          </li>
+        </ol>
+        <h2>When nothing is advertised</h2>
+        <p>
+          Continue using the connectivity results. No advertisement may reflect
+          device configuration, timing, adapter behavior, or the selected
+          interface; it is not proof of network failure. See
+          <a href="/docs/no-neighbor.html">No neighbor detected</a>.
+        </p>
+      </article>
+    </main>
+  </body>
+</html>

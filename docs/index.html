@@ -1,1 +1,118 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0f1417"><meta name="description" content="Getting started with the LANVEXA Windows Ethernet diagnostic prototype and the release details still being validated."><title>Getting started — LANVEXA documentation</title><link rel="icon" href="/brand/lanvexa-x-small.svg" type="image/svg+xml"><link rel="stylesheet" href="/src/styles.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><a class="brand" href="/" aria-label="LANVEXA home"><img src="/brand/lanvexa-wordmark.svg" alt="LANVEXA"></a><nav class="desktop-nav" aria-label="Primary navigation"><a href="/">Product</a><a href="/faq.html">FAQ</a><a href="/security.html">Security</a></nav></header><main class="docs-shell" id="main"><nav class="docs-nav" aria-label="Documentation"><strong>DOCUMENTATION</strong><a href="/docs/" aria-current="page">Getting started</a><a href="/docs/understanding-results.html">Understanding results</a><a href="/docs/lldp-cdp-discovery.html">LLDP/CDP discovery</a><a href="/docs/not-tested.html">What LANVEXA does not test</a><a href="/docs/no-neighbor.html">No neighbor detected</a></nav><article class="docs-article"><p class="section-index">GETTING STARTED / PRE-RELEASE</p><h1>Getting started with LANVEXA</h1><p class="doc-lede">LANVEXA is currently a Windows prototype for first-pass Ethernet diagnostics. Public installation steps cannot be finalized until the release package and Npcap deployment model are verified.</p><section class="status-panel known"><h2>WHAT THE CURRENT PROTOTYPE DOES</h2><p>Detects a wired interface, reports addressing state, tests gateway/DNS/configured TCP connectivity, and listens for LLDP/CDP neighbor advertisements.</p></section><h2>Expected technician workflow</h2><ol><li>Connect the Windows laptop to the Ethernet jack.</li><li>Open LANVEXA and select or confirm the wired interface.</li><li>Allow the configured connectivity checks to complete.</li><li>Allow time for an LLDP/CDP advertisement to arrive.</li><li>Read the combined result, including any failed, not-tested, or not-detected state.</li></ol><h2>Installation status</h2><p>The prototype architecture uses Npcap and SharpPcap for neighbor discovery. The final installer, Windows compatibility matrix, Npcap packaging, required privileges, signing, and enterprise deployment guidance remain under verification.</p><p>Do not treat this page as final installation documentation. It is the documentation foundation for the controlled beta package.</p><h2>Real product media slot</h2><div class="media-slot"><p>No authentic application media is installed in the website repository. When supplied, use <code>public/media/lanvexa-demo.webm</code>, <code>public/media/lanvexa-demo.mp4</code>, and <code>public/media/lanvexa-demo-poster.png</code>.</p></div><h2>Next</h2><p>Read <a href="/docs/understanding-results.html">Understanding LANVEXA results</a> or learn how <a href="/docs/lldp-cdp-discovery.html">LLDP/CDP discovery</a> works.</p></article></main></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#0f1417" />
+    <meta
+      name="description"
+      content="Getting started with the LANVEXA Windows Ethernet diagnostic prototype and the release details still being validated."
+    />
+    <title>Getting started — LANVEXA documentation</title>
+    <link rel="icon" href="/brand/lanvexa-x-small.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="LANVEXA home"
+        ><img src="/brand/lanvexa-wordmark.svg" alt="LANVEXA" width="420" height="88"
+      /></a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="/">Product</a><a href="/faq.html">FAQ</a
+        ><a href="/security.html">Security</a>
+      </nav>
+    </header>
+    <main class="docs-shell" id="main">
+      <nav class="docs-nav" aria-label="Documentation">
+        <strong>DOCUMENTATION</strong
+        ><a href="/docs/" aria-current="page">Getting started</a
+        ><a href="/docs/understanding-results.html">Understanding results</a
+        ><a href="/docs/connectivity-checks.html">Connectivity checks</a
+        ><a href="/docs/lldp-cdp-discovery.html">LLDP/CDP discovery</a
+        ><a href="/docs/lldp-vs-cdp.html">LLDP vs CDP</a
+        ><a href="/docs/identify-switch-port-windows.html"
+          >Identify an advertised port</a
+        ><a href="/docs/no-neighbor.html">No neighbor detected</a
+        ><a href="/docs/not-tested.html">What LANVEXA does not test</a
+        ><a href="/security.html">Security</a
+        ><a href="/privacy.html">Privacy</a>
+      </nav>
+      <article class="docs-article">
+        <p class="section-index">GETTING STARTED / PRE-RELEASE</p>
+        <h1>Getting started with LANVEXA</h1>
+        <p class="doc-lede">
+          LANVEXA is currently a Windows prototype for first-pass Ethernet
+          diagnostics. Public installation steps cannot be finalized until the
+          release package and Npcap deployment model are verified.
+        </p>
+        <section class="status-panel known">
+          <h2>WHAT THE CURRENT PROTOTYPE DOES</h2>
+          <p>
+            Detects a wired interface, reports addressing state, tests
+            gateway/DNS/configured TCP connectivity, and listens for LLDP/CDP
+            neighbor advertisements.
+          </p>
+        </section>
+        <h2>Expected technician workflow</h2>
+        <ol>
+          <li>Connect the Windows laptop to the Ethernet jack.</li>
+          <li>Open LANVEXA and select or confirm the wired interface.</li>
+          <li>Allow the configured connectivity checks to complete.</li>
+          <li>Allow time for an LLDP/CDP advertisement to arrive.</li>
+          <li>
+            Read the combined result, including any failed, not-tested, or
+            not-detected state.
+          </li>
+          <li>
+            Use the observations to continue locally or escalate with clearer
+            evidence.
+          </li>
+        </ol>
+        <h2>What is known</h2>
+        <p>
+          Current development information describes a Windows desktop prototype
+          that uses Npcap and SharpPcap for passive neighbor discovery. The
+          public website does not distribute the application or Npcap.
+        </p>
+        <h2>What is not yet verified for controlled beta</h2>
+        <ul>
+          <li>Supported Windows versions and processor architectures</li>
+          <li>Runtime prerequisites and administrator requirements</li>
+          <li>Installer, upgrade, and uninstall behavior</li>
+          <li>Npcap prerequisite and packaging details</li>
+          <li>Signing, publisher identity, and release version</li>
+        </ul>
+        <h2>Installation status</h2>
+        <p>
+          Controlled-beta installation instructions are not yet published.
+          Selected testers will receive verified installation and distribution
+          information before installing anything. Requesting access is not an
+          automatic download or acceptance into the beta.
+        </p>
+        <h2>Real product media slot</h2>
+        <div class="media-slot">
+          <p>
+            No authentic application media is installed in the website
+            repository. When supplied, use
+            <code>public/media/lanvexa-demo.webm</code>,
+            <code>public/media/lanvexa-demo.mp4</code>, and
+            <code>public/media/lanvexa-demo-poster.png</code>.
+          </p>
+        </div>
+        <h2>Next</h2>
+        <p>
+          Read
+          <a href="/docs/understanding-results.html"
+            >Understanding LANVEXA results</a
+          >
+          , review the conceptual
+          <a href="/docs/connectivity-checks.html">connectivity checks</a>, or
+          learn how
+          <a href="/docs/lldp-cdp-discovery.html">LLDP/CDP discovery</a>
+          works.
+        </p>
+      </article>
+    </main>
+  </body>
+</html>

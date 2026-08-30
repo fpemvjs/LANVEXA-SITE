@@ -1,1 +1,83 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0f1417"><meta name="description" content="What the LANVEXA Windows Ethernet diagnostic tool does not test, including wiremap, TDR, cable length, PoE loading, and SFP optics."><title>What LANVEXA does not test — LANVEXA documentation</title><link rel="icon" href="/brand/lanvexa-x-small.svg" type="image/svg+xml"><link rel="stylesheet" href="/src/styles.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><a class="brand" href="/" aria-label="LANVEXA home"><img src="/brand/lanvexa-wordmark.svg" alt="LANVEXA"></a><nav class="desktop-nav" aria-label="Primary navigation"><a href="/">Product</a><a href="/faq.html">FAQ</a><a href="/security.html">Security</a></nav></header><main class="docs-shell" id="main"><nav class="docs-nav" aria-label="Documentation"><strong>DOCUMENTATION</strong><a href="/docs/">Getting started</a><a href="/docs/understanding-results.html">Understanding results</a><a href="/docs/lldp-cdp-discovery.html">LLDP/CDP discovery</a><a href="/docs/not-tested.html" aria-current="page">What LANVEXA does not test</a><a href="/docs/no-neighbor.html">No neighbor detected</a></nav><article class="docs-article"><p class="section-index">PRODUCT SCOPE</p><h1>What LANVEXA does not test</h1><p class="doc-lede">LANVEXA is software running on a Windows computer. It does not contain the measurement hardware required for cable qualification or advanced physical-layer testing.</p><h2>Not current LANVEXA capabilities</h2><ul><li>Cable continuity or wiremap</li><li>Cable length measurement</li><li>TDR fault distance or fault location</li><li>Cable certification or qualification</li><li>PoE voltage or load testing</li><li>SFP optical power measurements</li><li>Advanced physical-layer error testing</li><li>Wi-Fi analysis</li><li>SNMP polling</li><li>Switch configuration or SSH automation</li></ul><h2>Negotiated link speed is not cable qualification</h2><p>A Windows-reported negotiated link such as 1.0 Gbps describes the current NIC link state. It does not certify that the installed cable meets a cabling standard or will operate without physical errors under load.</p><h2>When to use dedicated hardware</h2><p>Use a purpose-built tester when the ticket requires wiremap, cable length, fault location, PoE loading, optical measurements, certification, or deeper physical-layer validation.</p><h2>Where LANVEXA fits</h2><p>LANVEXA targets first-pass logical connectivity and neighbor-identification questions from the laptop already used onsite.</p></article></main></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#0f1417" />
+    <meta
+      name="description"
+      content="What the LANVEXA Windows Ethernet diagnostic tool does not test, including wiremap, TDR, cable length, PoE loading, and SFP optics."
+    />
+    <title>What LANVEXA does not test — LANVEXA documentation</title>
+    <link rel="icon" href="/brand/lanvexa-x-small.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="LANVEXA home"
+        ><img src="/brand/lanvexa-wordmark.svg" alt="LANVEXA" width="420" height="88"
+      /></a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="/">Product</a><a href="/faq.html">FAQ</a
+        ><a href="/security.html">Security</a>
+      </nav>
+    </header>
+    <main class="docs-shell" id="main">
+      <nav class="docs-nav" aria-label="Documentation">
+        <strong>DOCUMENTATION</strong><a href="/docs/">Getting started</a
+        ><a href="/docs/understanding-results.html">Understanding results</a
+        ><a href="/docs/connectivity-checks.html">Connectivity checks</a
+        ><a href="/docs/lldp-cdp-discovery.html">LLDP/CDP discovery</a
+        ><a href="/docs/lldp-vs-cdp.html">LLDP vs CDP</a
+        ><a href="/docs/identify-switch-port-windows.html"
+          >Identify an advertised port</a
+        ><a href="/docs/no-neighbor.html">No neighbor detected</a
+        ><a href="/docs/not-tested.html" aria-current="page"
+          >What LANVEXA does not test</a
+        ><a href="/security.html">Security</a
+        ><a href="/privacy.html">Privacy</a>
+      </nav>
+      <article class="docs-article">
+        <p class="section-index">PRODUCT SCOPE</p>
+        <h1>What LANVEXA does not test</h1>
+        <p class="doc-lede">
+          LANVEXA is software running on a Windows computer. It does not contain
+          the measurement hardware required for cable qualification or advanced
+          physical-layer testing.
+        </p>
+        <h2>Not current LANVEXA capabilities</h2>
+        <ul>
+          <li>Cable continuity or wiremap</li>
+          <li>Cable length measurement</li>
+          <li>TDR fault distance or fault location</li>
+          <li>Cable certification or qualification</li>
+          <li>PoE voltage or load testing</li>
+          <li>SFP optical power measurements</li>
+          <li>Advanced physical-layer error testing</li>
+          <li>Wi-Fi analysis</li>
+          <li>SNMP polling</li>
+          <li>Switch configuration or SSH automation</li>
+        </ul>
+        <h2>Negotiated link speed is not cable qualification</h2>
+        <p>
+          A Windows-reported negotiated link such as 1.0 Gbps describes the
+          current NIC link state. It does not certify that the installed cable
+          meets a cabling standard or will operate without physical errors under
+          load.
+        </p>
+        <h2>When to use dedicated hardware</h2>
+        <p>
+          Use a purpose-built tester when the ticket requires wiremap, cable
+          length, fault location, PoE loading, optical measurements,
+          certification, or deeper physical-layer validation.
+        </p>
+        <h2>Where LANVEXA fits</h2>
+        <p>
+          LANVEXA targets first-pass logical connectivity and
+          neighbor-identification questions from the laptop already used onsite.
+        </p>
+      </article>
+    </main>
+  </body>
+</html>

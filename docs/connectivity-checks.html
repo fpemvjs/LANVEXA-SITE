@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#0f1417" />
+    <meta
+      name="description"
+      content="Understand the addressing, gateway, DNS, and configured TCP checks in LANVEXA without overstating what each result proves."
+    />
+    <title>Windows Ethernet connectivity checks — LANVEXA documentation</title>
+    <link rel="icon" href="/brand/lanvexa-x-small.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="LANVEXA home"
+        ><img
+          src="/brand/lanvexa-wordmark.svg"
+          alt="LANVEXA"
+          width="420"
+          height="88"
+      /></a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="/">Product</a><a href="/faq.html">FAQ</a
+        ><a href="/security.html">Security</a>
+      </nav>
+    </header>
+    <main class="docs-shell" id="main">
+      <nav class="docs-nav" aria-label="Documentation">
+        <strong>DOCUMENTATION</strong><a href="/docs/">Getting started</a
+        ><a href="/docs/understanding-results.html">Understanding results</a
+        ><a href="/docs/connectivity-checks.html" aria-current="page"
+          >Connectivity checks</a
+        ><a href="/docs/lldp-cdp-discovery.html">LLDP/CDP discovery</a
+        ><a href="/docs/lldp-vs-cdp.html">LLDP vs CDP</a
+        ><a href="/docs/identify-switch-port-windows.html"
+          >Identify an advertised port</a
+        ><a href="/docs/no-neighbor.html">No neighbor detected</a
+        ><a href="/docs/not-tested.html">What LANVEXA does not test</a
+        ><a href="/security.html">Security</a
+        ><a href="/privacy.html">Privacy</a>
+      </nav>
+      <article class="docs-article">
+        <p class="section-index">CONNECTIVITY / INTERPRETATION</p>
+        <h1>What the connectivity checks are designed to tell you</h1>
+        <p class="doc-lede">
+          LANVEXA is designed to bring basic Windows Ethernet observations into
+          one first-pass sequence. Each check answers a narrow question; none
+          proves overall network health or a root cause.
+        </p>
+        <section class="status-panel">
+          <h2>SEMANTICS STILL UNDER VERIFICATION</h2>
+          <p>
+            Exact targets, timeouts, resolver behavior, success conditions, and
+            error handling have not yet been verified from the desktop
+            application. They must be published before controlled distribution.
+          </p>
+        </section>
+        <h2>Addressing</h2>
+        <p>
+          Designed to show whether the selected wired interface has usable
+          addressing information. The exact criteria for “usable,” including
+          IPv4 and IPv6 handling, remain unverified.
+        </p>
+        <h2>Gateway</h2>
+        <p>
+          Designed to evaluate a configured gateway check. A failure should be
+          read only as that check not meeting its success condition; the
+          transport, target selection, timeout, and policy implications remain
+          unverified.
+        </p>
+        <h2>DNS</h2>
+        <p>
+          Designed to evaluate a configured DNS check. The queried hostname,
+          resolver selection, cache effects, address-family behavior, timeout,
+          and precise success condition remain unverified.
+        </p>
+        <h2>Configured TCP connectivity</h2>
+        <p>
+          Designed to evaluate a configured TCP/443 connection. The target,
+          timeout, address-family behavior, and precise success condition remain
+          unverified. A result should not be generalized beyond that configured
+          connection.
+        </p>
+        <h2>Read the sequence without inventing a cause</h2>
+        <ul>
+          <li>
+            <strong>PASS</strong> means the configured check met its success
+            condition.
+          </li>
+          <li><strong>FAIL</strong> means it did not meet that condition.</li>
+          <li>
+            <strong>NOT TESTED</strong> means it was not run or could not
+            appropriately proceed.
+          </li>
+        </ul>
+        <p>
+          Use the combined observations to decide what to investigate next. For
+          example, a DNS failure can focus the next investigation on name
+          resolution, but it does not by itself prove which DNS component or
+          policy caused the failure.
+        </p>
+        <h2>Before controlled distribution</h2>
+        <p>
+          LANVEXA must publish the actual input, target, timeout, success
+          condition, failure condition, not-tested condition, and error behavior
+          for each shipped check.
+        </p>
+      </article>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#0f1417" />
+    <meta
+      name="description"
+      content="Learn the difference between LLDP and CDP, what these passive neighbor advertisements may contain, and why an absent advertisement is not a network failure."
+    />
+    <title>LLDP vs CDP on Windows — LANVEXA documentation</title>
+    <link rel="icon" href="/brand/lanvexa-x-small.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="LANVEXA home"
+        ><img
+          src="/brand/lanvexa-wordmark.svg"
+          alt="LANVEXA"
+          width="420"
+          height="88"
+      /></a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="/">Product</a><a href="/faq.html">FAQ</a
+        ><a href="/security.html">Security</a>
+      </nav>
+    </header>
+    <main class="docs-shell" id="main">
+      <nav class="docs-nav" aria-label="Documentation">
+        <strong>DOCUMENTATION</strong><a href="/docs/">Getting started</a
+        ><a href="/docs/understanding-results.html">Understanding results</a
+        ><a href="/docs/connectivity-checks.html">Connectivity checks</a
+        ><a href="/docs/lldp-cdp-discovery.html">LLDP/CDP discovery</a
+        ><a href="/docs/lldp-vs-cdp.html" aria-current="page">LLDP vs CDP</a
+        ><a href="/docs/identify-switch-port-windows.html"
+          >Identify an advertised port</a
+        ><a href="/docs/no-neighbor.html">No neighbor detected</a
+        ><a href="/docs/not-tested.html">What LANVEXA does not test</a
+        ><a href="/security.html">Security</a
+        ><a href="/privacy.html">Privacy</a>
+      </nav>
+      <article class="docs-article">
+        <p class="section-index">PROTOCOLS / FIELD GUIDE</p>
+        <h1>LLDP vs CDP: two ways a neighbor can identify itself</h1>
+        <p class="doc-lede">
+          Both protocols let a network device advertise information to directly
+          connected neighbors. Observing an advertisement can help identify the
+          neighboring device and its advertised port without logging in to the
+          switch.
+        </p>
+        <h2>LLDP</h2>
+        <p>
+          Link Layer Discovery Protocol is an IEEE 802.1AB standard designed for
+          vendor-neutral neighbor discovery.
+        </p>
+        <h2>CDP</h2>
+        <p>
+          Cisco Discovery Protocol is a Cisco-developed protocol commonly found
+          in Cisco environments.
+        </p>
+        <h2>What may be advertised</h2>
+        <ul>
+          <li>System, chassis, or device identity</li>
+          <li>Port identity and description</li>
+          <li>Platform or software description</li>
+          <li>Management address information</li>
+        </ul>
+        <p>
+          Fields are optional and implementation-dependent. A device may
+          advertise only some of them.
+        </p>
+        <h2>The Port ID nuance</h2>
+        <p>
+          A Port ID is information advertised by the neighboring device. It may
+          be useful evidence for finding a switch interface, but it is not a
+          guaranteed physical-port mapping. Record it as the
+          <em>advertised Port ID</em> and corroborate it when the ticket
+          requires certainty.
+        </p>
+        <h2>Why an advertisement may not appear</h2>
+        <ul>
+          <li>The protocol may be disabled globally or on the interface.</li>
+          <li>
+            The adapter, driver, dock, or virtual networking layer may not
+            expose the frame.
+          </li>
+          <li>
+            The observation window may not include an advertisement interval.
+          </li>
+          <li>
+            The selected adapter may not be the one connected to the jack.
+          </li>
+        </ul>
+        <section class="status-panel">
+          <h2>ABSENCE IS NOT A CONNECTIVITY VERDICT</h2>
+          <p>
+            No LLDP/CDP advertisement observed does not prove that the link,
+            switch, VLAN, gateway, DNS, or internet path failed.
+          </p>
+        </section>
+        <h2>How LANVEXA fits</h2>
+        <p>
+          LANVEXA is designed to observe these passive advertisements as one
+          part of a broader first-pass workflow alongside basic connectivity
+          checks. Exact capture and parsing behavior remains subject to
+          desktop-application verification.
+        </p>
+      </article>
+    </main>
+  </body>
+</html>

@@ -37,7 +37,7 @@
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header" id="top">
       <a class="brand" href="/" aria-label="LANVEXA home"
-        ><img src="/brand/lanvexa-wordmark.svg" alt="LANVEXA"
+        ><img src="/brand/lanvexa-wordmark.svg" alt="LANVEXA" width="420" height="88"
       /></a>
       <nav class="desktop-nav" aria-label="Primary navigation">
         <a href="#product">Product</a><a href="#workflow">How it works</a
@@ -63,10 +63,10 @@
           <p class="kicker">Windows Ethernet diagnostics</p>
           <h1>Answers at the jack.</h1>
           <p class="lede">
-            LANVEXA gives desktop support and field technicians one first-pass
-            Ethernet workflow: link, addressing, gateway, DNS, configured TCP
-            connectivity, and LLDP/CDP neighbor information when it is
-            advertised.
+            LANVEXA gives desktop support and field technicians a consistent
+            first-pass Ethernet workflow from the Windows laptop already used
+            onsite: link, addressing, gateway, DNS, configured TCP connectivity,
+            and LLDP/CDP neighbor information when it is advertised.
           </p>
           <div class="hero-actions">
             <a class="button" href="#beta"
@@ -76,7 +76,8 @@
           <p class="hero-caveat">
             <strong>Switch discovery depends on the network.</strong> LANVEXA
             reports the neighbor and advertised port only when an LLDP/CDP
-            advertisement is observed.
+            advertisement is observed. It does not qualify the cable or replace
+            deeper physical-layer testing.
           </p>
         </div>
         <div class="instrument-wrap" id="product">
@@ -84,12 +85,12 @@
           <div class="interactive-example" data-interactive-fallback>
             <div class="example-label">
               <span>LANVEXA FOR WINDOWS</span
-              ><strong>INTERACTIVE EXAMPLE · NOT A LIVE TEST</strong>
+              ><strong>INTERACTIVE EXAMPLE · NOT A PRODUCT SCREENSHOT</strong>
             </div>
             <article class="instrument" aria-labelledby="instrument-title">
               <header class="app-bar">
                 <div class="app-id">
-                  <img src="/brand/lanvexa-x-reverse.svg" alt="" /><strong
+                  <img src="/brand/lanvexa-x-reverse.svg" alt="" width="96" height="96" /><strong
                     id="instrument-title"
                     >LANVEXA</strong
                   ><span>PREVIEW</span>
@@ -254,7 +255,8 @@
               <li><span>01</span><strong>Connect</strong></li>
               <li><span>02</span><strong>Test</strong></li>
               <li><span>03</span><strong>Listen</strong></li>
-              <li><span>04</span><strong>Read one result</strong></li>
+              <li><span>04</span><strong>Interpret</strong></li>
+              <li><span>05</span><strong>Act / escalate</strong></li>
             </ol>
             <div class="result-fields">
               <span>ADAPTER</span><span>LINK</span><span>ADDRESS</span
@@ -316,15 +318,18 @@
 
       <section class="evidence section">
         <header class="evidence-head">
-          <p class="section-index">03 / TROUBLESHOOTING EVIDENCE</p>
-          <h2>Give the next person facts, not “Ethernet doesn’t work.”</h2>
+          <p class="section-index">03 / EVIDENCE YOU CAN ACT ON</p>
+          <h2>Know what passed, what did not, and what remains unknown.</h2>
         </header>
         <div class="evidence-sheet">
           <div class="evidence-context">
             <p>EXAMPLE ON-SCREEN OBSERVATIONS</p>
-            <span>Useful to read, relay, or enter into a ticket.</span
+            <span
+              >Use the on-screen observations to continue locally or relay
+              structured evidence when escalating.</span
             ><small
-              >Report export is not presented as a current capability.</small
+              >LANVEXA does not claim a root cause or present report export as a
+              current capability.</small
             >
           </div>
           <dl>
@@ -362,6 +367,13 @@
             </div>
           </dl>
         </div>
+        <p class="evidence-next">
+          A failed configured check can narrow the next investigation. A check
+          marked not tested remains unresolved. Neighbor information can be
+          relayed when advertised; when it is not detected, connectivity must be
+          judged from the connectivity checks rather than the missing
+          advertisement.
+        </p>
       </section>
 
       <section class="scope-section section">
@@ -371,7 +383,8 @@
             Logical connectivity first.<br />Physical validation when required.
           </h2>
           <p>
-            LANVEXA complements dedicated network test hardware. It does not
+            LANVEXA uses the existing Windows laptop for a software-based first
+            pass. It complements dedicated network test hardware and does not
             measure the cable.
           </p>
         </div>
@@ -385,9 +398,10 @@
           </div>
           <div>
             <strong>DEDICATED HARDWARE</strong
-            ><span>Wiremap and cable qualification</span
-            ><span>TDR length and fault location</span
-            ><span>PoE load testing</span><span>SFP optical measurements</span>
+            ><span>May provide wiremap and cable qualification</span
+            ><span>May provide TDR length and fault location</span
+            ><span>May provide PoE load testing</span
+            ><span>May provide SFP optical measurements</span>
           </div>
         </div>
       </section>
@@ -404,6 +418,7 @@
           <div class="tech-links">
             <a href="/security.html">Security disclosure</a
             ><a href="/docs/">Documentation</a
+            ><a href="/docs/connectivity-checks.html">Connectivity checks</a
             ><a href="/faq.html">Common questions</a>
           </div>
         </div>
@@ -433,7 +448,9 @@
           <h2>Evaluate LANVEXA on real Ethernet tickets.</h2>
           <p>
             Request access with one email address. Installation information and
-            feedback expectations come before any software distribution.
+            feedback expectations come before any software distribution. Access
+            is not automatic; selected testers receive technical and security
+            information before installation.
           </p>
         </div>
         <form
@@ -483,7 +500,7 @@
     </main>
     <footer class="site-footer">
       <div class="footer-brand">
-        <img src="/brand/lanvexa-wordmark-reverse.svg" alt="LANVEXA" />
+        <img src="/brand/lanvexa-wordmark-reverse.svg" alt="LANVEXA" width="420" height="88" />
         <p>Answers at the jack.</p>
         <!-- LANVEXA_PUBLISHER -->
       </div>

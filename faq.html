@@ -1,1 +1,162 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0f1417"><meta name="description" content="Direct answers about LANVEXA, LLDP/CDP discovery, Npcap, Windows compatibility, PowerShell, and physical cable testing."><meta property="og:title" content="LANVEXA FAQ"><meta property="og:description" content="What LANVEXA tests, what it does not test, and what happens when no neighbor advertisement is observed."><meta property="og:image" content="/lanvexa-social.png"><title>Frequently asked questions — LANVEXA</title><link rel="icon" href="/brand/lanvexa-x-small.svg" type="image/svg+xml"><link rel="stylesheet" href="/src/styles.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><a class="brand" href="/" aria-label="LANVEXA home"><img src="/brand/lanvexa-wordmark.svg" alt="LANVEXA"></a><nav class="desktop-nav" aria-label="Primary navigation"><a href="/">Product</a><a href="/docs/">Documentation</a><a href="/security.html">Security</a></nav><a class="button button-small header-cta" href="/#beta">Request Beta Access</a></header><main id="main"><header class="subpage-head"><p class="section-index">PRODUCT QUESTIONS</p><h1>Clear answers before installation.</h1><p>Current capabilities, deliberate limitations, and release details that are still being validated.</p></header><section class="faq-list"><details><summary>Does LANVEXA replace a cable tester?</summary><div><p>No. LANVEXA performs logical connectivity checks and passive neighbor discovery from a Windows laptop. It does not provide continuity, wiremap, cable length, TDR fault location, PoE load testing, cable qualification, or SFP optical measurements. Dedicated hardware remains appropriate for those tasks.</p></div></details><details><summary>What happens if LLDP/CDP is not advertised?</summary><div><p>LANVEXA can still report interface, link, addressing, gateway, DNS, and configured TCP results. Neighbor fields remain not detected. A missing advertisement is not labeled as a connectivity failure and does not mean the switch is down.</p></div></details><details><summary>Does LANVEXA log in to the switch?</summary><div><p>No for the current passive neighbor-discovery workflow. LANVEXA listens for LLDP/CDP advertisements received on the selected wired interface.</p></div></details><details><summary>Does neighbor discovery require SNMP credentials?</summary><div><p>No. Current LLDP/CDP neighbor discovery does not use SNMP polling or SNMP credentials.</p></div></details><details><summary>Why does LANVEXA use Npcap?</summary><div><p>The Windows prototype uses Npcap with SharpPcap to receive LLDP/CDP advertisements. Exact packaging, licensing, installation, and runtime privilege requirements remain under verification and are documented on the <a href="/security.html">Security page</a>.</p></div></details><details><summary>Which Windows versions are supported?</summary><div><p>A public compatibility matrix has not yet been verified. Windows version, architecture, .NET packaging, adapter, and Npcap compatibility testing must be completed before public beta distribution.</p></div></details><details><summary>Can I use LANVEXA instead of PowerShell?</summary><div><p>LANVEXA does not make the underlying checks proprietary or replace engineering tools. Its purpose is to run a consistent first pass and keep link, addressing, connectivity, and neighbor observations together in one result.</p></div></details><details><summary>Can LANVEXA export a report?</summary><div><p>Report export is not presented as a current capability. The website shows the structured information available together on screen.</p></div></details></section></main><footer class="site-footer"><div class="footer-brand"><img src="/brand/lanvexa-wordmark-reverse.svg" alt="LANVEXA"><p>Answers at the jack.</p></div><nav aria-label="Footer navigation"><a href="/">Product</a><a href="/docs/">Documentation</a><a href="/security.html">Security</a><a href="/privacy.html">Privacy</a></nav><p class="footer-scope">Questions are answered against current prototype scope, not planned features.</p></footer></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#0f1417" />
+    <meta
+      name="description"
+      content="Direct answers about LANVEXA, LLDP/CDP discovery, Npcap, Windows compatibility, PowerShell, and physical cable testing."
+    />
+    <meta property="og:title" content="LANVEXA FAQ" />
+    <meta
+      property="og:description"
+      content="What LANVEXA tests, what it does not test, and what happens when no neighbor advertisement is observed."
+    />
+    <meta property="og:image" content="/lanvexa-social.png" />
+    <title>Frequently asked questions — LANVEXA</title>
+    <link rel="icon" href="/brand/lanvexa-x-small.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="LANVEXA home"
+        ><img src="/brand/lanvexa-wordmark.svg" alt="LANVEXA" width="420" height="88"
+      /></a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="/">Product</a><a href="/docs/">Documentation</a
+        ><a href="/security.html">Security</a>
+      </nav>
+      <a class="button button-small header-cta" href="/#beta"
+        >Request Beta Access</a
+      >
+    </header>
+    <main id="main">
+      <header class="subpage-head">
+        <p class="section-index">PRODUCT QUESTIONS</p>
+        <h1>Clear answers before installation.</h1>
+        <p>
+          Current capabilities, deliberate limitations, and release details that
+          are still being validated.
+        </p>
+      </header>
+      <section class="faq-list">
+        <details>
+          <summary>Does LANVEXA replace a cable tester?</summary>
+          <div>
+            <p>
+              No. LANVEXA performs logical connectivity checks and passive
+              neighbor discovery from a Windows laptop. It does not provide
+              continuity, wiremap, cable length, TDR fault location, PoE load
+              testing, cable qualification, or SFP optical measurements.
+              Dedicated hardware remains appropriate for those tasks.
+            </p>
+          </div>
+        </details>
+        <details>
+          <summary>What happens if LLDP/CDP is not advertised?</summary>
+          <div>
+            <p>
+              LANVEXA can still report interface, link, addressing, gateway,
+              DNS, and configured TCP results. Neighbor fields remain not
+              detected. A missing advertisement is not labeled as a connectivity
+              failure and does not mean the switch is down.
+            </p>
+          </div>
+        </details>
+        <details>
+          <summary>Does LANVEXA log in to the switch?</summary>
+          <div>
+            <p>
+              No for the current passive neighbor-discovery workflow. LANVEXA
+              listens for LLDP/CDP advertisements received on the selected wired
+              interface.
+            </p>
+          </div>
+        </details>
+        <details>
+          <summary>Does neighbor discovery require SNMP credentials?</summary>
+          <div>
+            <p>
+              No. Current LLDP/CDP neighbor discovery does not use SNMP polling
+              or SNMP credentials.
+            </p>
+          </div>
+        </details>
+        <details>
+          <summary>Why does LANVEXA use Npcap?</summary>
+          <div>
+            <p>
+              The Windows prototype uses Npcap with SharpPcap to receive
+              LLDP/CDP advertisements. Exact packaging, licensing, installation,
+              and runtime privilege requirements remain under verification and
+              are documented on the <a href="/security.html">Security page</a>.
+            </p>
+          </div>
+        </details>
+        <details>
+          <summary>Which Windows versions are supported?</summary>
+          <div>
+            <p>
+              A public compatibility matrix has not yet been verified. Windows
+              version, architecture, .NET packaging, adapter, and Npcap
+              compatibility testing must be completed before public beta
+              distribution.
+            </p>
+          </div>
+        </details>
+        <details>
+          <summary>Can I use LANVEXA instead of PowerShell?</summary>
+          <div>
+            <p>
+              LANVEXA does not make the underlying checks proprietary or replace
+              engineering tools. Its purpose is to run a consistent first pass
+              and keep link, addressing, connectivity, and neighbor observations
+              together in one result.
+            </p>
+          </div>
+        </details>
+        <details>
+          <summary>How is LANVEXA different from Wireshark or an LLDP/CDP utility?</summary>
+          <div>
+            <p>
+              Wireshark is built for deep packet inspection, and focused
+              discovery utilities can be useful when neighbor information is
+              the only objective. LANVEXA is intended for a narrower technician
+              workflow: basic connectivity checks and passive LLDP/CDP
+              observation presented together without requiring packet-analysis
+              expertise. These tools remain appropriate when deeper or more
+              specialized investigation is required.
+            </p>
+          </div>
+        </details>
+        <details>
+          <summary>Can LANVEXA export a report?</summary>
+          <div>
+            <p>
+              Report export is not presented as a current capability. The
+              website shows the structured information available together on
+              screen.
+            </p>
+          </div>
+        </details>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <img src="/brand/lanvexa-wordmark-reverse.svg" alt="LANVEXA" width="420" height="88" />
+        <p>Answers at the jack.</p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <a href="/">Product</a><a href="/docs/">Documentation</a
+        ><a href="/security.html">Security</a
+        ><a href="/privacy.html">Privacy</a>
+      </nav>
+      <p class="footer-scope">
+        Questions are answered against current prototype scope, not planned
+        features.
+      </p>
+    </footer>
+  </body>
+</html>
