@@ -234,23 +234,27 @@
 
       <section class="workflow section" id="workflow">
         <header class="statement-head">
-          <p class="section-index">01 / ONE CONSISTENT FIRST PASS</p>
-          <h2>The commands are not the product. The result is.</h2>
+          <p class="section-index">01 / REPORTED PROBLEM</p>
+          <h2>&ldquo;This Ethernet jack isn&rsquo;t working.&rdquo;</h2>
           <p>
-            Each check is familiar. LANVEXA’s value is keeping the same
-            observations together, in the same order, at every wall jack.
+            Start with the same first pass: establish what basic network
+            functions are working before deciding what to investigate or
+            escalate.
           </p>
         </header>
         <div class="workflow-compare">
           <div class="manual-stack">
-            <p>MANUAL</p>
-            <code>ipconfig /all</code><span>Validate gateway</span
-            ><span>Validate DNS</span><code>Test-NetConnection -Port 443</code
-            ><span>Capture LLDP/CDP separately</span>
+            <p>SUPPORT TICKET / FIRST REPORT</p>
+            <strong
+              >&ldquo;Ethernet doesn&rsquo;t work at this desk.&rdquo;</strong
+            >
+            <span
+              >Link, addressing, and upstream behavior are still unknown.</span
+            >
           </div>
           <div class="workflow-arrow" aria-hidden="true">→</div>
           <div class="lanvexa-flow">
-            <p>LANVEXA</p>
+            <p>REPEATABLE FIRST PASS</p>
             <ol>
               <li><span>01</span><strong>Connect</strong></li>
               <li><span>02</span><strong>Test</strong></li>
@@ -270,11 +274,12 @@
 
       <section class="discovery section dark-section">
         <div class="discovery-copy">
-          <p class="section-index">02 / PASSIVE NEIGHBOR DISCOVERY</p>
-          <h2>Use what the network advertises.</h2>
+          <p class="section-index">02 / INVESTIGATION</p>
+          <h2>Test the basics. Use what the network advertises.</h2>
           <p>
-            LANVEXA listens locally for LLDP and CDP advertisements. It does not
-            log in to the switch or use SNMP credentials for the current
+            See what passed, what failed, and what the network advertised.
+            LANVEXA listens locally for LLDP and CDP advertisements without
+            logging in to the switch or using SNMP credentials for the current
             neighbor-discovery workflow.
           </p>
           <p class="caveat">
@@ -318,54 +323,79 @@
 
       <section class="evidence section">
         <header class="evidence-head">
-          <p class="section-index">03 / EVIDENCE YOU CAN ACT ON</p>
-          <h2>Know what passed, what did not, and what remains unknown.</h2>
+          <p class="section-index">03 / HANDOFF</p>
+          <h2>Give networking the observations, not just the symptom.</h2>
         </header>
-        <div class="evidence-sheet">
-          <div class="evidence-context">
-            <p>EXAMPLE ON-SCREEN OBSERVATIONS</p>
-            <span
-              >Use the on-screen observations to continue locally or relay
-              structured evidence when escalating.</span
-            ><small
-              >LANVEXA does not claim a root cause or present report export as a
-              current capability.</small
-            >
+        <div class="evidence-record">
+          <header class="record-header">
+            <span>FIELD DIAGNOSTIC RECORD</span>
+            <strong>EXAMPLE / ON-SCREEN OBSERVATIONS</strong>
+          </header>
+          <div class="record-row record-situation">
+            <p class="record-label">SITUATION</p>
+            <div>
+              <strong
+                >&ldquo;This Ethernet jack isn&rsquo;t working.&rdquo;</strong
+              >
+              <span
+                >Establish what basic network functions are working and whether
+                neighbor information is advertised.</span
+              >
+            </div>
           </div>
-          <dl>
+          <div class="record-row record-observations">
+            <p class="record-label">OBSERVATIONS</p>
+            <dl>
+              <div>
+                <dt>ADAPTER</dt>
+                <dd>Ethernet</dd>
+              </div>
+              <div>
+                <dt>LINK</dt>
+                <dd>Connected / 1.0 Gbps negotiated</dd>
+              </div>
+              <div>
+                <dt>ADDRESS</dt>
+                <dd>10.24.18.117 / DHCP</dd>
+              </div>
+              <div>
+                <dt>GATEWAY</dt>
+                <dd>10.24.18.1 / Pass</dd>
+              </div>
+              <div>
+                <dt>DNS</dt>
+                <dd>Pass</dd>
+              </div>
+              <div>
+                <dt>TCP / 443</dt>
+                <dd>Configured target / Pass</dd>
+              </div>
+              <div>
+                <dt>NEIGHBOR</dt>
+                <dd>sw-access-03.example.net</dd>
+              </div>
+              <div>
+                <dt>PORT</dt>
+                <dd>ge-0/0/24 / LLDP</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="record-row record-action">
+            <p class="record-label">NEXT ACTION</p>
             <div>
-              <dt>ADAPTER</dt>
-              <dd>Ethernet</dd>
+              <strong
+                >Continue locally or escalate with a consistent set of
+                observations.</strong
+              >
+              <span
+                >Relay the selected adapter, completed checks, unresolved
+                checks, and advertised neighbor or Port ID when observed.</span
+              ><small
+                >LANVEXA does not claim a root cause or present report export as
+                a current capability.</small
+              >
             </div>
-            <div>
-              <dt>LINK</dt>
-              <dd>Connected / 1.0 Gbps negotiated</dd>
-            </div>
-            <div>
-              <dt>ADDRESS</dt>
-              <dd>10.24.18.117 / DHCP</dd>
-            </div>
-            <div>
-              <dt>GATEWAY</dt>
-              <dd>10.24.18.1 / Pass</dd>
-            </div>
-            <div>
-              <dt>DNS</dt>
-              <dd>Pass</dd>
-            </div>
-            <div>
-              <dt>TCP / 443</dt>
-              <dd>Configured target / Pass</dd>
-            </div>
-            <div>
-              <dt>NEIGHBOR</dt>
-              <dd>sw-access-03.example.net</dd>
-            </div>
-            <div>
-              <dt>PORT</dt>
-              <dd>ge-0/0/24 / LLDP</dd>
-            </div>
-          </dl>
+          </div>
         </div>
         <p class="evidence-next">
           A failed configured check can narrow the next investigation. A check
@@ -406,41 +436,25 @@
         </div>
       </section>
 
-      <section class="technical section dark-section" id="technical">
-        <div class="technical-copy">
-          <p class="section-index">05 / CURRENT PROTOTYPE</p>
-          <h2>Built on standard Windows and network components.</h2>
-          <p>
-            The current application is a Windows prototype built with .NET 8 and
-            WPF. Npcap and SharpPcap support passive LLDP/CDP capture. Gateway,
-            DNS, and configured TCP checks are active network tests.
-          </p>
-          <div class="tech-links">
-            <a href="/security.html">Security disclosure</a
-            ><a href="/docs/">Documentation</a
-            ><a href="/docs/connectivity-checks.html">Connectivity checks</a
-            ><a href="/faq.html">Common questions</a>
-          </div>
+      <aside
+        class="technical-bridge"
+        id="technical"
+        aria-labelledby="technical-bridge-title"
+      >
+        <div>
+          <p class="section-index">TECHNICAL REVIEW</p>
+          <h2 id="technical-bridge-title">Need the technical details?</h2>
         </div>
-        <dl class="protocol-list">
-          <div>
-            <dt>LLDP</dt>
-            <dd>IEEE 802.1AB advertisements</dd>
-          </div>
-          <div>
-            <dt>CDP</dt>
-            <dd>Cisco neighbor advertisements</dd>
-          </div>
-          <div>
-            <dt>DHCP / IP</dt>
-            <dd>Windows addressing state</dd>
-          </div>
-          <div>
-            <dt>ICMP / DNS / TCP</dt>
-            <dd>Configured connectivity checks</dd>
-          </div>
-        </dl>
-      </section>
+        <p>
+          Review current architecture, connectivity-check scope, packet-capture
+          disclosures, and the facts that still require product verification.
+        </p>
+        <nav aria-label="Technical review links">
+          <a href="/security.html">Security disclosure</a>
+          <a href="/docs/">Documentation</a>
+          <a href="/faq.html">Common questions</a>
+        </nav>
+      </aside>
 
       <section class="final-cta" id="beta">
         <div>
