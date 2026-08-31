@@ -911,6 +911,12 @@ summary:focus-visible {
 .final-cta > div > p:last-child {
   max-width: 620px;
 }
+.final-cta .beta-company {
+  margin-top: 16px;
+  font: 600 11px var(--mono);
+  letter-spacing: 0.02em;
+  opacity: 0.72;
+}
 .beta-form label {
   display: block;
   font: 700 10px var(--mono);
@@ -990,6 +996,12 @@ summary:focus-visible {
 .footer-brand p {
   font-size: 11px;
   color: #8f999e;
+}
+.footer-brand .company-identity {
+  margin-top: 6px;
+  color: #717c81;
+  font: 600 10px var(--mono);
+  letter-spacing: 0.03em;
 }
 .site-footer nav {
   display: grid;
@@ -1252,6 +1264,12 @@ summary:focus-visible {
 .not-found p {
   color: #aeb8bc;
   font-size: 18px;
+}
+.not-found .confirmation-company {
+  margin-top: 18px;
+  color: #7f8a8f;
+  font: 600 11px var(--mono);
+  letter-spacing: 0.02em;
 }
 .not-found .button {
   background: var(--signal);
