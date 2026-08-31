@@ -123,7 +123,8 @@ summary:focus-visible {
 }
 .brand img {
   display: block;
-  width: 152px;
+  width: 172px;
+  height: auto;
 }
 .desktop-nav {
   display: flex;
@@ -983,7 +984,8 @@ summary:focus-visible {
   gap: 52px;
 }
 .footer-brand img {
-  width: 150px;
+  width: 170px;
+  height: auto;
 }
 .footer-brand p {
   font-size: 11px;
@@ -1301,7 +1303,7 @@ summary:focus-visible {
     margin: 0 18px;
   }
   .brand img {
-    width: 135px;
+    width: 153px;
   }
   .desktop-nav,
   .header-cta {
