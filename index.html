@@ -40,7 +40,7 @@
         ><img src="/brand/lanvexa-wordmark.svg" alt="LANVEXA" width="475" height="88"
       /></a>
       <nav class="desktop-nav" aria-label="Primary navigation">
-        <a href="#product">Product</a><a href="#workflow">How it works</a
+        <a href="#product" aria-current="page">Product</a><a href="#workflow">How it works</a
         ><a href="#technical">Technical</a><a href="/security.html">Security</a>
       </nav>
       <a class="button button-small header-cta" href="#beta"
@@ -322,6 +322,9 @@
       </section>
 
       <section class="evidence section">
+        <div class="evidence-continuity" aria-hidden="true">
+          <span>OBSERVATIONS</span><i></i><span>HANDOFF EVIDENCE</span>
+        </div>
         <header class="evidence-head">
           <p class="section-index">03 / HANDOFF</p>
           <h2>Give networking the observations, not just the symptom.</h2>
@@ -522,11 +525,21 @@
         <p class="company-identity">Independent · veteran-owned</p>
         <!-- LANVEXA_PUBLISHER -->
       </div>
-      <nav aria-label="Footer navigation">
-        <a href="/docs/">Documentation</a><a href="/faq.html">FAQ</a
-        ><a href="/security.html">Security</a><a href="/privacy.html">Privacy</a
-        ><a href="/#beta">Beta access</a>
-      </nav>
+      <div class="footer-group">
+        <strong>PRODUCT / RESOURCES</strong>
+        <nav aria-label="Product and resource links">
+          <a href="/">Product</a><a href="/#workflow">How it works</a
+          ><a href="/docs/">Documentation</a><a href="/faq.html">FAQ</a
+          ><a href="/security.html">Security</a>
+        </nav>
+      </div>
+      <div class="footer-group">
+        <strong>ACCESS / POLICY</strong>
+        <nav aria-label="Access and policy links">
+          <a href="/#beta">Request Beta Access</a
+          ><a href="/privacy.html">Privacy</a>
+        </nav>
+      </div>
       <p class="footer-scope">
         Early Windows Ethernet diagnostics. Current capabilities and unresolved
         release requirements are documented directly.

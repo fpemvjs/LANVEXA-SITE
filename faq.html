@@ -26,15 +26,19 @@
       /></a>
       <nav class="desktop-nav" aria-label="Primary navigation">
         <a href="/">Product</a><a href="/docs/">Documentation</a
-        ><a href="/security.html">Security</a>
+        ><a href="/security.html">Security</a><a href="/faq.html" aria-current="page">FAQ</a>
       </nav>
       <a class="button button-small header-cta" href="/#beta"
         >Request Beta Access</a
       >
+      <details class="mobile-nav">
+        <summary aria-label="Open navigation"><span></span><span></span><span></span></summary>
+        <nav aria-label="Mobile navigation"><a href="/">Product</a><a href="/docs/">Documentation</a><a href="/security.html">Security</a><a href="/faq.html" aria-current="page">FAQ</a><a href="/#beta">Beta access</a></nav>
+      </details>
     </header>
     <main id="main">
       <header class="subpage-head">
-        <p class="section-index">PRODUCT QUESTIONS</p>
+        <p class="section-index">OPERATOR QUESTIONS</p>
         <h1>Clear answers before installation.</h1>
         <p>
           Current capabilities, deliberate limitations, and release details that
@@ -149,11 +153,20 @@
         <p>Answers at the jack.</p>
         <p class="company-identity">Independent · veteran-owned</p>
       </div>
-      <nav aria-label="Footer navigation">
-        <a href="/">Product</a><a href="/docs/">Documentation</a
-        ><a href="/security.html">Security</a
-        ><a href="/privacy.html">Privacy</a>
-      </nav>
+      <div class="footer-group">
+        <strong>PRODUCT / RESOURCES</strong>
+        <nav aria-label="Product and resource links">
+          <a href="/">Product</a><a href="/#workflow">How it works</a
+          ><a href="/docs/">Documentation</a><a href="/faq.html">FAQ</a
+          ><a href="/security.html">Security</a>
+        </nav>
+      </div>
+      <div class="footer-group">
+        <strong>ACCESS / POLICY</strong>
+        <nav aria-label="Access and policy links">
+          <a href="/#beta">Request Beta Access</a><a href="/privacy.html">Privacy</a>
+        </nav>
+      </div>
       <p class="footer-scope">
         Questions are answered against current prototype scope, not planned
         features.
