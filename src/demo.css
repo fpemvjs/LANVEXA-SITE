@@ -11,3 +11,72 @@
 @media(max-width:900px){.demo-workbench{box-shadow:8px 8px 0 var(--warm-2)}.workbench-body,.interpretation-grid{grid-template-columns:1fr}.observation-column{padding-left:0;border-left:0;border-top:1px solid var(--dark-border)}.workbench-path{flex-wrap:wrap}.workbench-path b{flex:1 1 28px}.scenario-explore{align-items:stretch;flex-direction:column}.scenario-explore select{width:100%}}
 @media(max-width:520px){.demo-hero{padding-top:28px}.demo-intro h1{font-size:60px}.demo-workbench{padding:20px 16px}.workbench-head{flex-direction:column;gap:18px}.adapter-chip{text-align:left}.workbench-path{display:grid;grid-template-columns:1fr;padding-left:10px;border-left:2px solid #3b474d;gap:0}.workbench-path b{width:2px;height:14px;margin-left:5px;min-width:0}.workbench-path span{min-height:28px}.workbench-result{align-items:start;flex-direction:column}.result-context{text-align:left}.workbench-actions{align-items:stretch;flex-direction:column}.workbench-actions .button{width:100%}.demo-detail dl{grid-template-columns:1fr}.demo-main{padding:68px 0}}
 @media(prefers-reduced-motion:reduce){.demo-step{transition:none}}
+
+/* LinkLens state motion: scoped to the interactive demo only. */
+:root{--demo-motion-fast:180ms;--demo-motion-state:330ms;--demo-motion-row:380ms;--demo-motion-result:620ms;--demo-motion-stagger:90ms}
+.demo-page .demo-workbench{transition:opacity var(--demo-motion-result) ease-out,transform var(--demo-motion-result) ease-out}
+body.demo-motion-ready .demo-workbench.demo-enter{opacity:0;transform:translateY(8px)}
+body.demo-motion-ready .demo-workbench.demo-enter.is-entered{opacity:1;transform:none}
+.demo-page .workbench-path span,.demo-page .workbench-path b{transition:color var(--demo-motion-state) ease-out,background-color var(--demo-motion-state) ease-out,opacity var(--demo-motion-state) ease-out,transform var(--demo-motion-state) ease-out}
+.demo-page .workbench-path span.is-active{transform:translateY(-2px)}
+.demo-page .demo-step{transition:background var(--demo-motion-state) ease-out,opacity var(--demo-motion-row) ease-out,border-color var(--demo-motion-state) ease-out,transform var(--demo-motion-state) ease-out}
+.demo-page .demo-step.is-active{transform:translateX(3px)}
+.demo-page .demo-step em{opacity:.72;transform:translateY(2px);transition:opacity var(--demo-motion-row) ease-out,transform var(--demo-motion-row) ease-out}
+.demo-page .demo-step.is-revealed em{opacity:1;transform:none}
+.demo-page .workbench-result,.demo-page .workbench-actions,.demo-page .scenario-explore{transition:opacity var(--demo-motion-result) ease-out,transform var(--demo-motion-result) ease-out}
+.demo-page .demo-workbench.is-complete .workbench-result,.demo-page .demo-workbench.is-complete .workbench-actions,.demo-page .demo-workbench.is-complete .scenario-explore{animation:demo-result-in var(--demo-motion-result) ease-out both}
+.demo-page .demo-workbench.is-complete .workbench-actions{animation-delay:var(--demo-motion-stagger)}
+.demo-page .demo-workbench.is-complete .scenario-explore{animation-delay:calc(var(--demo-motion-stagger) * 2)}
+.demo-page .demo-workbench.is-resetting{opacity:.72;transform:translateY(4px)}
+@keyframes demo-result-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-width:900px){.demo-page .demo-step.is-active{transform:none}.demo-page .demo-workbench.is-complete .workbench-result,.demo-page .demo-workbench.is-complete .workbench-actions,.demo-page .demo-workbench.is-complete .scenario-explore{animation-duration:480ms}}
+@media(prefers-reduced-motion:reduce){.demo-page .demo-workbench,.demo-page .workbench-path span,.demo-page .workbench-path b,.demo-page .demo-step,.demo-page .demo-step em,.demo-page .workbench-result,.demo-page .workbench-actions,.demo-page .scenario-explore{transition:none!important;animation:none!important;opacity:1!important;transform:none!important}}
+
+/* Micro-detail normalization: keep the workbench technical and quiet. */
+.demo-page .demo-workbench{border-width:2px;border-color:#364248;box-shadow:18px 18px 0 var(--warm-2)}
+.demo-page .workbench-head{border-bottom-color:#3a464b;padding-bottom:24px}
+.demo-page .workbench-kicker,.demo-page .adapter-chip span,.demo-page .column-heading span,.demo-page .workspace-facts dt,.demo-page .detail-label{color:#b8c2c5}
+.demo-page .adapter-chip strong{color:#f0f3f4}
+.demo-page .workbench-path{gap:11px;padding-block:24px 26px}
+.demo-page .workbench-path i{width:14px;height:14px;border-width:2px}
+.demo-page .workbench-path span{font-size:11px;color:#9aa6aa}
+.demo-page .workbench-body{border-top-color:#3a464b;border-bottom-color:#3a464b}
+.demo-page .observation-column{border-left-color:#3a464b}
+.demo-page .demo-step{border-bottom-color:#344045;padding-block:10px}
+.demo-page .demo-step strong{font-size:13px}
+.demo-page .demo-step em{font-size:12px;color:#c7d0d2}
+.demo-page .demo-step[data-tone=unknown]{border-bottom-style:dashed}
+.demo-page .workbench-result{border-top-color:#5a676d;padding-block:20px}
+.demo-page .workbench-result span{color:#b8c2c5}
+.demo-page .workbench-result strong{color:#f0f3f4}
+.demo-page .result-context{font-size:13px}
+.demo-page .scenario-explore{border-top-color:#3a464b}
+.demo-page .scenario-explore select{border-color:#526067}
+.demo-page .demo-detail{border-top-color:#202a2f}
+.demo-page .demo-detail dt{color:#aeb9bd}
+.demo-page .demo-detail dd{font-size:15px;color:#f0f3f4}
+.demo-page .demo-guidance{border-left:2px solid var(--signal)}
+@media(max-width:900px){.demo-page .demo-workbench{box-shadow:8px 8px 0 var(--warm-2)}}
+
+/* Final micro-polish: strengthen evidence values only, not labels or statuses. */
+.demo-page .demo-step em { color: #d1dadc; }
+.demo-page .workspace-facts dd,
+.demo-page .result-context,
+.demo-page .demo-detail dd { color: #eef3f4; }
+
+/* Shared grid/type normalization with the homepage. */
+.demo-hero { padding-top: 32px; padding-bottom: 64px; }
+.demo-intro { padding-bottom: 32px; }
+.demo-intro h1 { font-size: clamp(58px, 5.6vw, 80px); line-height: .94; }
+.demo-workbench { width: min(100%, var(--product-max)); padding: 28px 32px; }
+.demo-step strong, .demo-step em, .workspace-facts dd, .demo-detail dd { font-size: var(--type-technical); }
+.demo-main { padding: 76px 0 88px; }
+.demo-main h2 { font-size: var(--type-major); line-height: 1.04; }
+.demo-interpretation { width: min(100% - (var(--gutter-desktop) * 2), var(--canvas-max)); }
+@media (max-width: 900px) { .demo-interpretation { width: min(100% - (var(--gutter-tablet) * 2), var(--canvas-max)); } .demo-workbench { padding: 24px; } }
+@media (max-width: 560px) { .demo-interpretation { width: min(100% - (var(--gutter-mobile) * 2), var(--canvas-max)); } .demo-workbench { padding: 20px 16px; } .demo-intro h1 { font-size: 56px; } }
+
+/* Bring the instrument into view sooner without compressing the intro copy. */
+.demo-intro { padding-bottom: 24px; }
+.demo-hero { padding-bottom: 54px; }
+@media (max-width: 560px) { .demo-intro { padding-bottom: 20px; } .demo-hero { padding-bottom: 46px; } }

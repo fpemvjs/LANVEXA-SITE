@@ -175,3 +175,67 @@ document
       button.removeAttribute("aria-busy");
     }
   });
+
+// Homepage-only motion: progressive, one-shot reveals with a complete reduced-motion fallback.
+const homepageHero = document.querySelector(".ledger-hero");
+if (homepageHero) {
+  const page = document.body;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  page.classList.add("homepage-motion-ready");
+  if (reduceMotion.matches) page.classList.add("motion-reduced");
+
+  const reveal = (element, delay = 0) => {
+    if (!element) return;
+    element.classList.add("motion-reveal");
+    element.style.setProperty("--motion-delay", `${delay}ms`);
+  };
+  [
+    [homepageHero.querySelector(".incident-folio"), 0],
+    [homepageHero.querySelector(".hero-copy .kicker"), 60],
+    [homepageHero.querySelector(".hero-copy h1"), 130],
+    [homepageHero.querySelector(".hero-copy .lede"), 210],
+    [homepageHero.querySelector(".hero-copy .hero-actions"), 290],
+    [homepageHero.querySelector(".homepage-signal-path"), 360],
+    [homepageHero.querySelector(".instrument-wrap"), 420],
+    [homepageHero.querySelector(".hero-caveat"), 500],
+  ].forEach(([element, delay]) => reveal(element, delay));
+
+  const path = homepageHero.querySelector(".homepage-signal-path");
+  path?.classList.add("motion-path");
+
+  const sections = [...document.querySelectorAll("main > section.ledger-stage:not(.ledger-hero)")];
+  sections.forEach((section) => {
+    section.classList.add("motion-section");
+    [...section.children]
+      .filter((child) => !child.classList.contains("ledger-coordinate"))
+      .forEach((child, index) => reveal(child, Math.min(index * 110, 220)));
+  });
+
+  const show = (section) => {
+    section.classList.add("is-visible");
+    section.querySelectorAll(".motion-reveal").forEach((element) => element.classList.add("is-visible"));
+  };
+  if (reduceMotion.matches) {
+    document.querySelectorAll(".motion-reveal").forEach((element) => element.classList.add("is-visible"));
+    path?.classList.add("is-visible");
+    sections.forEach((section) => show(section));
+  } else {
+    requestAnimationFrame(() => {
+      homepageHero.querySelectorAll(".motion-reveal").forEach((element) => element.classList.add("is-visible"));
+      path?.classList.add("is-visible");
+    });
+    const observer = "IntersectionObserver" in window
+      ? new IntersectionObserver((entries, instance) => {
+          entries.filter((entry) => entry.isIntersecting).forEach((entry) => {
+            show(entry.target);
+            instance.unobserve(entry.target);
+          });
+        }, { rootMargin: "0px 0px -12% 0px", threshold: 0.08 })
+      : null;
+    sections.forEach((section) => observer ? observer.observe(section) : show(section));
+  }
+
+  const updateHeader = () => page.querySelector(".site-header")?.classList.toggle("is-scrolled", window.scrollY > 16);
+  updateHeader();
+  window.addEventListener("scroll", updateHeader, { passive: true });
+}

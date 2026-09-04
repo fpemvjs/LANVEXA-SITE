@@ -465,9 +465,88 @@
 .interpretation-head h2,
 .stage-handoff .evidence-head h2 { max-width: 880px; }
 
+/* Global rhythm normalization for the approved homepage system. */
+.ledger-hero .hero-copy { max-width: var(--text-max); padding-top: 42px; }
+.ledger-hero h1 { max-width: 960px; font-size: var(--type-hero); line-height: .94; }
+.ledger-hero .lede { max-width: var(--text-max); font-size: var(--type-lead); }
+.ledger-hero .instrument-wrap { width: min(88vw, var(--product-max)); margin-top: 8px; }
+.homepage-signal-path { width: min(88vw, var(--product-max)); margin: 24px auto 16px; }
+.ledger-hero .instrument-wrap,
+.homepage-signal-path { margin-left: auto; margin-right: 0; }
+.ledger-stage { padding-top: 92px; padding-bottom: 100px; }
+.stage-observed { padding-top: 88px; padding-bottom: 92px; }
+.stage-observed .discovery-copy h2 { font-size: var(--type-major); line-height: 1.02; max-width: 620px; }
+.interpretation { padding-top: 92px; padding-bottom: 96px; }
+.interpretation-head h2 { font-size: var(--type-major); line-height: 1.02; max-width: 820px; margin: 24px 0 22px; }
+.homepage-transformation { max-width: var(--content-wide); margin-top: 38px; }
+.stage-handoff { padding-top: 0; padding-bottom: 104px; }
+.stage-handoff .evidence-head h2 { font-size: var(--type-major); line-height: 1.02; }
+.scope-section { padding-top: 88px; padding-bottom: 88px; }
+.scope-statement h2 { font-size: var(--type-section); }
+.ledger-hero .app-status strong, .ledger-hero .panel-heading strong, .ledger-hero .test-row strong, .ledger-hero .test-row em, .ledger-hero .switch-primary strong { font-size: var(--type-technical); }
+.ledger-hero .test-row { min-height: 56px; }
+@media (max-width: 900px) { .ledger-hero .hero-copy { padding-top: 32px; margin-left: 0; } .ledger-hero .instrument-wrap, .homepage-signal-path { width: 100%; margin-left: 0; margin-right: 0; } .ledger-stage { padding-top: 76px; padding-bottom: 82px; } }
+@media (max-width: 560px) { .ledger-hero h1 { font-size: clamp(52px, 15vw, 60px); } .ledger-hero .lede { font-size: 17px; } .ledger-stage { padding-top: 64px; padding-bottom: 72px; } .interpretation-head h2, .stage-observed .discovery-copy h2, .stage-handoff .evidence-head h2 { font-size: 40px; } }
+
+/* Final visual QA spacing fixes. */
+.stage-handoff { padding-top: 72px; }
+.stage-handoff .evidence-continuity { top: 0; }
+.stage-handoff .evidence-head { margin-top: 28px; }
+.interpretation { padding-bottom: 78px; }
+.no-neighbor-ledger { margin-top: 42px; }
+@media (max-width: 560px) { .stage-handoff { padding-top: 64px; } .stage-handoff .evidence-head { margin-top: 22px; } .interpretation { padding-bottom: 64px; } .no-neighbor-ledger { margin-top: 34px; } }
+
+/* Flow continuity: distinguish minor joins from major phase changes. */
+.ledger-hero { padding-bottom: 52px; }
+.stage-capabilities { padding-top: 58px; }
+.stage-capabilities .ledger-coordinate { opacity: .42; }
+.stage-capabilities .ledger-coordinate span { border-color: transparent; background: transparent; }
+.stage-observed { padding-bottom: 68px; }
+.interpretation { padding-top: 66px; padding-bottom: 54px; }
+.stage-interpreted .ledger-coordinate { opacity: .42; }
+.stage-handoff { padding-top: 56px; padding-bottom: 68px; }
+.stage-handoff .evidence-continuity { margin-bottom: 0; }
+.scope-section { padding-top: 66px; }
+@media (max-width: 900px) { .ledger-hero { padding-bottom: 44px; } .stage-capabilities { padding-top: 48px; } .stage-observed { padding-bottom: 58px; } .interpretation { padding-top: 56px; padding-bottom: 48px; } .stage-handoff { padding-top: 52px; padding-bottom: 58px; } .scope-section { padding-top: 56px; } }
+@media (max-width: 560px) { .ledger-hero { padding-bottom: 38px; } .stage-capabilities { padding-top: 42px; } .stage-observed { padding-bottom: 50px; } .interpretation { padding-top: 48px; padding-bottom: 42px; } .stage-handoff { padding-top: 46px; padding-bottom: 50px; } .scope-section { padding-top: 48px; } }
+
 @media (prefers-reduced-motion: reduce) {
   .hero-resolution i::after { transition: none; }
 }
+
+/* Micro-detail normalization: evidence surfaces share one restrained grammar. */
+.ledger-hero .instrument,
+.stage-observed .protocol-output,
+.stage-handoff .evidence-record { border-color: #374248; }
+.ledger-hero .app-bar { height: 46px; border-bottom-color: #465158; }
+.ledger-hero .adapter-bar { border-bottom-color: #374248; }
+.ledger-hero .panel-heading { border-bottom: 1px solid #374248; }
+.ledger-hero .test-row { border-top-color: #344045; }
+.ledger-hero .test-row strong { color: #e9eff0; }
+.ledger-hero .test-row em { font-size: 15px; }
+.ledger-hero .switch-primary strong { color: #f2f5f5; }
+.ledger-hero .switch-meta dd { color: #e0e7e8; }
+.ledger-hero .result-bar { border-top-color: #56636a; }
+.path-node i { width: 14px; height: 14px; border-width: 2px; }
+.stage-observed .protocol-output > header { border-bottom-color: #3b474d; }
+.stage-observed .protocol-output dl > div { border-top-color: #3b474d; }
+.stage-observed .protocol-output dd { color: #e5ecee; }
+.state-ledger > div { border-left-width: 2px; }
+.state-ledger strong { letter-spacing: .04em; }
+.stage-handoff .record-header { border-bottom-color: #8e9793; }
+.stage-handoff .record-row { border-top-color: #b1b7b3; }
+.stage-handoff .record-label { color: #5f696c; }
+.stage-handoff .record-situation strong,
+.stage-handoff .record-action strong { color: #1b2529; }
+.scope-table th { color: #5f696c; }
+.scope-table td { border-top-color: #b1b7b3; }
+
+/* Final micro-polish: quiet the two bridge/result surfaces without changing meaning. */
+.ledger-hero .result-bar { min-height: 46px; padding-block: 7px; }
+.ledger-hero .result-icon { width: 26px; height: 26px; }
+.interpretation .homepage-transformation { margin-top: 55px; }
+.stage-handoff .evidence-continuity { min-height: 40px; border-width: 1px; gap: 14px; padding-inline: 14px; }
+.stage-handoff .evidence-continuity i:after { width: 7px; height: 7px; top: -3px; }
 
 /* Homepage migration: Edge Workbench / Signal Path composition. */
 .ledger-hero {
@@ -578,4 +657,120 @@
   .homepage-transformation { margin-top: 44px; }
   .transform-stage strong { font-size: 21px; }
   .transform-stage dd { font-size: 12px; }
+}
+
+/* First-screen grid structure: one canvas, with focused copy and a wide product field. */
+@media (min-width: 901px) {
+  .ledger-hero {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 24px;
+    row-gap: 0;
+    padding-inline: 0;
+  }
+  .ledger-hero .incident-folio {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    width: 100%;
+    margin: 0;
+  }
+  .ledger-hero .hero-copy {
+    grid-column: 1 / span 7;
+    grid-row: auto;
+    max-width: 680px;
+    margin: 0;
+  }
+  .ledger-hero .homepage-signal-path,
+  .ledger-hero .instrument-wrap,
+  .ledger-hero > .hero-caveat {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .ledger-hero .homepage-signal-path { margin-top: 24px; margin-bottom: 16px; }
+  .ledger-hero .instrument-wrap { margin-top: 0; }
+}
+
+@media (max-width: 900px) {
+  .ledger-hero .hero-copy { max-width: none; margin-left: 0; }
+}
+
+/* Premium motion layer: scoped to the homepage evidence-ledger surface. */
+:root {
+  --motion-fast: 180ms;
+  --motion-state: 330ms;
+  --motion-editorial: 700ms;
+  --motion-hero: 800ms;
+  --motion-stagger: 110ms;
+}
+body.homepage-motion-ready .motion-reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--motion-editorial) ease-out, transform var(--motion-editorial) ease-out;
+  transition-delay: var(--motion-delay, 0ms);
+}
+body.homepage-motion-ready .motion-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+body.homepage-motion-ready.motion-reduced .motion-reveal,
+body.homepage-motion-ready.motion-reduced .motion-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  transition: none;
+  transition-delay: 0ms;
+}
+.site-header { transition: border-color var(--motion-state) ease-out; }
+.site-header.is-scrolled { border-bottom-color: color-mix(in srgb, var(--border) 72%, var(--signal)); }
+.homepage-signal-path .path-node,
+.homepage-signal-path > b {
+  transition: opacity var(--motion-state) ease-out, transform var(--motion-state) ease-out;
+}
+body.homepage-motion-ready .homepage-signal-path.motion-path .path-node,
+body.homepage-motion-ready .homepage-signal-path.motion-path > b {
+  opacity: 0;
+  transform: translateY(5px);
+}
+body.homepage-motion-ready .homepage-signal-path.motion-path.is-visible .path-node,
+body.homepage-motion-ready .homepage-signal-path.motion-path.is-visible > b {
+  opacity: 1;
+  transform: none;
+}
+body.homepage-motion-ready .homepage-signal-path.motion-path.is-visible > b {
+  transform-origin: left center;
+  animation: signal-line-in var(--motion-state) ease-out both;
+}
+body.homepage-motion-ready .homepage-signal-path.motion-path.is-visible .path-node {
+  animation: signal-node-in var(--motion-state) ease-out both;
+}
+.homepage-signal-path.motion-path.is-visible > b:nth-of-type(1), .homepage-signal-path.motion-path.is-visible .path-node:nth-of-type(1) { animation-delay: 40ms; }
+.homepage-signal-path.motion-path.is-visible > b:nth-of-type(2), .homepage-signal-path.motion-path.is-visible .path-node:nth-of-type(2) { animation-delay: 100ms; }
+.homepage-signal-path.motion-path.is-visible > b:nth-of-type(3), .homepage-signal-path.motion-path.is-visible .path-node:nth-of-type(3) { animation-delay: 160ms; }
+.homepage-signal-path.motion-path.is-visible > b:nth-of-type(4), .homepage-signal-path.motion-path.is-visible .path-node:nth-of-type(4) { animation-delay: 220ms; }
+.homepage-signal-path.motion-path.is-visible > b:nth-of-type(5), .homepage-signal-path.motion-path.is-visible .path-node:nth-of-type(5) { animation-delay: 280ms; }
+.homepage-signal-path.motion-path.is-visible > b:nth-of-type(6), .homepage-signal-path.motion-path.is-visible .path-node:nth-of-type(6) { animation-delay: 340ms; }
+.homepage-signal-path.motion-path.is-visible > b:nth-of-type(7), .homepage-signal-path.motion-path.is-visible .path-node:nth-of-type(7) { animation-delay: 400ms; }
+@keyframes signal-line-in { from { opacity: 0; transform: scaleX(0); } to { opacity: 1; transform: scaleX(1); } }
+@keyframes signal-node-in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+.ledger-hero .hero-copy .kicker { --motion-delay: 60ms; }
+.ledger-hero .hero-copy h1 { --motion-delay: 130ms; }
+.ledger-hero .hero-copy .lede { --motion-delay: 210ms; }
+.ledger-hero .hero-copy .hero-actions { --motion-delay: 290ms; }
+.ledger-hero .homepage-signal-path { --motion-delay: 360ms; }
+.ledger-hero .instrument-wrap { --motion-delay: 420ms; }
+.ledger-hero .hero-caveat { --motion-delay: 500ms; }
+.ledger-hero .instrument-wrap { transition-duration: var(--motion-hero); }
+.button span[aria-hidden="true"] { transition: transform var(--motion-fast) ease-out; }
+.button:hover span[aria-hidden="true"], .button:focus-visible span[aria-hidden="true"] { transform: translateX(3px); }
+@media (max-width: 900px) {
+  body.homepage-motion-ready .motion-reveal { transform: translateY(7px); }
+  .homepage-signal-path.motion-path.is-visible > b { animation-duration: 280ms; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.homepage-motion-ready .motion-reveal,
+  body.homepage-motion-ready .homepage-signal-path.motion-path .path-node,
+  body.homepage-motion-ready .homepage-signal-path.motion-path > b { transition: none; animation: none; opacity: 1; transform: none; }
+  .button span[aria-hidden="true"] { transition: none; }
 }

@@ -78,6 +78,51 @@ img {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* Shared LANVEXA layout tokens. */
+:root {
+  --canvas-max: 1280px;
+  --gutter-desktop: 64px;
+  --gutter-tablet: 32px;
+  --gutter-mobile: 20px;
+  --text-max: 680px;
+  --content-wide: 1040px;
+  --product-max: 1280px;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-7: 96px;
+  --type-hero: clamp(68px, 6.4vw, 92px);
+  --type-major: clamp(48px, 4.4vw, 60px);
+  --type-section: clamp(40px, 3.5vw, 48px);
+  --type-product: 28px;
+  --type-lead: 19px;
+  --type-body: 17px;
+  --type-technical: 15px;
+  --type-meta: 11px;
+  --max: var(--canvas-max);
+}
+.container { width: min(100% - (var(--gutter-desktop) * 2), var(--canvas-max)); margin-inline: auto; }
+.site-header { max-width: var(--canvas-max); padding-inline: 0; }
+.site-footer { padding-inline: max(var(--gutter-desktop), calc((100% - var(--canvas-max)) / 2)); }
+@media (max-width: 1360px) { .container { width: min(100% - 96px, var(--canvas-max)); } .site-header { margin-inline: 48px; } }
+@media (max-width: 900px) { .container { width: min(100% - (var(--gutter-tablet) * 2), var(--canvas-max)); } .site-header { margin-inline: var(--gutter-tablet); } .site-footer { padding-inline: var(--gutter-tablet); } }
+@media (max-width: 560px) { .container { width: min(100% - (var(--gutter-mobile) * 2), var(--canvas-max)); } .site-header { margin-inline: var(--gutter-mobile); } .site-footer { padding-inline: var(--gutter-mobile); } }
+
+/* First-screen balance: modest header presence without changing the system. */
+.site-header .brand img { width: 198px; }
+.site-header .desktop-nav { gap: 34px; font-size: 14px; }
+.site-header .header-cta { min-height: 44px; padding-inline: 17px; }
+@media (max-width: 900px) { .site-header .brand img { width: 188px; } .site-header .desktop-nav { gap: 24px; font-size: 13px; } }
+@media (max-width: 560px) { .site-header .brand img { width: 172px; } .site-header .header-cta { min-height: 40px; } }
+.site-header .desktop-nav { font-size: 15px; }
+.site-header .header-cta { min-height: 48px; padding-block: 12px; }
+.site-header { height: 84px; }
+@media (max-width: 900px) { .site-header .desktop-nav { font-size: 13px; } .site-header .header-cta { min-height: 44px; } }
+@media (max-width: 560px) { .site-header { height: 76px; } .site-header .header-cta { min-height: 40px; padding-block: 10px; } }
 .sr-only {
   position: absolute;
   width: 1px;
