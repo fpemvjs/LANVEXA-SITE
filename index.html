@@ -41,19 +41,20 @@
         ><img src="/brand/lanvexa-wordmark.svg" alt="LANVEXA" width="475" height="88"
       /></a>
       <nav class="desktop-nav" aria-label="Primary navigation">
-        <a href="#product" aria-current="page">Product</a><a href="#workflow">How it works</a
-        ><a href="#technical">Technical</a><a href="/security.html">Security</a>
+        <a href="#product" aria-current="page">Product</a><a href="/demo.html">Demo</a
+        ><a href="/docs/">Documentation</a><a href="/faq.html">FAQ</a
+        ><a href="/security.html">Security</a>
       </nav>
       <a class="button button-small header-cta" href="#beta"
-        >Request Beta Access</a
+        >Beta access</a
       >
       <details class="mobile-nav">
         <summary aria-label="Open navigation">
           <span></span><span></span><span></span>
         </summary>
         <nav aria-label="Mobile navigation">
-          <a href="#product">Product</a><a href="#workflow">How it works</a
-          ><a href="#technical">Technical</a
+          <a href="#product">Product</a><a href="/demo.html">Demo</a
+          ><a href="/docs/">Documentation</a><a href="/faq.html">FAQ</a
           ><a href="/security.html">Security</a><a href="#beta">Beta access</a>
         </nav>
       </details>
@@ -65,24 +66,32 @@
           <span>REPORTED &rarr; OBSERVED &rarr; INTERPRETED &rarr; HANDOFF</span>
         </div>
         <div class="hero-copy">
-          <p class="kicker">Windows Ethernet diagnostics</p>
-          <h1>Answers at the jack.</h1>
+          <p class="kicker">Field network diagnostics</p>
+          <h1>Plug in.<br />Know the network.</h1>
           <p class="lede">
-            First-pass Ethernet diagnostic software for desktop support and
-            field technicians. Use the Windows laptop already onsite to check
-            basic connectivity, observe LLDP/CDP when advertised, and carry
-            clearer evidence into the next action or escalation.
+            Get a structured first pass on link, addressing, reachability, and
+            switch-port context without stitching together multiple tools.
           </p>
           <div class="hero-actions">
-            <a class="button" href="#beta"
-              >Request Beta Access <span aria-hidden="true">→</span></a
-            ><a class="text-link" href="#workflow">How it works</a>
+            <a class="button" href="/demo.html"
+              >Explore LinkLens <span aria-hidden="true">&rarr;</span></a
+            ><a class="text-link" href="#beta">Request beta access</a>
           </div>
           <div class="reported-condition">
             <small>01 / REPORTED CONDITION</small>
             <strong>&ldquo;This Ethernet jack isn&rsquo;t working.&rdquo;</strong>
             <span>Link, addressing, upstream reachability, and neighbor identity are still unknown.</span>
           </div>
+        </div>
+        <div class="homepage-signal-path" aria-label="Diagnostic sequence">
+          <span class="path-node is-pass"><i aria-hidden="true"></i>JACK</span><b aria-hidden="true"></b>
+          <span class="path-node is-pass"><i aria-hidden="true"></i>LINK</span><b aria-hidden="true"></b>
+          <span class="path-node is-pass"><i aria-hidden="true"></i>DHCP / IP</span><b aria-hidden="true"></b>
+          <span class="path-node is-pass"><i aria-hidden="true"></i>GATEWAY</span><b aria-hidden="true"></b>
+          <span class="path-node is-pass"><i aria-hidden="true"></i>DNS</span><b aria-hidden="true"></b>
+          <span class="path-node is-pass"><i aria-hidden="true"></i>INTERNET</span><b aria-hidden="true"></b>
+          <span class="path-node is-observed"><i aria-hidden="true"></i>DISCOVERY</span><b aria-hidden="true"></b>
+          <span class="path-node is-pass"><i aria-hidden="true"></i>HANDOFF</span>
         </div>
         <div class="instrument-wrap" id="product">
           <!-- LANVEXA_AUTHENTIC_MEDIA -->
@@ -245,42 +254,47 @@
         </p>
       </section>
 
-      <section class="workflow section ledger-stage stage-reported" id="workflow">
+      <section class="workflow section ledger-stage stage-capabilities" id="workflow">
         <div class="ledger-coordinate" aria-hidden="true"><span>01</span><i></i></div>
         <header class="statement-head">
-          <p class="section-index">01 / REPORTED</p>
-          <h2>Start with the symptom.<br />Do not inherit its conclusion.</h2>
+          <p class="section-index">02 / WHAT IT DOES</p>
+          <h2>One first pass.<br />Two kinds of signal.</h2>
           <p>
-            The first report describes an experience, not a proven cause.
-            Establish what basic network functions are working before deciding
-            what to investigate or escalate.
+            LANVEXA brings active connectivity checks and passive neighbor
+            observation into one technician workflow. The individual tests are
+            familiar; the value is having one consistent result surface.
           </p>
         </header>
+        <div class="homepage-problem">
+          <p>REPORTED PROBLEM</p>
+          <strong>&ldquo;This Ethernet jack isn&rsquo;t working.&rdquo;</strong>
+          <span>Link state, addressing, reachability, and neighbor identity are still separate questions.</span>
+        </div>
         <div class="workflow-compare">
           <div class="manual-stack">
-            <p>SUPPORT TICKET / FIRST REPORT</p>
+            <p>ACTIVE CHECKS</p>
             <strong
-              >&ldquo;Ethernet doesn&rsquo;t work at this desk.&rdquo;</strong
+              >Establish what basic connectivity is working.</strong
             >
             <span
-              >Link, addressing, and upstream behavior are still unknown.</span
+              >Addressing &middot; Gateway &middot; DNS &middot; Configured TCP</span
             >
           </div>
           <div class="workflow-arrow" aria-hidden="true">→</div>
           <div class="lanvexa-flow">
-            <p>REPEATABLE FIRST PASS</p>
+            <p>PASSIVE OBSERVATION</p>
             <ol>
-              <li><span>01</span><strong>Connect</strong></li>
-              <li><span>02</span><strong>Test</strong></li>
-              <li><span>03</span><strong>Listen</strong></li>
-              <li><span>04</span><strong>Interpret</strong></li>
-              <li><span>05</span><strong>Act / escalate</strong></li>
+              <li><span>01</span><strong>LLDP</strong></li>
+              <li><span>02</span><strong>CDP</strong></li>
+              <li><span>03</span><strong>System information</strong></li>
+              <li><span>04</span><strong>Advertised Port ID</strong></li>
+              <li><span>05</span><strong>When available</strong></li>
             </ol>
             <div class="result-fields">
-              <span>ADAPTER</span><span>LINK</span><span>ADDRESS</span
-              ><span>DHCP</span><span>GATEWAY</span><span>DNS</span
-              ><span>TCP</span><span>NEIGHBOR</span><span>SWITCH</span
-              ><span>PORT</span>
+              <span>SELECTED ADAPTER</span><span>LINK</span><span>ADDRESSING</span
+              ><span>GATEWAY</span><span>DNS</span><span>TCP</span
+              ><span>LLDP/CDP</span><span>NEIGHBOR</span><span>PORT ID</span
+              ><span>OBSERVED</span>
             </div>
           </div>
         </div>
@@ -347,6 +361,32 @@
             overwrite an active connectivity result.
           </p>
         </header>
+        <div class="homepage-transformation" aria-label="From reported problem to technician handoff">
+          <div class="transform-stage transform-reported">
+            <p>REPORTED PROBLEM</p><strong>&ldquo;This jack isn&rsquo;t working.&rdquo;</strong>
+          </div>
+          <div class="transform-connector" aria-hidden="true">&rarr;</div>
+          <div class="transform-stage transform-observed">
+            <p>OBSERVED EVIDENCE</p>
+            <dl>
+              <div><dt>LINK</dt><dd>1 Gbps</dd></div>
+              <div><dt>DHCP / IP</dt><dd>10.20.120.51</dd></div>
+              <div><dt>GATEWAY</dt><dd>10.20.120.1 &middot; 4 ms</dd></div>
+              <div><dt>DNS</dt><dd>10.10.10.20 &middot; 9 ms</dd></div>
+              <div><dt>DISCOVERY</dt><dd>LLDP observed</dd></div>
+            </dl>
+          </div>
+          <div class="transform-connector" aria-hidden="true">&rarr;</div>
+          <div class="transform-stage transform-interpreted">
+            <p>INTERPRETED RESULT</p><strong>TESTED CHECKS HEALTHY</strong>
+            <dl><div><dt>SWITCH</dt><dd>switch-01.example</dd></div><div><dt>PORT</dt><dd>ge-0/0/24</dd></div><div><dt>VLAN</dt><dd>120</dd></div></dl>
+          </div>
+          <div class="transform-connector" aria-hidden="true">&rarr;</div>
+          <div class="transform-stage transform-handoff">
+            <p>HANDOFF READY</p><strong>8 checks &middot; 1.8 sec</strong>
+            <a href="/demo.html">View the full report <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </div>
         <div class="state-ledger" aria-label="LANVEXA result-state definitions">
           <div data-state="pass"><strong>PASS</strong><span>The configured check met its success condition.</span></div>
           <div data-state="fail"><strong>FAIL</strong><span>The configured check did not meet its success condition.</span></div>

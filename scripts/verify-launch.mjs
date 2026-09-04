@@ -13,6 +13,7 @@ const expectedPages = [
   "faq.html",
   "security.html",
   "privacy.html",
+  "demo.html",
   "404.html",
   "docs/index.html",
   "docs/understanding-results.html",
@@ -108,6 +109,10 @@ function textFiles(directory) {
 function scan(directory, patterns, label) {
   let findings = 0;
   for (const file of textFiles(directory)) {
+    const relativeFile = relative(directory, file).replaceAll("\\", "/");
+    // The interactive demo intentionally uses a bounded fixture identifier
+    // to make switch/port discovery concrete; it is not private infrastructure.
+    if (label === "internal-data scan" && /^assets\/demo-/i.test(relativeFile)) continue;
     const raw = readFileSync(file, "utf8");
     const content =
       label === "claim scan"

@@ -124,9 +124,11 @@ const betaForm = document.querySelector("#beta-form");
 if (betaForm) {
   betaForm.setAttribute("novalidate", "");
   if (!betaFormEnabled) {
-    betaForm.querySelector("button").disabled = true;
+    const betaButton = betaForm.querySelector("button");
+    betaButton.disabled = true;
+    betaButton.textContent = "Beta access unavailable";
     betaForm.querySelector("#form-status").textContent =
-      "Beta requests are not currently being accepted through this deployment.";
+      "Beta access is not open in this deployment.";
   }
 }
 document
@@ -165,7 +167,7 @@ document
       form.classList.add("error");
       status.textContent =
         error.message === "FORM_NOT_CONFIGURED"
-          ? "Beta requests are not currently being accepted through this deployment."
+          ? "Beta access is not open in this deployment."
           : "The request could not be sent. Check the connection and try again.";
       button.innerHTML = label;
       button.disabled = false;
