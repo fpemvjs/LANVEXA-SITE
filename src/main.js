@@ -1,3 +1,9 @@
+import {
+  safeAnimate,
+  prefersReducedMotion,
+  MOTION_TOKENS,
+} from "./motion-bridge.js";
+
 const commonPass = {
   addressing: ["✓", "10.24.18.117 / DHCP", "PASS", "pass"],
   gateway: ["✓", "10.24.18.1", "PASS", "pass"],
@@ -56,7 +62,78 @@ const examples = {
   },
 };
 
+let sequenceTimers = [];
+
+function clearHeroSequence() {
+  sequenceTimers.forEach(clearTimeout);
+  sequenceTimers = [];
+}
+
+function settleSignalPath() {
+  const path = document.querySelector(".homepage-signal-path");
+  if (!path) return;
+  const nodes = path.querySelectorAll(".path-node");
+  const lines = path.querySelectorAll("b");
+  nodes.forEach((node, idx) => {
+    node.classList.remove("is-pending", "is-active");
+    if (idx === 6) {
+      node.classList.add("is-observed");
+      node.classList.remove("is-pass");
+    } else {
+      node.classList.add("is-pass");
+      node.classList.remove("is-observed");
+    }
+  });
+  lines.forEach((line) => {
+    line.classList.remove("is-active");
+    line.classList.add("is-complete");
+  });
+}
+
+function advanceSignalPath(stepIndex) {
+  const path = document.querySelector(".homepage-signal-path");
+  if (!path) return;
+  const nodes = path.querySelectorAll(".path-node");
+  const lines = path.querySelectorAll("b");
+  if (stepIndex > 0 && nodes[stepIndex - 1]) {
+    nodes[stepIndex - 1].classList.remove("is-active", "is-pending");
+    nodes[stepIndex - 1].classList.add(stepIndex - 1 === 6 ? "is-observed" : "is-pass");
+    lines[stepIndex - 1]?.classList.replace("is-active", "is-complete");
+  }
+  if (nodes[stepIndex]) {
+    nodes[stepIndex].classList.remove("is-pending");
+    if (stepIndex === 7) {
+      nodes[stepIndex].classList.add("is-pass");
+    } else {
+      nodes[stepIndex].classList.add("is-active");
+      if (stepIndex === 6) nodes[stepIndex].classList.add("is-observed");
+      lines[stepIndex]?.classList.add("is-active");
+    }
+  }
+}
+
+function updateDiagnosticRow(row, [symbolChar, textVal, stateLabel, toneVal]) {
+  if (!row) return;
+  row.dataset.tone = toneVal;
+  const symbol = row.querySelector(".state-symbol");
+  if (symbol) {
+    symbol.textContent = symbolChar;
+    symbol.setAttribute("aria-label", stateLabel);
+  }
+  const strong = row.querySelector("strong");
+  if (strong) strong.textContent = textVal;
+  const em = row.querySelector("em");
+  if (em) em.textContent = stateLabel;
+  safeAnimate(row, { opacity: [0.75, 1], x: [3, 0] }, { duration: MOTION_TOKENS.duration.fast });
+}
+
+function settleHeroState(name = "passed") {
+  setExample(name);
+}
+
 function setExample(name) {
+  clearHeroSequence();
+  settleSignalPath();
   const state = examples[name];
   if (!state) return;
   document.querySelectorAll(".example-control").forEach((button) => {
@@ -64,31 +141,47 @@ function setExample(name) {
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", String(active));
   });
+  const linkState = document.querySelector("#link-state");
+  if (linkState) linkState.textContent = "CONNECTED";
+  const linkStatusLight = document.querySelector(".status-light");
+  if (linkStatusLight) linkStatusLight.dataset.tone = "pass";
+  const linkDetail = document.querySelector(".link-detail");
+  if (linkDetail) linkDetail.textContent = "1.0 Gbps negotiated";
+
   const neighbor = document.querySelector("#neighbor-state");
-  neighbor.textContent = state.neighbor[0];
-  neighbor.dataset.tone = state.neighbor[1];
-  document.querySelector("#switch-name").textContent = state.switchName;
-  document.querySelector("#switch-port").textContent = state.port;
-  document.querySelector("#switch-protocol").textContent = state.protocol;
-  document.querySelector("#switch-time").textContent = state.observed;
+  if (neighbor) {
+    neighbor.textContent = state.neighbor[0];
+    neighbor.dataset.tone = state.neighbor[1];
+  }
+  const switchName = document.querySelector("#switch-name");
+  if (switchName) switchName.textContent = state.switchName;
+  const switchPort = document.querySelector("#switch-port");
+  if (switchPort) switchPort.textContent = state.port;
+  const switchProtocol = document.querySelector("#switch-protocol");
+  if (switchProtocol) switchProtocol.textContent = state.protocol;
+  const switchTime = document.querySelector("#switch-time");
+  if (switchTime) switchTime.textContent = state.observed;
   const note = document.querySelector("#neighbor-note");
-  note.textContent = state.note;
-  note.hidden = !state.note;
-  document.querySelector("#check-summary").textContent = state.summary;
+  if (note) {
+    note.textContent = state.note;
+    note.hidden = !state.note;
+  }
+  const checkSummary = document.querySelector("#check-summary");
+  if (checkSummary) checkSummary.textContent = state.summary;
   Object.entries(state.tests).forEach(([key, values]) => {
-    const row = document.querySelector(`[data-test="${key}"]`);
-    row.dataset.tone = values[3];
-    const symbol = row.querySelector(".state-symbol");
-    symbol.textContent = values[0];
-    symbol.setAttribute("aria-label", values[2]);
-    row.querySelector("strong").textContent = values[1];
-    row.querySelector("em").textContent = values[2];
+    updateDiagnosticRow(document.querySelector(`[data-test="${key}"]`), values);
   });
   const result = document.querySelector("#result-bar");
-  result.dataset.tone = state.result[1];
-  result.querySelector(".result-icon").textContent = state.result[2];
-  document.querySelector("#overall-result").textContent = state.result[0];
-  document.querySelector("#demo-status").textContent = state.announcement;
+  if (result) {
+    result.dataset.tone = state.result[1];
+    const icon = result.querySelector(".result-icon");
+    if (icon) icon.textContent = state.result[2];
+    const overall = document.querySelector("#overall-result");
+    if (overall) overall.textContent = state.result[0];
+    safeAnimate(result, { opacity: [0.85, 1] }, { duration: MOTION_TOKENS.duration.fast });
+  }
+  const status = document.querySelector("#demo-status");
+  if (status) status.textContent = state.announcement;
 }
 
 document
@@ -176,6 +269,171 @@ document
     }
   });
 
+const HERO_SEQUENCE_STEPS = [
+  {
+    delay: 260,
+    node: 1,
+    run(instrument) {
+      const linkState = instrument.querySelector("#link-state");
+      const linkStatusLight = instrument.querySelector(".status-light");
+      const linkDetail = instrument.querySelector(".link-detail");
+      if (linkState) linkState.textContent = "CONNECTED";
+      if (linkStatusLight) linkStatusLight.dataset.tone = "pass";
+      if (linkDetail) linkDetail.textContent = "1.0 Gbps negotiated";
+      safeAnimate(".app-status", { opacity: [0.8, 1] }, { duration: MOTION_TOKENS.duration.fast });
+    },
+  },
+  {
+    delay: 540,
+    node: 2,
+    test: "addressing",
+    values: ["✓", "10.24.18.117 / DHCP", "PASS", "pass"],
+  },
+  {
+    delay: 800,
+    node: 3,
+    test: "gateway",
+    values: ["✓", "10.24.18.1", "PASS", "pass"],
+  },
+  {
+    delay: 1060,
+    node: 4,
+    test: "dns",
+    values: ["✓", "Name resolved", "PASS", "pass"],
+  },
+  {
+    delay: 1300,
+    node: 5,
+    test: "tcp",
+    values: ["✓", "Configured target", "PASS", "pass"],
+  },
+  {
+    delay: 1540,
+    node: 6,
+    run(instrument) {
+      const neighborState = instrument.querySelector("#neighbor-state");
+      if (neighborState) {
+        neighborState.textContent = "LLDP DETECTED";
+        neighborState.dataset.tone = "pass";
+      }
+      const switchName = instrument.querySelector("#switch-name");
+      if (switchName) switchName.textContent = "sw-access-03.example.net";
+      const switchPort = instrument.querySelector("#switch-port");
+      if (switchPort) switchPort.textContent = "ge-0/0/24";
+      const switchProtocol = instrument.querySelector("#switch-protocol");
+      if (switchProtocol) switchProtocol.textContent = "LLDP";
+      const switchTime = instrument.querySelector("#switch-time");
+      if (switchTime) switchTime.textContent = "Frame observed";
+
+      safeAnimate(".switch-panel", { opacity: [0.8, 1], x: [3, 0] }, { duration: MOTION_TOKENS.duration.state });
+    },
+  },
+  {
+    delay: 1800,
+    node: 7,
+    run(instrument) {
+      const checkSummary = instrument.querySelector("#check-summary");
+      if (checkSummary) checkSummary.textContent = "4 OF 4 PASSED";
+      const resultBar = instrument.querySelector("#result-bar");
+      if (resultBar) {
+        resultBar.dataset.tone = "pass";
+        const icon = resultBar.querySelector(".result-icon");
+        if (icon) icon.textContent = "✓";
+      }
+      const overallResult = instrument.querySelector("#overall-result");
+      if (overallResult) overallResult.textContent = "CONFIGURED CONNECTIVITY CHECKS PASSED";
+      const status = document.querySelector("#demo-status");
+      if (status) {
+        status.textContent = "Passed example displayed. Four configured connectivity checks passed and an LLDP neighbor advertisement was observed.";
+      }
+
+      safeAnimate(resultBar, { opacity: [0.85, 1] }, { duration: MOTION_TOKENS.duration.state });
+    },
+  },
+];
+
+function runHeroDiagnosticSequence() {
+  if (prefersReducedMotion()) {
+    settleSignalPath();
+    return;
+  }
+
+  const hero = document.querySelector(".ledger-hero");
+  if (!hero) return;
+
+  const fallback = hero.querySelector("[data-interactive-fallback]");
+  if (fallback && fallback.hasAttribute("hidden")) return;
+
+  const path = hero.querySelector(".homepage-signal-path");
+  const instrument = hero.querySelector(".instrument");
+  if (!path || !instrument) return;
+
+  clearHeroSequence();
+
+  // Reset path to step 0 (JACK active, nodes 1-7 pending)
+  const nodes = path.querySelectorAll(".path-node");
+  const lines = path.querySelectorAll("b");
+  nodes.forEach((node, idx) => {
+    node.classList.remove("is-active", "is-pass", "is-observed");
+    node.classList.add(idx === 0 ? "is-active" : "is-pending");
+  });
+  lines.forEach((line, idx) => {
+    line.classList.remove("is-active", "is-complete");
+    if (idx === 0) line.classList.add("is-active");
+  });
+
+  // Pre-run diagnostic state on instrument
+  const linkState = instrument.querySelector("#link-state");
+  const linkStatusLight = instrument.querySelector(".status-light");
+  const linkDetail = instrument.querySelector(".link-detail");
+  const neighborState = instrument.querySelector("#neighbor-state");
+  const switchName = instrument.querySelector("#switch-name");
+  const checkSummary = instrument.querySelector("#check-summary");
+  const resultBar = instrument.querySelector("#result-bar");
+  const overallResult = instrument.querySelector("#overall-result");
+  const resultIcon = resultBar?.querySelector(".result-icon");
+
+  if (linkState) linkState.textContent = "NEGOTIATING…";
+  if (linkStatusLight) linkStatusLight.dataset.tone = "unknown";
+  if (linkDetail) linkDetail.textContent = "Detecting interface…";
+  if (neighborState) {
+    neighborState.textContent = "LISTENING…";
+    neighborState.dataset.tone = "unknown";
+  }
+  if (switchName) switchName.textContent = "Awaiting advertisement…";
+  if (checkSummary) checkSummary.textContent = "TESTS IN PROGRESS";
+
+  ["addressing", "gateway", "dns", "tcp"].forEach((key) => {
+    const row = instrument.querySelector(`[data-test="${key}"]`);
+    if (!row) return;
+    row.dataset.tone = "unknown";
+    const symbol = row.querySelector(".state-symbol");
+    if (symbol) {
+      symbol.textContent = "…";
+      symbol.setAttribute("aria-label", "Testing");
+    }
+    const em = row.querySelector("em");
+    if (em) em.textContent = "TESTING";
+  });
+
+  if (resultBar) resultBar.dataset.tone = "observed";
+  if (resultIcon) resultIcon.textContent = "…";
+  if (overallResult) overallResult.textContent = "FIRST-PASS SEQUENCE RUNNING";
+
+  HERO_SEQUENCE_STEPS.forEach((step) => {
+    sequenceTimers.push(
+      setTimeout(() => {
+        advanceSignalPath(step.node);
+        if (step.test) {
+          updateDiagnosticRow(instrument.querySelector(`[data-test="${step.test}"]`), step.values);
+        } else if (step.run) {
+          step.run(instrument);
+        }
+      }, step.delay),
+    );
+  });
+}
+
 // Homepage-only motion: progressive, one-shot reveals with a complete reduced-motion fallback.
 const homepageHero = document.querySelector(".ledger-hero");
 if (homepageHero) {
@@ -219,6 +477,7 @@ if (homepageHero) {
     document.querySelectorAll(".motion-reveal").forEach((element) => element.classList.add("is-visible"));
     path?.classList.add("is-visible");
     sections.forEach((section) => show(section));
+    settleSignalPath();
   } else {
     requestAnimationFrame(() => {
       homepageHero.querySelectorAll(".motion-reveal").forEach((element) => element.classList.add("is-visible"));
@@ -233,6 +492,8 @@ if (homepageHero) {
         }, { rootMargin: "0px 0px -12% 0px", threshold: 0.08 })
       : null;
     sections.forEach((section) => observer ? observer.observe(section) : show(section));
+
+    runHeroDiagnosticSequence();
   }
 
   const updateHeader = () => page.querySelector(".site-header")?.classList.toggle("is-scrolled", window.scrollY > 16);

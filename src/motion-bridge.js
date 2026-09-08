@@ -39,6 +39,7 @@ export function prefersReducedMotion() {
  * @returns {any} AnimationControls
  */
 export function safeAnimate(target, keyframes, options = {}) {
+  if (!target) return;
   const isReduced = prefersReducedMotion();
   const safeOptions = isReduced
     ? { ...options, duration: 0, delay: 0 }

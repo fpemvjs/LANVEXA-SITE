@@ -578,9 +578,49 @@
   font: 650 11px/1.1 var(--mono);
   letter-spacing: .05em;
 }
-.homepage-signal-path b { flex: 1 1 28px; height: 2px; background: var(--border); }
-.path-node { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
-.path-node i { width: 14px; height: 14px; border: 2px solid currentColor; display: inline-block; }
+.homepage-signal-path b {
+  flex: 1 1 28px;
+  height: 2px;
+  background: var(--border);
+  transition: background-color var(--motion-state) ease-out, box-shadow var(--motion-state) ease-out;
+}
+.homepage-signal-path b.is-active {
+  background: var(--signal);
+  box-shadow: 0 0 4px rgba(151, 215, 0, 0.45);
+}
+.homepage-signal-path b.is-complete {
+  background: color-mix(in srgb, var(--border) 55%, var(--signal-ink));
+}
+.path-node {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  transition: color var(--motion-state) ease-out, transform var(--motion-state) ease-out;
+}
+.path-node i {
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  display: inline-block;
+  transition: background-color var(--motion-state) ease-out, border-color var(--motion-state) ease-out, box-shadow var(--motion-state) ease-out;
+}
+.path-node.is-pending {
+  color: #727e82;
+}
+.path-node.is-pending i {
+  background: transparent;
+  border-color: #616e73;
+}
+.path-node.is-active {
+  color: var(--signal-ink);
+  transform: translateY(-1px);
+}
+.path-node.is-active i {
+  background: var(--signal);
+  border-color: var(--signal);
+  box-shadow: 0 0 0 3px rgba(151, 215, 0, 0.32);
+}
 .path-node.is-pass { color: var(--signal-ink); }
 .path-node.is-pass i { background: var(--signal); border-color: var(--signal); }
 .path-node.is-observed { color: var(--signal-ink); }
@@ -738,22 +778,6 @@ body.homepage-motion-ready .homepage-signal-path.motion-path.is-visible > b {
   opacity: 1;
   transform: none;
 }
-body.homepage-motion-ready .homepage-signal-path.motion-path.is-visible > b {
-  transform-origin: left center;
-  animation: signal-line-in var(--motion-state) ease-out both;
-}
-body.homepage-motion-ready .homepage-signal-path.motion-path.is-visible .path-node {
-  animation: signal-node-in var(--motion-state) ease-out both;
-}
-.homepage-signal-path.motion-path.is-visible > b:nth-of-type(1), .homepage-signal-path.motion-path.is-visible .path-node:nth-of-type(1) { animation-delay: 40ms; }
-.homepage-signal-path.motion-path.is-visible > b:nth-of-type(2), .homepage-signal-path.motion-path.is-visible .path-node:nth-of-type(2) { animation-delay: 100ms; }
-.homepage-signal-path.motion-path.is-visible > b:nth-of-type(3), .homepage-signal-path.motion-path.is-visible .path-node:nth-of-type(3) { animation-delay: 160ms; }
-.homepage-signal-path.motion-path.is-visible > b:nth-of-type(4), .homepage-signal-path.motion-path.is-visible .path-node:nth-of-type(4) { animation-delay: 220ms; }
-.homepage-signal-path.motion-path.is-visible > b:nth-of-type(5), .homepage-signal-path.motion-path.is-visible .path-node:nth-of-type(5) { animation-delay: 280ms; }
-.homepage-signal-path.motion-path.is-visible > b:nth-of-type(6), .homepage-signal-path.motion-path.is-visible .path-node:nth-of-type(6) { animation-delay: 340ms; }
-.homepage-signal-path.motion-path.is-visible > b:nth-of-type(7), .homepage-signal-path.motion-path.is-visible .path-node:nth-of-type(7) { animation-delay: 400ms; }
-@keyframes signal-line-in { from { opacity: 0; transform: scaleX(0); } to { opacity: 1; transform: scaleX(1); } }
-@keyframes signal-node-in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
 .ledger-hero .hero-copy .kicker { --motion-delay: 60ms; }
 .ledger-hero .hero-copy h1 { --motion-delay: 130ms; }
 .ledger-hero .hero-copy .lede { --motion-delay: 210ms; }
@@ -766,11 +790,13 @@ body.homepage-motion-ready .homepage-signal-path.motion-path.is-visible .path-no
 .button:hover span[aria-hidden="true"], .button:focus-visible span[aria-hidden="true"] { transform: translateX(3px); }
 @media (max-width: 900px) {
   body.homepage-motion-ready .motion-reveal { transform: translateY(7px); }
-  .homepage-signal-path.motion-path.is-visible > b { animation-duration: 280ms; }
 }
 @media (prefers-reduced-motion: reduce) {
   body.homepage-motion-ready .motion-reveal,
   body.homepage-motion-ready .homepage-signal-path.motion-path .path-node,
   body.homepage-motion-ready .homepage-signal-path.motion-path > b { transition: none; animation: none; opacity: 1; transform: none; }
+  .path-node,
+  .path-node i,
+  .homepage-signal-path b { transition: none !important; animation: none !important; transform: none !important; box-shadow: none !important; }
   .button span[aria-hidden="true"] { transition: none; }
 }
