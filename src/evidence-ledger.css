@@ -888,6 +888,20 @@ body.homepage-motion-ready .homepage-signal-path.motion-path.is-visible > b {
   opacity: 0.5;
 }
 
+.button {
+  transition: background 0.16s, color 0.16s, border-color 0.16s, transform var(--motion-fast) ease-out;
+}
+.button:active {
+  transform: translateY(1px);
+  background: var(--graphite-2);
+}
+.example-control {
+  transition: color 0.16s, background 0.16s, border-color 0.16s, transform var(--motion-fast) ease-out;
+}
+.example-control:active {
+  transform: translateY(1px);
+}
+
 @media (max-width: 900px) {
   body.homepage-motion-ready .motion-reveal { transform: translateY(7px); }
 }
@@ -900,6 +914,10 @@ body.homepage-motion-ready .homepage-signal-path.motion-path.is-visible > b {
   .path-node,
   .path-node i,
   .homepage-signal-path b { transition: none !important; animation: none !important; transform: none !important; box-shadow: none !important; }
+  .button,
+  .example-control { transition: none !important; transform: none !important; }
+  .button:active,
+  .example-control:active { transform: none !important; }
   .button span[aria-hidden="true"] { transition: none; }
   .ledger-stage::before,
   .ledger-coordinate,
