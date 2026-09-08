@@ -811,6 +811,83 @@ body.homepage-motion-ready .homepage-signal-path.motion-path.is-visible > b {
     transform: rotate(90deg);
   }
 }
+
+/* Phase 3B: Discrete Diagnostic Stage Tracker styles */
+.ledger-stage::before {
+  transition: background-color var(--motion-state) ease-out;
+}
+.ledger-coordinate {
+  transition: opacity var(--motion-state) ease-out, color var(--motion-state) ease-out;
+}
+.ledger-coordinate span {
+  transition: border-color var(--motion-state) ease-out, background-color var(--motion-state) ease-out, color var(--motion-state) ease-out;
+}
+.ledger-coordinate i {
+  transition: background-color var(--motion-state) ease-out, opacity var(--motion-state) ease-out;
+}
+
+/* State: Pending */
+.ledger-stage.is-ledger-pending .ledger-coordinate {
+  opacity: 0.35;
+}
+
+/* State: Active (current focal section) */
+.ledger-stage.is-ledger-active::before {
+  background-color: var(--signal-ink);
+}
+.stage-observed.is-ledger-active::before {
+  background-color: var(--signal);
+}
+.ledger-stage.is-ledger-active .ledger-coordinate {
+  opacity: 1;
+  color: var(--signal-ink);
+}
+.stage-observed.is-ledger-active .ledger-coordinate {
+  color: var(--signal);
+}
+.ledger-stage.is-ledger-active .ledger-coordinate span {
+  border-color: var(--signal-ink);
+  background: var(--signal);
+  color: var(--graphite);
+  font-weight: 750;
+}
+.stage-observed.is-ledger-active .ledger-coordinate span {
+  border-color: var(--signal);
+  background: var(--signal);
+  color: var(--graphite);
+  font-weight: 750;
+}
+.ledger-stage.is-ledger-active .ledger-coordinate i {
+  opacity: 0.9;
+  background-color: var(--signal-ink);
+}
+.stage-observed.is-ledger-active .ledger-coordinate i {
+  background-color: var(--signal);
+}
+
+/* State: Complete (previously passed stages) */
+.ledger-stage.is-ledger-complete::before {
+  background-color: color-mix(in srgb, var(--border) 65%, var(--signal-ink));
+}
+.stage-observed.is-ledger-complete::before {
+  background-color: color-mix(in srgb, var(--dark-border) 65%, var(--signal));
+}
+.ledger-stage.is-ledger-complete .ledger-coordinate {
+  opacity: 0.72;
+}
+.ledger-stage.is-ledger-complete .ledger-coordinate span {
+  border-color: currentColor;
+  background: var(--warm);
+  color: var(--text);
+}
+.stage-observed.is-ledger-complete .ledger-coordinate span {
+  background: var(--graphite);
+  color: #aeb8bb;
+}
+.ledger-stage.is-ledger-complete .ledger-coordinate i {
+  opacity: 0.5;
+}
+
 @media (max-width: 900px) {
   body.homepage-motion-ready .motion-reveal { transform: translateY(7px); }
 }
@@ -824,5 +901,9 @@ body.homepage-motion-ready .homepage-signal-path.motion-path.is-visible > b {
   .path-node i,
   .homepage-signal-path b { transition: none !important; animation: none !important; transform: none !important; box-shadow: none !important; }
   .button span[aria-hidden="true"] { transition: none; }
+  .ledger-stage::before,
+  .ledger-coordinate,
+  .ledger-coordinate span,
+  .ledger-coordinate i { transition: none !important; }
 }
 

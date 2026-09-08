@@ -532,6 +532,38 @@ if (homepageHero) {
       );
     }
 
+    // Phase 3B: Discrete Diagnostic Stage Tracker (01 -> 02 -> 03 -> 04)
+    const ledgerStages = [...document.querySelectorAll("main > section.ledger-stage:not(.ledger-hero)")];
+    let highestProgressIndex = -1;
+
+    const setLedgerProgress = (activeIndex) => {
+      if (activeIndex <= highestProgressIndex) return;
+      highestProgressIndex = activeIndex;
+
+      ledgerStages.forEach((stage, idx) => {
+        stage.classList.remove("is-ledger-pending", "is-ledger-active", "is-ledger-complete");
+        if (idx < highestProgressIndex) {
+          stage.classList.add("is-ledger-complete");
+        } else if (idx === highestProgressIndex) {
+          stage.classList.add("is-ledger-active");
+        } else {
+          stage.classList.add("is-ledger-pending");
+        }
+      });
+    };
+
+    ledgerStages.forEach((stage) => stage.classList.add("is-ledger-pending"));
+
+    ledgerStages.forEach((stage, idx) => {
+      safeInView(
+        stage,
+        () => {
+          setLedgerProgress(idx);
+        },
+        { amount: 0.25, margin: "0px 0px -12% 0px" },
+      );
+    });
+
     runHeroDiagnosticSequence();
   }
 
