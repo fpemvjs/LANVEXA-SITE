@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design Lab &middot; LANVEXA</title>
+    <link rel="icon" href="/brand/lanvexa-x-small.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/design-lab.css" />
+  </head>
+  <body class="lab-page">
+    <main class="lab-shell">
+      <p class="lab-kicker">LANVEXA / VISUAL DESIGN LAB</p>
+      <section class="lab-hero" aria-labelledby="hero-title">
+        <div class="lab-hero-copy">
+          <p class="lab-category">FIELD NETWORK DIAGNOSTICS</p>
+          <h1 id="hero-title">Plug in.<br />Know the network.</h1>
+          <p class="lab-lede">Get a structured first pass on link, addressing, reachability, and switch-port context without stitching together multiple tools.</p>
+          <div class="lab-actions">
+            <button class="lab-button lab-button-primary" type="button" data-lab-run>Explore LinkLens <span aria-hidden="true">&rarr;</span></button>
+            <a class="lab-button lab-button-secondary" href="#handoff">Request beta access</a>
+          </div>
+          <p class="lab-tagline">Answers at the jack.</p>
+        </div>
+        <div class="lab-workbench-wrap">
+          <div class="lab-path lab-path-horizontal" aria-label="Diagnostic path from jack to handoff">
+            <span data-path-node="0">JACK</span><i></i><span data-path-node="1">LINK</span><i></i><span data-path-node="2">DHCP / IP</span><i></i><span data-path-node="3">GATEWAY</span><i></i><span data-path-node="4">DNS</span><i></i><span data-path-node="5">INTERNET</span><i></i><span data-path-node="6">DISCOVERY</span><i></i><span data-path-node="7">HANDOFF</span>
+          </div>
+          <article class="lab-workbench" aria-label="LinkLens ready workbench">
+            <header class="lab-workbench-head"><div><span class="lab-app-mark">LX</span><strong>LinkLens</strong><small>FIELD WORKBENCH</small></div><span class="lab-ready">READY</span></header>
+            <div class="lab-workbench-body">
+              <div class="lab-adapter"><span>SELECTED ADAPTER</span><strong>Ethernet</strong><em>Windows endpoint &middot; ready</em></div>
+              <div class="lab-checks">
+                <div class="lab-check-head"><span>FIRST-PASS CHECKS</span><span>STATE</span></div>
+                <div class="lab-check"><b data-path-node="1"></b><span>Ethernet Link</span><strong>READY</strong></div>
+                <div class="lab-check"><b data-path-node="2"></b><span>Addressing</span><strong>NOT RUN</strong></div>
+                <div class="lab-check"><b data-path-node="3"></b><span>Gateway</span><strong>NOT RUN</strong></div>
+                <div class="lab-check"><b data-path-node="4"></b><span>DNS / TCP</span><strong>NOT RUN</strong></div>
+              </div>
+              <div class="lab-observation"><span>PASSIVE OBSERVATION</span><strong>LLDP / CDP</strong><em>Available when advertised</em></div>
+            </div>
+            <footer class="lab-workbench-foot"><span>SIMULATED WORKSPACE &middot; NOT A PRODUCT SCREENSHOT</span><button type="button" data-lab-run>Run preview <span aria-hidden="true">&rarr;</span></button></footer>
+          </article>
+        </div>
+      </section>
+
+      <section class="lab-result" id="handoff" aria-labelledby="result-title">
+        <header class="lab-result-head">
+          <div><p class="lab-category">LINKLENS / COMPLETED STATE</p><h2 id="result-title">A result that can move forward.</h2></div>
+          <p>When the first pass is complete, the workspace resolves into a technician handoff&mdash;not another dashboard.</p>
+        </header>
+        <div class="lab-transformation" aria-label="Diagnostic transformation from reported problem to handoff">
+          <div class="lab-transform-stage lab-transform-reported"><span class="lab-stage-index">01</span><small>REPORTED PROBLEM</small><strong>&ldquo;This jack<br />isn&rsquo;t working.&rdquo;</strong></div>
+          <i class="lab-transform-link" aria-hidden="true">&rarr;</i>
+          <div class="lab-transform-stage"><span class="lab-stage-index">02</span><small>OBSERVED EVIDENCE</small><div class="lab-evidence-list"><b>Link <em>1 Gbps</em></b><b>DHCP / IP <em>10.20.120.51</em></b><b>Gateway <em>10.20.120.1 &middot; 4 ms</em></b><b>DNS <em>10.10.10.20 &middot; 9 ms</em></b><b>Discovery <em>LLDP observed</em></b></div></div>
+          <i class="lab-transform-link" aria-hidden="true">&rarr;</i>
+          <div class="lab-transform-stage lab-transform-interpreted"><span class="lab-stage-index">03</span><small>INTERPRETED RESULT</small><strong>NETWORK<br />HEALTHY</strong><div class="lab-handoff-meta"><span>Switch <b>swroc26d1a</b></span><span>Port <b>ge-0/0/24</b></span><span>VLAN <b>120</b></span></div></div>
+          <i class="lab-transform-link" aria-hidden="true">&rarr;</i>
+          <div class="lab-transform-stage lab-transform-handoff"><span class="lab-stage-index">04</span><small>HANDOFF READY</small><strong>8 checks<br />&middot; 1.8 sec</strong><span>Record the observations and next action.</span></div>
+        </div>
+        <article class="lab-record" aria-label="Completed LinkLens handoff record">
+          <header class="lab-record-head"><div><span class="lab-app-mark">LX</span><strong>LinkLens</strong><small>HANDOFF RECORD</small></div><span class="lab-record-state">COMPLETE</span></header>
+          <div class="lab-record-foot"><span>OBSERVED &rarr; INTERPRETED &rarr; HANDOFF READY</span><div><button class="lab-button lab-button-primary" type="button">View Full Report <span aria-hidden="true">&rarr;</span></button><button class="lab-button lab-button-quiet" type="button">Run Again</button></div></div>
+        </article>
+      </section>
+    </main>
+    <script type="module" src="/src/design-lab.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
