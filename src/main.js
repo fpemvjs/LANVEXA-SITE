@@ -5,62 +5,25 @@ import {
   MOTION_TOKENS,
 } from "./motion-bridge.js";
 
-const commonPass = {
+const canonicalPassedTests = {
   addressing: ["✓", "10.24.18.117 / DHCP", "PASS", "pass"],
   gateway: ["✓", "10.24.18.1", "PASS", "pass"],
   dns: ["✓", "Name resolved", "PASS", "pass"],
   tcp: ["✓", "Configured target", "PASS", "pass"],
 };
 
-const examples = {
-  passed: {
-    neighbor: ["LLDP DETECTED", "pass"],
-    switchName: "sw-access-03.example.net",
-    port: "ge-0/0/24",
-    protocol: "LLDP",
-    observed: "Frame observed",
-    note: "",
-    summary: "4 OF 4 PASSED",
-    result: ["CONFIGURED CONNECTIVITY CHECKS PASSED", "pass", "✓"],
-    tests: commonPass,
-    announcement:
-      "Passed example displayed. Four configured connectivity checks passed and an LLDP neighbor advertisement was observed.",
-  },
-  partial: {
-    neighbor: ["NO ADVERTISEMENT OBSERVED", "unknown"],
-    switchName: "Not detected",
-    port: "Not detected",
-    protocol: "LLDP / CDP",
-    observed: "None observed",
-    note: "No LLDP/CDP advertisement was observed during this example.",
-    summary: "2 PASSED · 1 FAILED · 1 NOT TESTED",
-    result: ["PARTIAL RESULT — REVIEW FAILED CHECK", "partial", "!"],
-    tests: {
-      addressing: commonPass.addressing,
-      gateway: commonPass.gateway,
-      dns: ["×", "Name not resolved", "FAIL", "fail"],
-      tcp: ["—", "Dependent check not run", "NOT TESTED", "unknown"],
-    },
-    announcement:
-      "Partial example displayed. Addressing and gateway passed, DNS failed, TCP was not tested, and no neighbor advertisement was observed.",
-  },
-  noNeighbor: {
-    neighbor: ["NO ADVERTISEMENT OBSERVED", "unknown"],
-    switchName: "Not detected",
-    port: "Not detected",
-    protocol: "LLDP / CDP",
-    observed: "None observed",
-    note: "Possible reasons include LLDP/CDP being disabled, filtered, delayed, or not advertised toward the endpoint.",
-    summary: "4 OF 4 PASSED",
-    result: [
-      "CONNECTIVITY CHECKS PASSED · NO NEIGHBOR OBSERVED",
-      "observed",
-      "—",
-    ],
-    tests: commonPass,
-    announcement:
-      "No-neighbor example displayed. Four configured connectivity checks passed. No LLDP or CDP advertisement was observed; this is not labeled as a connectivity failure.",
-  },
+const canonicalPassedState = {
+  neighbor: ["LLDP DETECTED", "pass"],
+  switchName: "sw-access-03.example.net",
+  port: "ge-0/0/24",
+  protocol: "LLDP",
+  observed: "Frame observed",
+  note: "",
+  summary: "4 OF 4 PASSED",
+  result: ["CONFIGURED CONNECTIVITY CHECKS PASSED", "pass", "✓"],
+  tests: canonicalPassedTests,
+  announcement:
+    "Passed example displayed. Four configured connectivity checks passed and an LLDP neighbor advertisement was observed.",
 };
 
 let sequenceTimers = [];
@@ -128,20 +91,10 @@ function updateDiagnosticRow(row, [symbolChar, textVal, stateLabel, toneVal]) {
   safeAnimate(row, { opacity: [0.75, 1], x: [3, 0] }, { duration: MOTION_TOKENS.duration.fast });
 }
 
-function settleHeroState(name = "passed") {
-  setExample(name);
-}
-
-function setExample(name) {
+function settleHeroState() {
   clearHeroSequence();
   settleSignalPath();
-  const state = examples[name];
-  if (!state) return;
-  document.querySelectorAll(".example-control[data-example]").forEach((button) => {
-    const active = button.dataset.example === name;
-    button.classList.toggle("active", active);
-    button.setAttribute("aria-pressed", String(active));
-  });
+  const state = canonicalPassedState;
   const linkState = document.querySelector("#link-state");
   if (linkState) linkState.textContent = "CONNECTED";
   const linkStatusLight = document.querySelector(".status-light");
@@ -184,12 +137,6 @@ function setExample(name) {
   const status = document.querySelector("#demo-status");
   if (status) status.textContent = state.announcement;
 }
-
-document
-  .querySelectorAll(".example-control[data-example]")
-  .forEach((button) =>
-    button.addEventListener("click", () => setExample(button.dataset.example)),
-  );
 document
   .querySelectorAll(".mobile-nav a")
   .forEach((link) =>
@@ -355,7 +302,7 @@ const HERO_SEQUENCE_STEPS = [
 
 function runHeroDiagnosticSequence() {
   if (prefersReducedMotion()) {
-    settleHeroState("passed");
+    settleHeroState();
     return;
   }
 
@@ -370,12 +317,6 @@ function runHeroDiagnosticSequence() {
   if (!path || !instrument) return;
 
   clearHeroSequence();
-
-  document.querySelectorAll(".example-control[data-example]").forEach((button) => {
-    const active = button.dataset.example === "passed";
-    button.classList.toggle("active", active);
-    button.setAttribute("aria-pressed", String(active));
-  });
 
   // Reset path to step 0 (JACK active, nodes 1-7 pending)
   const nodes = path.querySelectorAll(".path-node");
@@ -444,7 +385,7 @@ function runHeroDiagnosticSequence() {
 function replayHeroSequence() {
   clearHeroSequence();
   if (prefersReducedMotion()) {
-    settleHeroState("passed");
+    settleHeroState();
     return;
   }
   runHeroDiagnosticSequence();

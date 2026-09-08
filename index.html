@@ -74,7 +74,7 @@
           </p>
           <div class="hero-actions">
             <a class="button" href="/demo.html"
-              >Explore LinkLens <span aria-hidden="true">&rarr;</span></a
+              >Launch Interactive Demo <span aria-hidden="true">&rarr;</span></a
             ><a class="text-link" href="#beta">Request beta access</a>
           </div>
           <div class="reported-condition">
@@ -210,30 +210,9 @@
             <div
               class="example-controls"
               role="group"
-              aria-label="Choose diagnostic example"
+              aria-label="Diagnostic controls"
             >
               <button
-                class="example-control active"
-                type="button"
-                data-example="passed"
-                aria-pressed="true"
-              >
-                Passed</button
-              ><button
-                class="example-control"
-                type="button"
-                data-example="partial"
-                aria-pressed="false"
-              >
-                Partial</button
-              ><button
-                class="example-control"
-                type="button"
-                data-example="noNeighbor"
-                aria-pressed="false"
-              >
-                No neighbor</button
-              ><button
                 class="example-control example-replay"
                 type="button"
                 id="hero-replay"
@@ -274,8 +253,8 @@
         </header>
         <div class="homepage-problem">
           <p>REPORTED PROBLEM</p>
-          <strong>&ldquo;This Ethernet jack isn&rsquo;t working.&rdquo;</strong>
-          <span>Link state, addressing, reachability, and neighbor identity are still separate questions.</span>
+          <strong>Physical link state does not reveal logical configuration.</strong>
+          <span>Link negotiation, DHCP lease, gateway reachability, and switch identity require distinct diagnostic queries.</span>
         </div>
         <div class="workflow-compare">
           <div class="manual-stack">
@@ -370,7 +349,12 @@
         </header>
         <div class="homepage-transformation" aria-label="From reported problem to technician handoff">
           <div class="transform-stage transform-reported">
-            <p>REPORTED PROBLEM</p><strong>&ldquo;This jack isn&rsquo;t working.&rdquo;</strong>
+            <p>REPORTED PROBLEM</p><strong>Unverified endpoint connectivity</strong>
+            <dl>
+              <div><dt>SYMPTOM</dt><dd>Jack reported down</dd></div>
+              <div><dt>INTERFACE</dt><dd>Ethernet / Wired</dd></div>
+              <div><dt>SCOPE</dt><dd>First pass required</dd></div>
+            </dl>
           </div>
           <div class="transform-connector" aria-hidden="true">&rarr;</div>
           <div class="transform-stage transform-observed">
@@ -390,7 +374,11 @@
           </div>
           <div class="transform-connector" aria-hidden="true">&rarr;</div>
           <div class="transform-stage transform-handoff">
-            <p>HANDOFF READY</p><strong>8 checks &middot; 1.8 sec</strong>
+            <p>HANDOFF READY</p><strong>8 checks completed</strong>
+            <dl>
+              <div><dt>EVIDENCE</dt><dd>Captured</dd></div>
+              <div><dt>NEXT ACTION</dt><dd>Escalate with facts</dd></div>
+            </dl>
             <a href="/demo.html">View the full report <span aria-hidden="true">&rarr;</span></a>
           </div>
         </div>

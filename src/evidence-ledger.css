@@ -97,10 +97,8 @@
 .ledger-hero .result-bar { grid-area: result; }
 .ledger-hero .example-controls {
   justify-content: flex-end;
-  border-left: 2px solid var(--graphite);
 }
 .example-control.example-replay {
-  margin-left: 10px;
   color: var(--muted);
   border-color: var(--border);
   background: transparent;
@@ -124,8 +122,7 @@
 }
 @media (max-width: 560px) {
   .example-control.example-replay {
-    margin-left: 3px;
-    padding-inline: 4px;
+    padding-inline: 6px;
   }
 }
 .hero-resolution {
@@ -339,7 +336,7 @@
   border-top: 2px solid var(--graphite);
   border-bottom: 1px solid var(--border);
   display: grid;
-  grid-template-columns: 125px 1fr;
+  grid-template-columns: 128px 1fr;
   gap: 16px 22px;
   align-content: start;
 }
@@ -711,14 +708,13 @@
   border-top: 2px solid var(--graphite);
   border-bottom: 1px solid var(--border);
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) 28px minmax(0, 1.55fr) 28px minmax(0, 1.45fr) 28px minmax(0, 1.15fr);
+  grid-template-columns: minmax(0, 1.25fr) 28px minmax(0, 1.45fr) 28px minmax(0, 1.45fr) 28px minmax(0, 1.25fr);
   column-gap: clamp(14px, 1.8vw, 28px);
   align-items: stretch;
 }
 .transform-stage { display: flex; flex-direction: column; gap: 13px; }
 .transform-stage strong { font-size: 20px; line-height: 1.08; }
-.transform-observed dl,
-.transform-interpreted dl { margin: 0; display: grid; gap: 8px; }
+.transform-stage dl { margin: 0; display: grid; gap: 8px; }
 .transform-stage dl div { display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid var(--border); padding-top: 7px; }
 .transform-stage dt { color: var(--muted); font: 650 9px var(--mono); }
 .transform-stage dd { margin: 0; font: 600 13px var(--mono); text-align: right; }
