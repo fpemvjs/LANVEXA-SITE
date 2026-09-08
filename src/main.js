@@ -312,23 +312,10 @@ function runHeroDiagnosticSequence() {
   const fallback = hero.querySelector("[data-interactive-fallback]");
   if (fallback && fallback.hasAttribute("hidden")) return;
 
-  const path = hero.querySelector(".homepage-signal-path");
   const instrument = hero.querySelector(".instrument");
-  if (!path || !instrument) return;
+  if (!instrument) return;
 
   clearHeroSequence();
-
-  // Reset path to step 0 (JACK active, nodes 1-7 pending)
-  const nodes = path.querySelectorAll(".path-node");
-  const lines = path.querySelectorAll("b");
-  nodes.forEach((node, idx) => {
-    node.classList.remove("is-active", "is-pass", "is-observed");
-    node.classList.add(idx === 0 ? "is-active" : "is-pending");
-  });
-  lines.forEach((line, idx) => {
-    line.classList.remove("is-active", "is-complete");
-    if (idx === 0) line.classList.add("is-active");
-  });
 
   // Pre-run diagnostic state on instrument
   const linkState = instrument.querySelector("#link-state");
@@ -415,31 +402,15 @@ if (homepageHero) {
     [homepageHero.querySelector(".hero-copy h1"), 130],
     [homepageHero.querySelector(".hero-copy .lede"), 210],
     [homepageHero.querySelector(".hero-copy .hero-actions"), 290],
-    [homepageHero.querySelector(".homepage-signal-path"), 360],
-    [homepageHero.querySelector(".instrument-wrap"), 420],
-    [homepageHero.querySelector(".hero-caveat"), 500],
+    [homepageHero.querySelector(".instrument-wrap"), 380],
+    [homepageHero.querySelector(".hero-caveat"), 460],
   ].forEach(([element, delay]) => reveal(element, delay));
 
-  const path = homepageHero.querySelector(".homepage-signal-path");
-  path?.classList.add("motion-path");
-
-  const sections = [...document.querySelectorAll("main > section.ledger-stage:not(.ledger-hero)")];
+  const sections = [...document.querySelectorAll("main > section:not(.ledger-hero)")];
   sections.forEach((section) => {
     section.classList.add("motion-section");
-    [...section.children]
-      .filter((child) => !child.classList.contains("ledger-coordinate") && !child.classList.contains("homepage-transformation"))
-      .forEach((child, index) => reveal(child, Math.min(index * 110, 220)));
+    [...section.children].forEach((child, index) => reveal(child, Math.min(index * 110, 220)));
   });
-
-  const transformation = document.querySelector(".homepage-transformation");
-  const transformStages = transformation ? [...transformation.querySelectorAll(".transform-stage")] : [];
-  const transformConnectors = transformation ? [...transformation.querySelectorAll(".transform-connector")] : [];
-
-  const settleTransformation = () => {
-    if (!transformation) return;
-    transformStages.forEach((stage) => stage.classList.add("is-visible"));
-    transformConnectors.forEach((conn) => conn.classList.add("is-active"));
-  };
 
   const show = (section) => {
     section.classList.add("is-visible");
@@ -448,16 +419,10 @@ if (homepageHero) {
 
   if (reduceMotion.matches) {
     document.querySelectorAll(".motion-reveal").forEach((element) => element.classList.add("is-visible"));
-    path?.classList.add("is-visible");
     sections.forEach((section) => show(section));
-    settleTransformation();
-    settleSignalPath();
   } else {
-    if (transformation) transformation.classList.add("motion-transformation");
-
     requestAnimationFrame(() => {
       homepageHero.querySelectorAll(".motion-reveal").forEach((element) => element.classList.add("is-visible"));
-      path?.classList.add("is-visible");
     });
 
     const observer = "IntersectionObserver" in window
@@ -469,61 +434,6 @@ if (homepageHero) {
         }, { rootMargin: "0px 0px -12% 0px", threshold: 0.08 })
       : null;
     sections.forEach((section) => observer ? observer.observe(section) : show(section));
-
-    // Section 03 Scroll Storytelling: Reveal the 4 diagnostic transformation stages sequentially
-    if (transformation) {
-      let transformationTriggered = false;
-      safeInView(
-        transformation,
-        () => {
-          if (transformationTriggered) return;
-          transformationTriggered = true;
-
-          const stageDelays = [0, 110, 220, 330];
-          transformStages.forEach((stage, idx) => {
-            setTimeout(() => {
-              stage.classList.add("is-visible");
-              if (idx > 0 && transformConnectors[idx - 1]) {
-                transformConnectors[idx - 1].classList.add("is-active");
-              }
-            }, stageDelays[idx] ?? idx * 110);
-          });
-        },
-        { amount: 0.2, margin: "0px 0px -10% 0px" },
-      );
-    }
-
-    // Phase 3B: Discrete Diagnostic Stage Tracker (01 -> 02 -> 03 -> 04)
-    const ledgerStages = [...document.querySelectorAll("main > section.ledger-stage:not(.ledger-hero)")];
-    let highestProgressIndex = -1;
-
-    const setLedgerProgress = (activeIndex) => {
-      if (activeIndex <= highestProgressIndex) return;
-      highestProgressIndex = activeIndex;
-
-      ledgerStages.forEach((stage, idx) => {
-        stage.classList.remove("is-ledger-pending", "is-ledger-active", "is-ledger-complete");
-        if (idx < highestProgressIndex) {
-          stage.classList.add("is-ledger-complete");
-        } else if (idx === highestProgressIndex) {
-          stage.classList.add("is-ledger-active");
-        } else {
-          stage.classList.add("is-ledger-pending");
-        }
-      });
-    };
-
-    ledgerStages.forEach((stage) => stage.classList.add("is-ledger-pending"));
-
-    ledgerStages.forEach((stage, idx) => {
-      safeInView(
-        stage,
-        () => {
-          setLedgerProgress(idx);
-        },
-        { amount: 0.25, margin: "0px 0px -12% 0px" },
-      );
-    });
 
     // Viewport-triggered initial Hero playback (runs once per page load)
     const instrument = homepageHero.querySelector(".instrument");

@@ -62,36 +62,20 @@
     <main id="main">
       <section class="hero ledger-hero">
         <div class="incident-folio">
-          <span>LANVEXA / NETWORK DIAGNOSTICS</span>
-          <span>REPORTED &rarr; OBSERVED &rarr; INTERPRETED &rarr; HANDOFF</span>
+          <span>LANVEXA / LINKLENS</span>
+          <span>WINDOWS ETHERNET DIAGNOSTICS</span>
         </div>
         <div class="hero-copy">
-          <p class="kicker">Field network diagnostics</p>
-          <h1>Plug in.<br />Know the network.</h1>
+          <p class="kicker">Windows Ethernet Diagnostics</p>
+          <h1>Ethernet diagnostics from your Windows laptop.</h1>
           <p class="lede">
-            Get a structured first pass on link, addressing, reachability, and
-            switch-port context without stitching together multiple tools.
+            Run first-pass connectivity checks and capture advertised switch and port context in one automated sequence.
           </p>
           <div class="hero-actions">
             <a class="button" href="/demo.html"
               >Launch Interactive Demo <span aria-hidden="true">&rarr;</span></a
-            ><a class="text-link" href="#beta">Request beta access</a>
+            ><a class="text-link" href="#beta">Request early access</a>
           </div>
-          <div class="reported-condition">
-            <small>01 / REPORTED CONDITION</small>
-            <strong>&ldquo;This Ethernet jack isn&rsquo;t working.&rdquo;</strong>
-            <span>Link, addressing, upstream reachability, and neighbor identity are still unknown.</span>
-          </div>
-        </div>
-        <div class="homepage-signal-path" aria-label="Diagnostic sequence">
-          <span class="path-node is-pass"><i aria-hidden="true"></i>JACK</span><b aria-hidden="true"></b>
-          <span class="path-node is-pass"><i aria-hidden="true"></i>LINK</span><b aria-hidden="true"></b>
-          <span class="path-node is-pass"><i aria-hidden="true"></i>DHCP / IP</span><b aria-hidden="true"></b>
-          <span class="path-node is-pass"><i aria-hidden="true"></i>GATEWAY</span><b aria-hidden="true"></b>
-          <span class="path-node is-pass"><i aria-hidden="true"></i>DNS</span><b aria-hidden="true"></b>
-          <span class="path-node is-pass"><i aria-hidden="true"></i>INTERNET</span><b aria-hidden="true"></b>
-          <span class="path-node is-observed"><i aria-hidden="true"></i>DISCOVERY</span><b aria-hidden="true"></b>
-          <span class="path-node is-pass"><i aria-hidden="true"></i>HANDOFF</span>
         </div>
         <div class="instrument-wrap" id="product">
           <!-- LANVEXA_AUTHENTIC_MEDIA -->
@@ -240,212 +224,107 @@
         </p>
       </section>
 
-      <section class="workflow section ledger-stage stage-capabilities" id="workflow">
-        <div class="ledger-coordinate" aria-hidden="true"><span>01</span><i></i></div>
+      <section class="workflow section" id="workflow">
         <header class="statement-head">
-          <p class="section-index">02 / WHAT IT DOES</p>
-          <h2>One first pass.<br />Two kinds of signal.</h2>
+          <p class="kicker">The Software-First Pass</p>
+          <h2>Use the laptop you already carry.</h2>
           <p>
-            LANVEXA brings active connectivity checks and passive neighbor
-            observation into one technician workflow. The individual tests are
-            familiar; the value is having one consistent result surface.
+            Run connectivity checks, capture passive switch context when advertised, and
+            package the findings for handoff &mdash; from Windows.
           </p>
         </header>
-        <div class="homepage-problem">
-          <p>REPORTED PROBLEM</p>
-          <strong>Physical link state does not reveal logical configuration.</strong>
-          <span>Link negotiation, DHCP lease, gateway reachability, and switch identity require distinct diagnostic queries.</span>
-        </div>
-        <div class="workflow-compare">
-          <div class="manual-stack">
-            <p>ACTIVE CHECKS</p>
-            <strong
-              >Establish what basic connectivity is working.</strong
-            >
-            <span
-              >Addressing &middot; Gateway &middot; DNS &middot; Configured TCP</span
-            >
+        <div class="software-pass" aria-label="Software-first field triage flow">
+          <div class="triage-pipeline">
+            <div class="laptop-node">
+              <p class="contrast-label">WINDOWS LAPTOP</p>
+            </div>
+            <div class="pipeline-connector" aria-hidden="true">&darr;</div>
+            <div class="first-pass-card">
+              <p class="contrast-label">LINKLENS FIRST PASS</p>
+              <ul class="triage-list" aria-label="LinkLens coordinated steps">
+                <li>
+                  <strong>Connectivity</strong>
+                  <span>Link &middot; DHCP &middot; Gateway &middot; DNS</span>
+                </li>
+                <li>
+                  <strong>Discovery</strong>
+                  <span>Passive LLDP/CDP neighbor observation</span>
+                </li>
+                <li>
+                  <strong>Handoff</strong>
+                  <span>Structured findings for the ticket</span>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="workflow-arrow" aria-hidden="true">→</div>
-          <div class="lanvexa-flow">
-            <p>PASSIVE OBSERVATION</p>
-            <ol>
-              <li><span>01</span><strong>LLDP</strong></li>
-              <li><span>02</span><strong>CDP</strong></li>
-              <li><span>03</span><strong>System information</strong></li>
-              <li><span>04</span><strong>Advertised Port ID</strong></li>
-              <li><span>05</span><strong>When available</strong></li>
-            </ol>
-            <div class="result-fields">
-              <span>SELECTED ADAPTER</span><span>LINK</span><span>ADDRESSING</span
-              ><span>GATEWAY</span><span>DNS</span><span>TCP</span
-              ><span>LLDP/CDP</span><span>NEIGHBOR</span><span>PORT ID</span
-              ><span>OBSERVED</span>
+          <div class="triage-proof">
+            <p class="contrast-label">FIELD EVIDENCE</p>
+            <div class="neighbor-proof">
+              <header class="proof-header">
+                <span>ADVERTISED NEIGHBOR</span>
+                <small>PASSIVE OBSERVATION</small>
+              </header>
+              <div class="proof-body">
+                <div>
+                  <small>SWITCH</small>
+                  <strong>sw-access-03.example.net</strong>
+                </div>
+                <div>
+                  <small>PORT</small>
+                  <strong>ge-0/0/24</strong>
+                </div>
+                <div>
+                  <small>PROTOCOL</small>
+                  <strong>LLDP / CDP</strong>
+                </div>
+              </div>
+              <p class="caveat">
+                <strong>No neighbor detected &ne; network failure.</strong>
+                Switch advertisements appear only when LLDP or CDP is transmitted on the connected port.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="discovery section dark-section ledger-stage stage-observed">
-        <div class="ledger-coordinate" aria-hidden="true"><span>02</span><i></i></div>
-        <div class="discovery-copy">
-          <p class="section-index">02 / OBSERVED</p>
-          <h2>Build the record from active checks and passive observations.</h2>
-          <p>
-            See what passed, what failed, and what the network advertised.
-            LANVEXA listens locally for LLDP and CDP advertisements without
-            logging in to the switch or using SNMP credentials for the current
-            neighbor-discovery workflow.
-          </p>
-          <p class="caveat">
-            <strong>No advertisement is also an honest result.</strong> It does
-            not mean the switch is down. LLDP/CDP may be disabled, filtered,
-            delayed, or not advertised toward the endpoint.
-          </p>
-          <a class="inline-link" href="/docs/lldp-cdp-discovery.html"
-            >Read how discovery works</a
-          >
-        </div>
-        <div class="protocol-output">
-          <header>
-            <span>RECEIVED FRAME</span><strong>IEEE 802.1AB / EXAMPLE</strong>
-          </header>
-          <dl>
-            <div>
-              <dt>PROTOCOL</dt>
-              <dd>LLDP</dd>
-              <dd class="protocol-meta">0x88CC</dd>
-            </div>
-            <div class="identified">
-              <dt>SYSTEM NAME</dt>
-              <dd>sw-access-03.example.net</dd>
-              <dd class="protocol-meta">TLV 5</dd>
-            </div>
-            <div class="identified">
-              <dt>PORT ID</dt>
-              <dd>ge-0/0/24</dd>
-              <dd class="protocol-meta">TLV 2</dd>
-            </div>
-            <div>
-              <dt>CHASSIS ID</dt>
-              <dd>02:00:00:00:00:03</dd>
-              <dd class="protocol-meta">TLV 1</dd>
-            </div>
-          </dl>
-          <footer><i></i> ADVERTISEMENT OBSERVED ON SELECTED INTERFACE</footer>
-        </div>
-      </section>
-
-      <section class="interpretation section ledger-stage stage-interpreted">
-        <div class="ledger-coordinate" aria-hidden="true"><span>03</span><i></i></div>
-        <header class="interpretation-head">
-          <p class="section-index">03 / INTERPRETED</p>
-          <h2>See what passed, what failed, and what was not observed.</h2>
-          <p>
-            Interpretation remains bounded by the checks that ran and the
-            advertisements actually observed. Missing passive evidence does not
-            overwrite an active connectivity result.
-          </p>
-        </header>
-        <div class="homepage-transformation" aria-label="From reported problem to technician handoff">
-          <div class="transform-stage transform-reported">
-            <p>REPORTED PROBLEM</p><strong>Unverified endpoint connectivity</strong>
-            <dl>
-              <div><dt>SYMPTOM</dt><dd>Jack reported down</dd></div>
-              <div><dt>INTERFACE</dt><dd>Ethernet / Wired</dd></div>
-              <div><dt>SCOPE</dt><dd>First pass required</dd></div>
-            </dl>
-          </div>
-          <div class="transform-connector" aria-hidden="true">&rarr;</div>
-          <div class="transform-stage transform-observed">
-            <p>OBSERVED EVIDENCE</p>
-            <dl>
-              <div><dt>LINK</dt><dd>1 Gbps</dd></div>
-              <div><dt>DHCP / IP</dt><dd>10.20.120.51</dd></div>
-              <div><dt>GATEWAY</dt><dd>10.20.120.1 &middot; 4 ms</dd></div>
-              <div><dt>DNS</dt><dd>10.10.10.20 &middot; 9 ms</dd></div>
-              <div><dt>DISCOVERY</dt><dd>LLDP observed</dd></div>
-            </dl>
-          </div>
-          <div class="transform-connector" aria-hidden="true">&rarr;</div>
-          <div class="transform-stage transform-interpreted">
-            <p>INTERPRETED RESULT</p><strong>TESTED CHECKS HEALTHY</strong>
-            <dl><div><dt>SWITCH</dt><dd>switch-01.example</dd></div><div><dt>PORT</dt><dd>ge-0/0/24</dd></div><div><dt>VLAN</dt><dd>120</dd></div></dl>
-          </div>
-          <div class="transform-connector" aria-hidden="true">&rarr;</div>
-          <div class="transform-stage transform-handoff">
-            <p>HANDOFF READY</p><strong>8 checks completed</strong>
-            <dl>
-              <div><dt>EVIDENCE</dt><dd>Captured</dd></div>
-              <div><dt>NEXT ACTION</dt><dd>Escalate with facts</dd></div>
-            </dl>
-            <a href="/demo.html">View the full report <span aria-hidden="true">&rarr;</span></a>
-          </div>
-        </div>
-        <div class="state-ledger" aria-label="LANVEXA result-state definitions">
-          <div data-state="pass"><strong>PASS</strong><span>The configured check met its success condition.</span></div>
-          <div data-state="fail"><strong>FAIL</strong><span>The configured check did not meet its success condition.</span></div>
-          <div data-state="untested"><strong>NOT TESTED</strong><span>The check was not run or could not appropriately proceed.</span></div>
-          <div data-state="absent"><strong>NOT DETECTED</strong><span>Passive evidence was not observed during the observation window.</span></div>
-        </div>
-        <aside class="no-neighbor-ledger">
-          <span>ACTIVE RESULT</span><strong>Connectivity checks remain independently meaningful.</strong>
-          <span>PASSIVE RESULT</span><strong>NO NEIGHBOR DETECTED &ne; NETWORK FAILURE</strong>
-        </aside>
-      </section>
-
-      <section class="evidence section ledger-stage stage-handoff">
-        <div class="ledger-coordinate" aria-hidden="true"><span>04</span><i></i></div>
-        <div class="evidence-continuity" aria-hidden="true">
-          <span>OBSERVATIONS</span><i></i><span>HANDOFF READY</span>
-        </div>
+      <section class="evidence section" id="handoff">
         <header class="evidence-head">
-          <p class="section-index">04 / HANDOFF</p>
-          <h2>Give networking the observations, not just the symptom.</h2>
+          <p class="kicker">The Handoff Payoff</p>
+          <h2>Give the next team facts, not guesses.</h2>
+          <p>
+            Relay verified connectivity states and advertised switch context directly into your escalation ticket.
+          </p>
         </header>
         <div class="evidence-record">
           <header class="record-header">
             <span>FIELD DIAGNOSTIC RECORD</span>
-            <strong>EXAMPLE / ON-SCREEN OBSERVATIONS</strong>
+            <strong>EXAMPLE / FIRST-PASS OBSERVATIONS</strong>
           </header>
           <div class="record-row record-situation">
             <p class="record-label">SITUATION</p>
             <div>
-              <strong
-                >&ldquo;This Ethernet jack isn&rsquo;t working.&rdquo;</strong
-              >
-              <span
-                >Establish what basic network functions are working and whether
-                neighbor information is advertised.</span
-              >
+              <strong>&ldquo;This Ethernet jack isn&rsquo;t working.&rdquo;</strong>
+              <span>Wall jack triage at Reception Desk B &mdash; active checks completed, neighbor observed.</span>
             </div>
           </div>
           <div class="record-row record-observations">
             <p class="record-label">OBSERVATIONS</p>
-            <dl>
-              <div>
-                <dt>ADAPTER</dt>
-                <dd>Ethernet</dd>
-              </div>
+            <dl class="record-grid">
               <div>
                 <dt>LINK</dt>
-                <dd>Connected / 1.0 Gbps negotiated</dd>
+                <dd>Connected / 1.0 Gbps</dd>
               </div>
               <div>
-                <dt>ADDRESS</dt>
-                <dd>10.24.18.117 / DHCP</dd>
+                <dt>IP / DHCP</dt>
+                <dd>10.24.18.117 (DHCP)</dd>
               </div>
               <div>
                 <dt>GATEWAY</dt>
-                <dd>10.24.18.1 / Pass</dd>
+                <dd>10.24.18.1 (Pass)</dd>
               </div>
               <div>
                 <dt>DNS</dt>
                 <dd>Pass</dd>
-              </div>
-              <div>
-                <dt>TCP / 443</dt>
-                <dd>Configured target / Pass</dd>
               </div>
               <div>
                 <dt>NEIGHBOR</dt>
@@ -453,85 +332,22 @@
               </div>
               <div>
                 <dt>PORT</dt>
-                <dd>ge-0/0/24 / LLDP</dd>
+                <dd>ge-0/0/24 (LLDP)</dd>
               </div>
             </dl>
           </div>
           <div class="record-row record-action">
             <p class="record-label">NEXT ACTION</p>
             <div>
-              <strong
-                >Continue locally or escalate with a consistent set of
-                observations.</strong
-              >
-              <span
-                >Relay the selected adapter, completed checks, unresolved
-                checks, and advertised neighbor or Port ID when observed.</span
-              ><small
-                >LANVEXA does not claim a root cause or present report export as
-                a current capability.</small
-              >
+              <strong>Escalate with verified findings.</strong>
+              <span>Paste verified connectivity states and advertised switch port context directly into the ticket note.</span>
             </div>
           </div>
         </div>
-        <p class="evidence-next">
-          A failed configured check can narrow the next investigation. A check
-          marked not tested remains unresolved. Neighbor information can be
-          relayed when advertised; when it is not detected, connectivity must be
-          judged from the connectivity checks rather than the missing
-          advertisement.
+        <p class="scope-note">
+          LinkLens is a software tool for first-pass connectivity diagnostics, not physical cable qualification.
         </p>
       </section>
-
-      <section class="scope-section section">
-        <div class="scope-statement">
-          <p class="section-index">04 / RIGHT TOOL, RIGHT TICKET</p>
-          <h2>
-            Logical connectivity first.<br />Physical validation when required.
-          </h2>
-          <p>
-            LANVEXA uses the existing Windows laptop for a software-based first
-            pass. It complements dedicated network test hardware and does not
-            measure the cable.
-          </p>
-        </div>
-        <div class="scope-rails">
-          <div>
-            <strong>LANVEXA CURRENT SCOPE</strong
-            ><span>IP and DHCP information</span
-            ><span>Gateway, DNS, configured TCP checks</span
-            ><span>LLDP/CDP neighbor observation</span
-            ><span>Advertised switch and port fields</span>
-          </div>
-          <div>
-            <strong>DEDICATED HARDWARE</strong
-            ><span>May provide wiremap and cable qualification</span
-            ><span>May provide TDR length and fault location</span
-            ><span>May provide PoE load testing</span
-            ><span>May provide SFP optical measurements</span>
-          </div>
-        </div>
-      </section>
-
-      <aside
-        class="technical-bridge"
-        id="technical"
-        aria-labelledby="technical-bridge-title"
-      >
-        <div>
-          <p class="section-index">TECHNICAL REVIEW</p>
-          <h2 id="technical-bridge-title">Need the technical details?</h2>
-        </div>
-        <p>
-          Review current architecture, connectivity-check scope, packet-capture
-          disclosures, and the facts that still require product verification.
-        </p>
-        <nav aria-label="Technical review links">
-          <a href="/security.html">Security disclosure</a>
-          <a href="/docs/">Documentation</a>
-          <a href="/faq.html">Common questions</a>
-        </nav>
-      </aside>
 
       <section class="final-cta" id="beta">
         <div>
