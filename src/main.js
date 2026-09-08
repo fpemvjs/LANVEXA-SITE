@@ -137,7 +137,7 @@ function setExample(name) {
   settleSignalPath();
   const state = examples[name];
   if (!state) return;
-  document.querySelectorAll(".example-control").forEach((button) => {
+  document.querySelectorAll(".example-control[data-example]").forEach((button) => {
     const active = button.dataset.example === name;
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", String(active));
@@ -186,7 +186,7 @@ function setExample(name) {
 }
 
 document
-  .querySelectorAll(".example-control")
+  .querySelectorAll(".example-control[data-example]")
   .forEach((button) =>
     button.addEventListener("click", () => setExample(button.dataset.example)),
   );
@@ -272,7 +272,7 @@ document
 
 const HERO_SEQUENCE_STEPS = [
   {
-    delay: 260,
+    delay: 320,
     node: 1,
     run(instrument) {
       const linkState = instrument.querySelector("#link-state");
@@ -285,31 +285,31 @@ const HERO_SEQUENCE_STEPS = [
     },
   },
   {
-    delay: 540,
+    delay: 640,
     node: 2,
     test: "addressing",
     values: ["✓", "10.24.18.117 / DHCP", "PASS", "pass"],
   },
   {
-    delay: 800,
+    delay: 950,
     node: 3,
     test: "gateway",
     values: ["✓", "10.24.18.1", "PASS", "pass"],
   },
   {
-    delay: 1060,
+    delay: 1260,
     node: 4,
     test: "dns",
     values: ["✓", "Name resolved", "PASS", "pass"],
   },
   {
-    delay: 1300,
+    delay: 1570,
     node: 5,
     test: "tcp",
     values: ["✓", "Configured target", "PASS", "pass"],
   },
   {
-    delay: 1540,
+    delay: 1880,
     node: 6,
     run(instrument) {
       const neighborState = instrument.querySelector("#neighbor-state");
@@ -330,7 +330,7 @@ const HERO_SEQUENCE_STEPS = [
     },
   },
   {
-    delay: 1800,
+    delay: 2200,
     node: 7,
     run(instrument) {
       const checkSummary = instrument.querySelector("#check-summary");
@@ -355,7 +355,7 @@ const HERO_SEQUENCE_STEPS = [
 
 function runHeroDiagnosticSequence() {
   if (prefersReducedMotion()) {
-    settleSignalPath();
+    settleHeroState("passed");
     return;
   }
 
@@ -370,6 +370,12 @@ function runHeroDiagnosticSequence() {
   if (!path || !instrument) return;
 
   clearHeroSequence();
+
+  document.querySelectorAll(".example-control[data-example]").forEach((button) => {
+    const active = button.dataset.example === "passed";
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
 
   // Reset path to step 0 (JACK active, nodes 1-7 pending)
   const nodes = path.querySelectorAll(".path-node");
@@ -433,6 +439,20 @@ function runHeroDiagnosticSequence() {
       }, step.delay),
     );
   });
+}
+
+function replayHeroSequence() {
+  clearHeroSequence();
+  if (prefersReducedMotion()) {
+    settleHeroState("passed");
+    return;
+  }
+  runHeroDiagnosticSequence();
+}
+
+const replayButton = document.querySelector("#hero-replay");
+if (replayButton) {
+  replayButton.addEventListener("click", replayHeroSequence);
 }
 
 // Homepage-only motion: progressive, one-shot reveals with a complete reduced-motion fallback.
@@ -564,7 +584,25 @@ if (homepageHero) {
       );
     });
 
-    runHeroDiagnosticSequence();
+    // Viewport-triggered initial Hero playback (runs once per page load)
+    const instrument = homepageHero.querySelector(".instrument");
+    if (instrument) {
+      let heroAutoplayTriggered = false;
+      let stopHeroInView = () => {};
+      stopHeroInView = safeInView(
+        instrument,
+        () => {
+          if (heroAutoplayTriggered) return;
+          heroAutoplayTriggered = true;
+          stopHeroInView();
+          const autoplayTimer = setTimeout(() => {
+            runHeroDiagnosticSequence();
+          }, 600);
+          sequenceTimers.push(autoplayTimer);
+        },
+        { amount: 0.25 },
+      );
+    }
   }
 
   const updateHeader = () => page.querySelector(".site-header")?.classList.toggle("is-scrolled", window.scrollY > 16);
