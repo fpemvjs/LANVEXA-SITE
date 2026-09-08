@@ -1,5 +1,6 @@
 import {
   safeAnimate,
+  safeInView,
   prefersReducedMotion,
   MOTION_TOKENS,
 } from "./motion-bridge.js";
@@ -465,24 +466,39 @@ if (homepageHero) {
   sections.forEach((section) => {
     section.classList.add("motion-section");
     [...section.children]
-      .filter((child) => !child.classList.contains("ledger-coordinate"))
+      .filter((child) => !child.classList.contains("ledger-coordinate") && !child.classList.contains("homepage-transformation"))
       .forEach((child, index) => reveal(child, Math.min(index * 110, 220)));
   });
+
+  const transformation = document.querySelector(".homepage-transformation");
+  const transformStages = transformation ? [...transformation.querySelectorAll(".transform-stage")] : [];
+  const transformConnectors = transformation ? [...transformation.querySelectorAll(".transform-connector")] : [];
+
+  const settleTransformation = () => {
+    if (!transformation) return;
+    transformStages.forEach((stage) => stage.classList.add("is-visible"));
+    transformConnectors.forEach((conn) => conn.classList.add("is-active"));
+  };
 
   const show = (section) => {
     section.classList.add("is-visible");
     section.querySelectorAll(".motion-reveal").forEach((element) => element.classList.add("is-visible"));
   };
+
   if (reduceMotion.matches) {
     document.querySelectorAll(".motion-reveal").forEach((element) => element.classList.add("is-visible"));
     path?.classList.add("is-visible");
     sections.forEach((section) => show(section));
+    settleTransformation();
     settleSignalPath();
   } else {
+    if (transformation) transformation.classList.add("motion-transformation");
+
     requestAnimationFrame(() => {
       homepageHero.querySelectorAll(".motion-reveal").forEach((element) => element.classList.add("is-visible"));
       path?.classList.add("is-visible");
     });
+
     const observer = "IntersectionObserver" in window
       ? new IntersectionObserver((entries, instance) => {
           entries.filter((entry) => entry.isIntersecting).forEach((entry) => {
@@ -492,6 +508,29 @@ if (homepageHero) {
         }, { rootMargin: "0px 0px -12% 0px", threshold: 0.08 })
       : null;
     sections.forEach((section) => observer ? observer.observe(section) : show(section));
+
+    // Section 03 Scroll Storytelling: Reveal the 4 diagnostic transformation stages sequentially
+    if (transformation) {
+      let transformationTriggered = false;
+      safeInView(
+        transformation,
+        () => {
+          if (transformationTriggered) return;
+          transformationTriggered = true;
+
+          const stageDelays = [0, 110, 220, 330];
+          transformStages.forEach((stage, idx) => {
+            setTimeout(() => {
+              stage.classList.add("is-visible");
+              if (idx > 0 && transformConnectors[idx - 1]) {
+                transformConnectors[idx - 1].classList.add("is-active");
+              }
+            }, stageDelays[idx] ?? idx * 110);
+          });
+        },
+        { amount: 0.2, margin: "0px 0px -10% 0px" },
+      );
+    }
 
     runHeroDiagnosticSequence();
   }

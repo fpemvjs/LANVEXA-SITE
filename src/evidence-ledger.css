@@ -787,16 +787,42 @@ body.homepage-motion-ready .homepage-signal-path.motion-path.is-visible > b {
 .ledger-hero .hero-caveat { --motion-delay: 500ms; }
 .ledger-hero .instrument-wrap { transition-duration: var(--motion-hero); }
 .button span[aria-hidden="true"] { transition: transform var(--motion-fast) ease-out; }
-.button:hover span[aria-hidden="true"], .button:focus-visible span[aria-hidden="true"] { transform: translateX(3px); }
+.homepage-transformation.motion-transformation .transform-stage,
+.homepage-transformation.motion-transformation .transform-connector {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity var(--motion-state) ease-out, transform var(--motion-state) ease-out;
+}
+.homepage-transformation.motion-transformation .transform-connector {
+  color: #4b5456;
+  transition: opacity var(--motion-fast) ease-out, transform var(--motion-fast) ease-out, color var(--motion-state) ease-out;
+}
+.homepage-transformation.motion-transformation .transform-stage.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.homepage-transformation.motion-transformation .transform-connector.is-active {
+  opacity: 1;
+  transform: none;
+  color: var(--signal-ink);
+}
+@media (max-width: 900px) {
+  .homepage-transformation.motion-transformation .transform-connector.is-active {
+    transform: rotate(90deg);
+  }
+}
 @media (max-width: 900px) {
   body.homepage-motion-ready .motion-reveal { transform: translateY(7px); }
 }
 @media (prefers-reduced-motion: reduce) {
   body.homepage-motion-ready .motion-reveal,
   body.homepage-motion-ready .homepage-signal-path.motion-path .path-node,
-  body.homepage-motion-ready .homepage-signal-path.motion-path > b { transition: none; animation: none; opacity: 1; transform: none; }
+  body.homepage-motion-ready .homepage-signal-path.motion-path > b,
+  .homepage-transformation.motion-transformation .transform-stage,
+  .homepage-transformation.motion-transformation .transform-connector { transition: none !important; animation: none !important; opacity: 1 !important; transform: none !important; }
   .path-node,
   .path-node i,
   .homepage-signal-path b { transition: none !important; animation: none !important; transform: none !important; box-shadow: none !important; }
   .button span[aria-hidden="true"] { transition: none; }
 }
+
