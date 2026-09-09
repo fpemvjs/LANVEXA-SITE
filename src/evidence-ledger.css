@@ -1148,21 +1148,43 @@
 }
 
 .record-header {
-  border-bottom-color: #8e9793;
+  padding: 20px 24px;
+  border-bottom: 1px solid #8e9793;
 }
 
 .record-row {
-  border-top-color: #b1b7b3;
+  border-top: 1px solid #b1b7b3;
+  padding: 30px 24px;
+  gap: clamp(24px, 3vw, 44px);
 }
 
 .record-label {
   color: #4b575c;
+  padding-left: 2px;
+}
+
+.record-situation > div {
+  gap: 32px;
+}
+
+.record-situation strong {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #1b2529;
+}
+
+.record-situation span {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin-top: 6px;
+  display: block;
 }
 
 .record-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px 24px;
+  gap: 20px 28px;
   margin: 0;
   padding: 0;
 }
@@ -1170,49 +1192,54 @@
 .record-grid > div {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding-top: 6px;
+  gap: 6px;
+  padding-top: 10px;
+  padding-bottom: 4px;
   border-top: 1px solid var(--border);
 }
 
 .record-grid dt {
-  font: 700 10px/1.2 var(--mono);
-  letter-spacing: 0.07em;
+  font: 700 10px/1.3 var(--mono);
+  letter-spacing: 0.08em;
   color: #455258;
 }
 
 .record-grid dd {
   margin: 0;
-  font: 600 14px/1.3 var(--mono);
+  font: 600 14px/1.4 var(--mono);
   color: var(--text);
-}
-
-.record-situation strong,
-.record-action strong {
-  font-size: 16px;
-  line-height: 1.3;
-  color: #1b2529;
-}
-
-.record-situation span,
-.record-action span {
-  font-size: 13px;
-  color: var(--muted);
-  margin-top: 4px;
-  display: block;
 }
 
 .record-action {
   background: rgba(151, 215, 0, 0.12);
   border-left: 4px solid var(--signal);
+  padding: 30px 24px;
+}
+
+.record-action > div {
+  gap: 32px;
+}
+
+.record-action strong {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #1b2529;
+}
+
+.record-action span {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin-top: 6px;
+  display: block;
 }
 
 .scope-note {
   margin: 32px 0 0;
-  padding: 14px 18px;
+  padding: 18px 24px;
   border: 1px solid var(--border);
   border-left: 3px solid #556268;
-  font: 500 13px/1.5 var(--mono);
+  font: 500 13px/1.6 var(--mono);
   color: #455258;
   max-width: 820px;
 }
@@ -1536,13 +1563,25 @@
     padding-top: 56px;
     padding-bottom: 64px;
   }
-  .statement-head h2,
-  .evidence-head h2 {
-    font-size: 36px;
+  .record-header {
+    padding: 16px 18px;
+  }
+  .record-row {
+    padding: 22px 18px;
+    gap: 16px;
+  }
+  .record-action {
+    padding: 22px 18px;
   }
   .record-grid {
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 14px;
+  }
+  .record-grid > div {
+    padding-top: 8px;
+  }
+  .scope-note {
+    padding: 16px 18px;
   }
   .evidence-record {
     box-shadow: none;
