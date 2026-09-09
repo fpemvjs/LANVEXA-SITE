@@ -61,6 +61,12 @@
     </header>
     <main id="main">
       <section class="hero ledger-hero">
+        <div class="hero-cinematic-backdrop" aria-hidden="true">
+          <div class="hero-env-surface"></div>
+          <div class="hero-env-transition"></div>
+          <div class="rack-glow-ambient"></div>
+          <div class="rack-vignette-right"></div>
+        </div>
         <div class="incident-folio">
           <span>LANVEXA / LINKLENS</span>
           <span>WINDOWS ETHERNET DIAGNOSTICS</span>
@@ -71,6 +77,14 @@
           <p class="lede">
             Run first-pass connectivity checks and capture advertised switch and port context in one automated sequence.
           </p>
+          <div class="hero-status-stack" id="hero-status-stack" aria-hidden="true">
+            <div class="status-stack-line" data-state="pass"><span class="status-glyph">&gt;&gt;</span><span class="status-msg">Detecting wired interface…</span></div>
+            <div class="status-stack-line" data-state="pending"><span class="status-glyph">&gt;</span><span class="status-msg">Link detected</span></div>
+            <div class="status-stack-line" data-state="pending"><span class="status-glyph">&gt;</span><span class="status-msg">DHCP acquired</span></div>
+            <div class="status-stack-line" data-state="pending"><span class="status-glyph">&gt;</span><span class="status-msg">Gateway reachable</span></div>
+            <div class="status-stack-line" data-state="pending"><span class="status-glyph">&gt;</span><span class="status-msg">DNS resolved</span></div>
+            <div class="status-stack-line" data-state="pending"><span class="status-glyph">&gt;</span><span class="status-msg">Discovering neighbors…</span></div>
+          </div>
           <div class="hero-actions">
             <a class="button" href="/demo.html"
               >Launch Interactive Demo <span aria-hidden="true">&rarr;</span></a
@@ -78,6 +92,34 @@
           </div>
         </div>
         <div class="instrument-wrap" id="product">
+          <!-- Signal energy conduit (routed behind/around instrument) -->
+          <div class="hero-signal-conduit" id="hero-signal-conduit" aria-hidden="true">
+            <svg class="conduit-svg" viewBox="0 0 760 480" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="conduit-grad" x1="0%" y1="90%" x2="100%" y2="10%">
+                  <stop offset="0%" stop-color="#7dff57" stop-opacity="0.25" />
+                  <stop offset="35%" stop-color="#97d700" stop-opacity="0.70" />
+                  <stop offset="75%" stop-color="#c6ff00" stop-opacity="0.95" />
+                  <stop offset="100%" stop-color="#eaff75" stop-opacity="1" />
+                </linearGradient>
+                <filter id="conduit-glow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="3.5" result="blur1" />
+                  <feGaussianBlur stdDeviation="7" result="blur2" />
+                  <feMerge>
+                    <feMergeNode in="blur2" />
+                    <feMergeNode in="blur1" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <!-- Base quiescent conduit track -->
+              <path class="conduit-track" d="M 0,410 C 20,290 35,90 90,45 C 190,10 380,8 550,18 C 630,22 670,45 680,95" />
+              <!-- Trailing glow path -->
+              <path class="conduit-glow-trail" id="conduit-trail" d="M 0,410 C 20,290 35,90 90,45 C 190,10 380,8 550,18 C 630,22 670,45 680,95" />
+              <!-- Active energy pulse -->
+              <path class="conduit-pulse" id="conduit-pulse" d="M 0,410 C 20,290 35,90 90,45 C 190,10 380,8 550,18 C 630,22 670,45 680,95" filter="url(#conduit-glow)" />
+            </svg>
+          </div>
           <!-- LANVEXA_AUTHENTIC_MEDIA -->
           <div class="interactive-example" data-interactive-fallback>
             <div class="example-label">
@@ -102,6 +144,35 @@
                   ><strong>Ethernet</strong></span
                 ><span>Wired adapter</span>
               </div>
+              <div class="hero-diagnostic-ticker" id="hero-ticker" aria-live="polite">
+                <span class="ticker-prefix" data-state="pass">PASS</span>
+                <span class="ticker-text" id="ticker-text">FIRST-PASS COMPLETE · 4 CHECKS PASSED · NEIGHBOR OBSERVED</span>
+              </div>
+              <nav class="instrument-flow" aria-label="Diagnostic sequence progression">
+                <div class="flow-node is-complete" data-step="link">
+                  <i aria-hidden="true"></i><span>LINK</span>
+                </div>
+                <b aria-hidden="true"></b>
+                <div class="flow-node is-complete" data-step="dhcp">
+                  <i aria-hidden="true"></i><span>DHCP</span>
+                </div>
+                <b aria-hidden="true"></b>
+                <div class="flow-node is-complete" data-step="gateway">
+                  <i aria-hidden="true"></i><span>GATEWAY</span>
+                </div>
+                <b aria-hidden="true"></b>
+                <div class="flow-node is-complete" data-step="dns">
+                  <i aria-hidden="true"></i><span>DNS</span>
+                </div>
+                <b aria-hidden="true"></b>
+                <div class="flow-node is-complete" data-step="discovery">
+                  <i aria-hidden="true"></i><span>DISCOVERY</span>
+                </div>
+                <b aria-hidden="true"></b>
+                <div class="flow-node is-complete" data-step="handoff">
+                  <i aria-hidden="true"></i><span>HANDOFF</span>
+                </div>
+              </nav>
               <div class="app-body">
                 <div class="app-status">
                   <div>
@@ -212,9 +283,6 @@
               aria-live="polite"
             ></p>
           </div>
-        </div>
-        <div class="hero-resolution" aria-hidden="true">
-          <span>UNCERTAINTY</span><i></i><span>INVESTIGATION READY</span>
         </div>
         <p class="hero-caveat">
           <strong>Switch discovery depends on the network.</strong> Neighbor and

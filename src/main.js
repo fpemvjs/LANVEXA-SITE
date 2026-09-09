@@ -31,48 +31,67 @@ let sequenceTimers = [];
 function clearHeroSequence() {
   sequenceTimers.forEach(clearTimeout);
   sequenceTimers = [];
+  clearDiscoveryPeak();
 }
 
-function settleSignalPath() {
-  const path = document.querySelector(".homepage-signal-path");
-  if (!path) return;
-  const nodes = path.querySelectorAll(".path-node");
-  const lines = path.querySelectorAll("b");
+function settleFlowRibbon() {
+  const ribbon = document.querySelector(".instrument-flow");
+  if (!ribbon) return;
+  const nodes = ribbon.querySelectorAll(".flow-node");
+  const connectors = ribbon.querySelectorAll("b");
+  nodes.forEach((node) => {
+    node.classList.remove("is-active", "is-pending");
+    node.classList.add("is-complete");
+  });
+  connectors.forEach((conn) => {
+    conn.classList.remove("is-active");
+    conn.classList.add("is-complete");
+  });
+}
+
+function advanceFlowRibbon(stepIndex) {
+  const ribbon = document.querySelector(".instrument-flow");
+  if (!ribbon) return;
+  const nodes = ribbon.querySelectorAll(".flow-node");
+  const connectors = ribbon.querySelectorAll("b");
+
   nodes.forEach((node, idx) => {
-    node.classList.remove("is-pending", "is-active");
-    if (idx === 6) {
-      node.classList.add("is-observed");
-      node.classList.remove("is-pass");
+    node.classList.remove("is-active");
+    if (idx < stepIndex) {
+      node.classList.remove("is-pending");
+      node.classList.add("is-complete");
+    } else if (idx === stepIndex) {
+      node.classList.remove("is-pending", "is-complete");
+      node.classList.add("is-active");
     } else {
-      node.classList.add("is-pass");
-      node.classList.remove("is-observed");
+      node.classList.remove("is-complete");
+      node.classList.add("is-pending");
     }
   });
-  lines.forEach((line) => {
-    line.classList.remove("is-active");
-    line.classList.add("is-complete");
+
+  connectors.forEach((conn, idx) => {
+    conn.classList.remove("is-active");
+    if (idx < stepIndex) {
+      conn.classList.add("is-complete");
+    } else if (idx === stepIndex) {
+      conn.classList.add("is-active");
+    } else {
+      conn.classList.remove("is-complete");
+    }
   });
 }
 
-function advanceSignalPath(stepIndex) {
-  const path = document.querySelector(".homepage-signal-path");
-  if (!path) return;
-  const nodes = path.querySelectorAll(".path-node");
-  const lines = path.querySelectorAll("b");
-  if (stepIndex > 0 && nodes[stepIndex - 1]) {
-    nodes[stepIndex - 1].classList.remove("is-active", "is-pending");
-    nodes[stepIndex - 1].classList.add(stepIndex - 1 === 6 ? "is-observed" : "is-pass");
-    lines[stepIndex - 1]?.classList.replace("is-active", "is-complete");
+function updateTicker(statusState, text) {
+  const ticker = document.querySelector("#hero-ticker");
+  if (!ticker) return;
+  const prefix = ticker.querySelector(".ticker-prefix");
+  const textEl = ticker.querySelector("#ticker-text");
+  if (prefix) {
+    prefix.dataset.state = statusState;
+    prefix.textContent = statusState.toUpperCase();
   }
-  if (nodes[stepIndex]) {
-    nodes[stepIndex].classList.remove("is-pending");
-    if (stepIndex === 7) {
-      nodes[stepIndex].classList.add("is-pass");
-    } else {
-      nodes[stepIndex].classList.add("is-active");
-      if (stepIndex === 6) nodes[stepIndex].classList.add("is-observed");
-      lines[stepIndex]?.classList.add("is-active");
-    }
+  if (textEl) {
+    textEl.textContent = text;
   }
 }
 
@@ -91,9 +110,101 @@ function updateDiagnosticRow(row, [symbolChar, textVal, stateLabel, toneVal]) {
   safeAnimate(row, { opacity: [0.75, 1], x: [3, 0] }, { duration: MOTION_TOKENS.duration.fast });
 }
 
+function updateStatusStack(activeIndex) {
+  const stack = document.querySelector("#hero-status-stack");
+  if (!stack) return;
+  const lines = stack.querySelectorAll(".status-stack-line");
+  lines.forEach((line, idx) => {
+    const glyph = line.querySelector(".status-glyph");
+    if (idx < activeIndex) {
+      line.dataset.state = "pass";
+      if (glyph) glyph.textContent = ">";
+    } else if (idx === activeIndex) {
+      line.dataset.state = "active";
+      if (glyph) glyph.textContent = ">>";
+    } else {
+      line.dataset.state = "pending";
+      if (glyph) glyph.textContent = ">";
+    }
+  });
+}
+
+function settleStatusStack() {
+  const stack = document.querySelector("#hero-status-stack");
+  if (!stack) return;
+  const lines = stack.querySelectorAll(".status-stack-line");
+  lines.forEach((line) => {
+    line.dataset.state = "pass";
+    const glyph = line.querySelector(".status-glyph");
+    if (glyph) glyph.textContent = ">";
+  });
+}
+
+function triggerConduitPulse(progressRatio) {
+  const pulse = document.querySelector("#conduit-pulse");
+  const trail = document.querySelector("#conduit-trail");
+  const targetOffset = Math.round(1000 * (1 - Math.min(1, Math.max(0, progressRatio))));
+  if (pulse) {
+    pulse.classList.remove("is-settled");
+    pulse.classList.add("is-pulsing");
+    safeAnimate(pulse, { strokeDashoffset: targetOffset }, { duration: MOTION_TOKENS.duration.fast, easing: MOTION_TOKENS.easing.standard });
+  }
+  if (trail) {
+    trail.classList.remove("is-settled");
+    trail.classList.add("is-pulsing");
+    safeAnimate(trail, { strokeDashoffset: targetOffset }, { duration: MOTION_TOKENS.duration.fast + 0.05, easing: MOTION_TOKENS.easing.standard });
+  }
+}
+
+function settleConduit() {
+  const pulse = document.querySelector("#conduit-pulse");
+  const trail = document.querySelector("#conduit-trail");
+  if (pulse) {
+    pulse.classList.remove("is-pulsing");
+    pulse.classList.add("is-settled");
+    pulse.style.strokeDashoffset = "0";
+  }
+  if (trail) {
+    trail.classList.remove("is-pulsing");
+    trail.classList.add("is-settled");
+    trail.style.strokeDashoffset = "0";
+  }
+}
+
+function resetConduit() {
+  const pulse = document.querySelector("#conduit-pulse");
+  const trail = document.querySelector("#conduit-trail");
+  if (pulse) {
+    pulse.classList.remove("is-pulsing", "is-settled");
+    pulse.style.strokeDashoffset = "1000";
+  }
+  if (trail) {
+    trail.classList.remove("is-pulsing", "is-settled");
+    trail.style.strokeDashoffset = "1000";
+  }
+}
+
+function triggerDiscoveryPeak() {
+  const conduit = document.querySelector("#hero-signal-conduit");
+  const ambientGlow = document.querySelector(".rack-glow-ambient");
+  if (conduit) conduit.classList.add("is-discovery-peak");
+  if (ambientGlow) ambientGlow.classList.add("is-discovery-peak");
+}
+
+function clearDiscoveryPeak() {
+  const conduit = document.querySelector("#hero-signal-conduit");
+  const ambientGlow = document.querySelector(".rack-glow-ambient");
+  if (conduit) conduit.classList.remove("is-discovery-peak");
+  if (ambientGlow) ambientGlow.classList.remove("is-discovery-peak");
+}
+
 function settleHeroState() {
   clearHeroSequence();
-  settleSignalPath();
+  clearDiscoveryPeak();
+  settleFlowRibbon();
+  settleStatusStack();
+  settleConduit();
+  updateTicker("pass", "FIRST-PASS COMPLETE · 4 CHECKS PASSED · NEIGHBOR OBSERVED");
   const state = canonicalPassedState;
   const linkState = document.querySelector("#link-state");
   if (linkState) linkState.textContent = "CONNECTED";
@@ -135,7 +246,9 @@ function settleHeroState() {
     safeAnimate(result, { opacity: [0.85, 1] }, { duration: MOTION_TOKENS.duration.fast });
   }
   const status = document.querySelector("#demo-status");
-  if (status) status.textContent = state.announcement;
+  if (status) {
+    status.textContent = state.announcement;
+  }
 }
 document
   .querySelectorAll(".mobile-nav a")
@@ -219,8 +332,21 @@ document
 
 const HERO_SEQUENCE_STEPS = [
   {
-    delay: 320,
-    node: 1,
+    delay: 180,
+    node: 0,
+    stack: 0,
+    conduit: 0.1,
+    ticker: ["pass", "INITIALIZING WIRED DIAGNOSTIC PASS…"],
+    run(instrument) {
+      safeAnimate(".adapter-bar", { opacity: [0.7, 1] }, { duration: MOTION_TOKENS.duration.fast });
+    },
+  },
+  {
+    delay: 380,
+    node: 0,
+    stack: 1,
+    conduit: 0.25,
+    ticker: ["pass", "LINK DETECTED · 1.0 GBPS NEGOTIATED"],
     run(instrument) {
       const linkState = instrument.querySelector("#link-state");
       const linkStatusLight = instrument.querySelector(".status-light");
@@ -232,33 +358,72 @@ const HERO_SEQUENCE_STEPS = [
     },
   },
   {
-    delay: 640,
-    node: 2,
+    delay: 620,
+    node: 1,
+    stack: 2,
+    conduit: 0.45,
     test: "addressing",
     values: ["✓", "10.24.18.117 / DHCP", "PASS", "pass"],
+    ticker: ["pass", "DHCP ACQUIRED · 10.24.18.117"],
+    run(instrument) {
+      const checkSummary = instrument.querySelector("#check-summary");
+      if (checkSummary) checkSummary.textContent = "1 OF 4 PASSED";
+    },
   },
   {
-    delay: 950,
-    node: 3,
+    delay: 880,
+    node: 2,
+    stack: 3,
+    conduit: 0.65,
     test: "gateway",
     values: ["✓", "10.24.18.1", "PASS", "pass"],
+    ticker: ["pass", "GATEWAY REACHABLE · 10.24.18.1"],
+    run(instrument) {
+      const checkSummary = instrument.querySelector("#check-summary");
+      if (checkSummary) checkSummary.textContent = "2 OF 4 PASSED";
+    },
   },
   {
-    delay: 1260,
-    node: 4,
+    delay: 1120,
+    node: 3,
+    stack: 4,
+    conduit: 0.8,
     test: "dns",
     values: ["✓", "Name resolved", "PASS", "pass"],
+    ticker: ["pass", "DNS RESOLVED"],
+    run(instrument) {
+      const checkSummary = instrument.querySelector("#check-summary");
+      if (checkSummary) checkSummary.textContent = "3 OF 4 PASSED";
+    },
   },
   {
-    delay: 1570,
-    node: 5,
+    delay: 1280,
+    node: 3,
     test: "tcp",
     values: ["✓", "Configured target", "PASS", "pass"],
+    ticker: ["pass", "DNS & TARGET REACHABLE · ALL 4 CHECKS PASSED"],
+    run(instrument) {
+      const checkSummary = instrument.querySelector("#check-summary");
+      if (checkSummary) checkSummary.textContent = "4 OF 4 PASSED";
+    },
   },
   {
-    delay: 1880,
-    node: 6,
+    delay: 1420,
+    node: 4,
+    stack: 5,
+    conduit: 0.92,
+    ticker: ["observed", "PASSIVE DISCOVERY · OBSERVING LLDP/CDP…"],
     run(instrument) {
+      safeAnimate(".switch-panel", { opacity: [0.75, 1] }, { duration: MOTION_TOKENS.duration.fast });
+    },
+  },
+  {
+    delay: 1680,
+    node: 4,
+    conduit: 1.0,
+    ticker: ["pass", "LLDP OBSERVED · sw-access-03.example.net:ge-0/0/24"],
+    run(instrument) {
+      triggerDiscoveryPeak();
       const neighborState = instrument.querySelector("#neighbor-state");
       if (neighborState) {
         neighborState.textContent = "LLDP DETECTED";
@@ -273,15 +438,14 @@ const HERO_SEQUENCE_STEPS = [
       const switchTime = instrument.querySelector("#switch-time");
       if (switchTime) switchTime.textContent = "Frame observed";
 
-      safeAnimate(".switch-panel", { opacity: [0.8, 1], x: [3, 0] }, { duration: MOTION_TOKENS.duration.state });
+      safeAnimate(".switch-panel", { opacity: [0.85, 1], x: [3, 0] }, { duration: MOTION_TOKENS.duration.state });
     },
   },
   {
-    delay: 2200,
-    node: 7,
+    delay: 1920,
+    node: 5,
+    ticker: ["pass", "FIRST-PASS COMPLETE · EVIDENCE READY FOR HANDOFF"],
     run(instrument) {
-      const checkSummary = instrument.querySelector("#check-summary");
-      if (checkSummary) checkSummary.textContent = "4 OF 4 PASSED";
       const resultBar = instrument.querySelector("#result-bar");
       if (resultBar) {
         resultBar.dataset.tone = "pass";
@@ -296,6 +460,17 @@ const HERO_SEQUENCE_STEPS = [
       }
 
       safeAnimate(resultBar, { opacity: [0.85, 1] }, { duration: MOTION_TOKENS.duration.state });
+    },
+  },
+  {
+    delay: 2050,
+    node: 5,
+    ticker: ["pass", "FIRST-PASS COMPLETE · 4 CHECKS PASSED · NEIGHBOR OBSERVED"],
+    run() {
+      clearDiscoveryPeak();
+      settleFlowRibbon();
+      settleStatusStack();
+      settleConduit();
     },
   },
 ];
@@ -317,12 +492,27 @@ function runHeroDiagnosticSequence() {
 
   clearHeroSequence();
 
+  // Reset flow ribbon to step 0 pending
+  advanceFlowRibbon(0);
+
+  // Reset status stack to initial detecting state
+  updateStatusStack(0);
+
+  // Reset energy conduit
+  resetConduit();
+
+  // Set initial ticker status
+  updateTicker("observed", "INITIALIZING WIRED DIAGNOSTIC PASS…");
+
   // Pre-run diagnostic state on instrument
   const linkState = instrument.querySelector("#link-state");
   const linkStatusLight = instrument.querySelector(".status-light");
   const linkDetail = instrument.querySelector(".link-detail");
   const neighborState = instrument.querySelector("#neighbor-state");
   const switchName = instrument.querySelector("#switch-name");
+  const switchPort = instrument.querySelector("#switch-port");
+  const switchProtocol = instrument.querySelector("#switch-protocol");
+  const switchTime = instrument.querySelector("#switch-time");
   const checkSummary = instrument.querySelector("#check-summary");
   const resultBar = instrument.querySelector("#result-bar");
   const overallResult = instrument.querySelector("#overall-result");
@@ -336,6 +526,9 @@ function runHeroDiagnosticSequence() {
     neighborState.dataset.tone = "unknown";
   }
   if (switchName) switchName.textContent = "Awaiting advertisement…";
+  if (switchPort) switchPort.textContent = "—";
+  if (switchProtocol) switchProtocol.textContent = "—";
+  if (switchTime) switchTime.textContent = "Listening";
   if (checkSummary) checkSummary.textContent = "TESTS IN PROGRESS";
 
   ["addressing", "gateway", "dns", "tcp"].forEach((key) => {
@@ -346,6 +539,13 @@ function runHeroDiagnosticSequence() {
     if (symbol) {
       symbol.textContent = "…";
       symbol.setAttribute("aria-label", "Testing");
+    }
+    const strong = row.querySelector("strong");
+    if (strong) {
+      if (key === "addressing") strong.textContent = "Acquiring lease…";
+      else if (key === "gateway") strong.textContent = "Awaiting IP…";
+      else if (key === "dns") strong.textContent = "Awaiting gateway…";
+      else if (key === "tcp") strong.textContent = "Awaiting DNS…";
     }
     const em = row.querySelector("em");
     if (em) em.textContent = "TESTING";
@@ -358,10 +558,22 @@ function runHeroDiagnosticSequence() {
   HERO_SEQUENCE_STEPS.forEach((step) => {
     sequenceTimers.push(
       setTimeout(() => {
-        advanceSignalPath(step.node);
+        if (typeof step.node === "number") {
+          advanceFlowRibbon(step.node);
+        }
+        if (typeof step.stack === "number") {
+          updateStatusStack(step.stack);
+        }
+        if (typeof step.conduit === "number") {
+          triggerConduitPulse(step.conduit);
+        }
+        if (step.ticker) {
+          updateTicker(step.ticker[0], step.ticker[1]);
+        }
         if (step.test) {
           updateDiagnosticRow(instrument.querySelector(`[data-test="${step.test}"]`), step.values);
-        } else if (step.run) {
+        }
+        if (step.run) {
           step.run(instrument);
         }
       }, step.delay),
@@ -415,6 +627,15 @@ if (homepageHero) {
   const show = (section) => {
     section.classList.add("is-visible");
     section.querySelectorAll(".motion-reveal").forEach((element) => element.classList.add("is-visible"));
+    if (!reduceMotion.matches) {
+      section.classList.add("is-signal-sweeping");
+      setTimeout(() => {
+        section.classList.remove("is-signal-sweeping");
+        section.classList.add("is-signal-settled");
+      }, 550);
+    } else {
+      section.classList.add("is-signal-settled");
+    }
   };
 
   if (reduceMotion.matches) {

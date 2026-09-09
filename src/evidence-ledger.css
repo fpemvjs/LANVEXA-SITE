@@ -9,10 +9,10 @@
   --motion-editorial: 700ms;
   --motion-hero: 800ms;
   --motion-stagger: 110ms;
-  --type-hero: clamp(56px, 6.8vw, 96px);
+  --type-hero: clamp(48px, 5.4vw, 80px);
   --type-major: clamp(40px, 4.6vw, 68px);
   --type-section: clamp(28px, 3.2vw, 40px);
-  --type-lead: 18px;
+  --type-lead: 17px;
   --type-technical: 14px;
   --product-max: 1120px;
   --text-max: 680px;
@@ -24,25 +24,130 @@
 .ledger-hero {
   display: block;
   min-height: auto;
-  padding: 28px max(24px, calc((100% - var(--max)) / 2)) 72px;
+  padding: 20px max(24px, calc((100% - var(--hero-max, 1420px)) / 2)) 40px;
   position: relative;
   overflow: visible;
+}
+
+/* Atmospheric cinematic network backdrop — bright editorial left -> neutral transition -> deep technical right */
+.hero-cinematic-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Layer 1: Optimized Cinematic Network Environment (Defocused, desaturated technical atmosphere) */
+.hero-env-surface {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: min(60vw, 920px);
+  background-image: url("/hero-network-env.webp");
+  background-repeat: no-repeat;
+  background-position: right 40%;
+  background-size: cover;
+  opacity: 0.58;
+  filter: grayscale(0.55) contrast(0.88) brightness(0.48) blur(2.5px);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    transparent 22%,
+    rgba(0, 0, 0, 0.05) 38%,
+    rgba(0, 0, 0, 0.35) 58%,
+    rgba(0, 0, 0, 0.75) 80%,
+    #000000 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    transparent 22%,
+    rgba(0, 0, 0, 0.05) 38%,
+    rgba(0, 0, 0, 0.35) 58%,
+    rgba(0, 0, 0, 0.75) 80%,
+    #000000 100%
+  );
+  transition: opacity var(--motion-editorial) ease-out;
+}
+
+/* Layer 2: Seamless Tonal Gradient Transition (Warm off-white editorial left -> soft technical graphite right) */
+.hero-env-transition {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 88% 30%, rgba(125, 255, 87, 0.035) 0%, transparent 48%),
+    linear-gradient(
+      to right,
+      var(--warm-1, #f4f5f2) 0%,
+      var(--warm-1, #f4f5f2) 44%,
+      rgba(244, 245, 242, 0.95) 54%,
+      rgba(244, 245, 242, 0.72) 64%,
+      rgba(18, 24, 28, 0.16) 76%,
+      rgba(12, 17, 20, 0.42) 88%,
+      rgba(9, 13, 15, 0.65) 100%
+    );
+  pointer-events: none;
+}
+
+/* Layer 3: Ambient Green Link/Port Activity Reflection (Quiet, restrained) */
+.rack-glow-ambient {
+  position: absolute;
+  top: 8%;
+  right: 6%;
+  width: 580px;
+  height: 480px;
+  background: radial-gradient(
+    circle at 70% 30%,
+    rgba(125, 255, 87, 0.07) 0%,
+    rgba(125, 255, 87, 0.02) 40%,
+    transparent 68%
+  );
+  filter: blur(54px);
+  opacity: 0.60;
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  pointer-events: none;
+}
+
+.rack-glow-ambient.is-discovery-peak {
+  opacity: 0.88;
+  transform: scale(1.05);
+}
+
+/* Layer 4: Deep Right Vignette */
+.rack-vignette-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 45vw;
+  background: radial-gradient(
+    ellipse at 92% 35%,
+    rgba(6, 8, 10, 0.35) 0%,
+    transparent 74%
+  );
+  pointer-events: none;
 }
 
 .incident-folio {
   display: flex;
   justify-content: space-between;
-  padding: 11px 0;
+  padding: 10px 0;
   border-top: 2px solid var(--graphite);
   border-bottom: 1px solid var(--border);
   font: 650 10px/1.2 var(--mono);
   letter-spacing: 0.07em;
   color: var(--muted);
+  position: relative;
+  z-index: 2;
 }
 
 .ledger-hero .hero-copy {
   max-width: var(--text-max);
-  padding-top: clamp(28px, 3.8vw, 48px);
+  padding-top: clamp(16px, 2.4vw, 32px);
+  position: relative;
+  z-index: 2;
 }
 
 .ledger-hero .kicker {
@@ -68,12 +173,84 @@
   color: var(--muted);
 }
 
+/* Diagnostic Status Stack (Left Zone Telemetry) */
+.hero-status-stack {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font: 600 12px/1.35 var(--mono);
+  letter-spacing: 0.02em;
+}
+
+.status-stack-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity var(--motion-state) ease-out, color var(--motion-state) ease-out;
+}
+
+.status-stack-line .status-glyph {
+  font-weight: 700;
+  width: 16px;
+  color: var(--muted);
+  user-select: none;
+}
+
+.status-stack-line .status-msg {
+  color: var(--muted);
+}
+
+.status-stack-line[data-state="active"] {
+  opacity: 1;
+}
+
+.status-stack-line[data-state="active"] .status-glyph {
+  color: var(--signal-ink);
+  font-weight: 800;
+  text-shadow: 0 0 8px rgba(125, 255, 87, 0.5);
+}
+
+.status-stack-line[data-state="active"] .status-msg {
+  color: #0c1214;
+  font-weight: 700;
+  background: rgba(125, 255, 87, 0.18);
+  padding: 1px 8px;
+  border-radius: 2px;
+  border-left: 2px solid var(--signal);
+  box-shadow: 0 0 8px rgba(125, 255, 87, 0.10);
+}
+
+.status-stack-line[data-state="pass"] {
+  opacity: 0.60;
+}
+
+.status-stack-line[data-state="pass"] .status-glyph {
+  color: #55656d;
+}
+
+.status-stack-line[data-state="pass"] .status-msg {
+  color: #435158;
+  font-weight: 550;
+}
+
+.status-stack-line[data-state="pending"] {
+  opacity: 0.28;
+}
+
+.status-stack-line[data-state="pending"] .status-glyph,
+.status-stack-line[data-state="pending"] .status-msg {
+  color: var(--muted);
+}
+
 .ledger-hero .hero-actions {
   margin-top: 24px;
   display: flex;
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
 }
 
 .ledger-hero .hero-actions .text-link {
@@ -86,46 +263,293 @@
 
 /* Interactive Hero Instrument */
 .ledger-hero .instrument-wrap {
-  width: min(88vw, var(--product-max));
+  width: 100%;
   margin: 32px auto 0;
   position: relative;
   z-index: 3;
 }
 
+.ledger-hero .instrument-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -14px -18px -18px -14px;
+  background: radial-gradient(
+    ellipse at 65% 35%,
+    rgba(14, 19, 22, 0.55) 0%,
+    rgba(12, 16, 18, 0.22) 50%,
+    transparent 75%
+  );
+  filter: blur(24px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ledger-hero .interactive-example {
+  position: relative;
+  z-index: 2;
+  transform: translateY(-2px);
+  transition: transform var(--motion-editorial) ease-out;
+}
+
+/* Network-Energy Path Conduit (Routed behind/around instrument) */
+.hero-signal-conduit {
+  position: absolute;
+  inset: -24px -16px -14px -16px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.conduit-svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Base Track (very subtle conduit) */
+.conduit-track {
+  fill: none;
+  stroke: rgba(125, 255, 87, 0.07);
+  stroke-width: 1.2px;
+  stroke-dasharray: 4 6;
+}
+
+/* Layer 3: Soft Trailing Bloom (thin low-opacity glow behind pulse) */
+.conduit-glow-trail {
+  fill: none;
+  stroke: rgba(125, 255, 87, 0.20);
+  stroke-width: 4px;
+  stroke-linecap: round;
+  stroke-dasharray: 240 760;
+  stroke-dashoffset: 1000;
+  opacity: 0;
+  filter: blur(3px);
+  transition: opacity 0.3s ease-out;
+}
+
+.conduit-glow-trail.is-pulsing {
+  opacity: 0.35;
+}
+
+.conduit-glow-trail.is-settled {
+  opacity: 0.14;
+  stroke-dashoffset: 0;
+}
+
+/* Layer 2: Active Energy Core (thin, crisp Signal Lime) */
+.conduit-pulse {
+  fill: none;
+  stroke: url(#conduit-grad);
+  stroke-width: 2.2px;
+  stroke-linecap: round;
+  stroke-dasharray: 200 800;
+  stroke-dashoffset: 1000;
+  opacity: 0;
+  filter: drop-shadow(0 0 5px rgba(125, 255, 87, 0.4));
+  transition: opacity 0.3s ease-out, stroke-width 0.3s ease-out;
+}
+
+.conduit-pulse.is-pulsing {
+  opacity: 0.85;
+}
+
+.conduit-pulse.is-settled {
+  opacity: 0.18;
+  stroke-dashoffset: 0;
+}
+
+/* Discovery Peak */
+#hero-signal-conduit.is-discovery-peak .conduit-pulse {
+  opacity: 0.95;
+  stroke-width: 2.8px;
+  filter: drop-shadow(0 0 8px rgba(125, 255, 87, 0.75));
+}
+
+#hero-signal-conduit.is-discovery-peak .conduit-glow-trail {
+  opacity: 0.55;
+  stroke-width: 5.5px;
+  filter: blur(4px);
+}
+
 .ledger-hero .example-label {
   padding-left: 14px;
-  border-left: 2px solid var(--graphite);
+  border-left: 2px solid #5a6b73;
   display: flex;
   justify-content: space-between;
   font-size: 11px;
+  color: #9eb0b7;
+  letter-spacing: 0.04em;
+}
+
+.ledger-hero .example-label strong {
+  color: #e6eef1;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* Integrated Diagnostic Telemetry Ticker inside Chassis */
+.hero-diagnostic-ticker {
+  margin: 0;
+  padding: 5px 14px;
+  background: #13191c;
+  border: 0;
+  border-bottom: 1px solid #283338;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font: 600 10.5px/1.2 var(--mono);
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.hero-diagnostic-ticker .ticker-prefix {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 2px 6px;
+  border-radius: 2px;
+  background: #1b2428;
+  color: var(--signal);
+  border: 1px solid rgba(218, 255, 125, 0.25);
+  flex-shrink: 0;
+}
+
+.hero-diagnostic-ticker .ticker-prefix::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 1px;
+  background: var(--signal);
+  box-shadow: 0 0 6px var(--signal);
+}
+
+.hero-diagnostic-ticker .ticker-prefix[data-state="running"] {
+  color: #d1dcde;
+  border-color: #435259;
+}
+
+.hero-diagnostic-ticker .ticker-prefix[data-state="running"]::before {
+  background: var(--signal);
+  animation: ticker-pulse 1s ease-in-out infinite;
+}
+
+@keyframes ticker-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+.hero-diagnostic-ticker .ticker-text {
+  color: #e2eaed;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .ledger-hero .instrument {
-  border: 2px solid #374248;
-  box-shadow: -22px 22px 0 var(--warm-2);
+  border: 1px solid #334147;
+  box-shadow:
+    -14px 14px 0 rgba(195, 201, 192, 0.72),
+    0 24px 52px -10px rgba(0, 0, 0, 0.60),
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
 }
 
 .ledger-hero .app-bar {
-  height: 46px;
+  height: 44px;
   border-bottom: 1px solid #465158;
 }
 
 .ledger-hero .adapter-bar {
   border-bottom: 1px solid #374248;
+  transition: opacity var(--motion-fast) ease-out;
+  min-height: 36px;
+  padding: 6px 14px;
+}
+
+/* Integrated Diagnostic Sequence Flow Ribbon */
+.instrument-flow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  height: 26px;
+  background: #141c20;
+  border-bottom: 1px solid #344045;
+}
+
+.instrument-flow .flow-node {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 700 9px/1 var(--mono);
+  letter-spacing: 0.08em;
+  color: #55656d;
+  transition: color var(--motion-state) ease-out;
+  user-select: none;
+}
+
+.instrument-flow .flow-node i {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 1px;
+  background: #2b363c;
+  transition: background-color var(--motion-state) ease-out, box-shadow var(--motion-state) ease-out;
+}
+
+.instrument-flow .flow-node.is-active {
+  color: var(--signal);
+}
+
+.instrument-flow .flow-node.is-active i {
+  background: var(--signal);
+  box-shadow: 0 0 6px var(--signal);
+}
+
+.instrument-flow .flow-node.is-complete {
+  color: #b8c6cb;
+}
+
+.instrument-flow .flow-node.is-complete i {
+  background: var(--signal);
+}
+
+.instrument-flow b {
+  flex: 1;
+  height: 1px;
+  background: #263137;
+  margin: 0 8px;
+  transition: background-color var(--motion-state) ease-out;
+}
+
+.instrument-flow b.is-active {
+  background: var(--signal);
+}
+
+.instrument-flow b.is-complete {
+  background: #46575f;
 }
 
 .ledger-hero .app-body {
   display: grid;
-  grid-template-columns: 1.18fr 0.82fr;
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
   grid-template-areas:
     "status status"
     "tests neighbor"
     "result result";
-  font-size: 1.05em;
+  font-size: 1.02em;
+  padding: 12px 14px 14px;
 }
 
 .ledger-hero .app-status {
   grid-area: status;
+  min-height: 48px;
+  padding: 8px 12px;
 }
 
 .ledger-hero .switch-panel {
@@ -134,6 +558,8 @@
 }
 
 .ledger-hero .panel-heading {
+  min-height: 30px;
+  padding: 6px 12px;
   border-bottom: 1px solid #374248;
 }
 
@@ -142,7 +568,8 @@
 }
 
 .ledger-hero .test-row {
-  min-height: 58px;
+  min-height: 48px;
+  padding: 6px 12px;
   border-top: 1px solid #344045;
 }
 
@@ -152,22 +579,38 @@
 }
 
 .ledger-hero .test-row em {
-  font-size: 15px;
+  font-size: 14.5px;
+}
+
+.ledger-hero .switch-primary {
+  padding: 10px 14px;
 }
 
 .ledger-hero .switch-primary strong {
   color: #f2f5f5;
-  font-size: var(--type-technical);
+  font-size: 13.5px;
+  letter-spacing: 0.01em;
+}
+
+.ledger-hero .switch-meta {
+  padding: 8px 14px;
+  gap: 8px;
 }
 
 .ledger-hero .switch-meta dd {
   color: #e0e7e8;
+  font-size: 10.5px;
+}
+
+.ledger-hero .neighbor-note {
+  padding: 8px 14px;
+  font-size: 9.5px;
 }
 
 .ledger-hero .result-bar {
   grid-area: result;
-  min-height: 46px;
-  padding-block: 7px;
+  min-height: 44px;
+  padding: 6px 14px;
   border-top: 1px solid #56636a;
 }
 
@@ -186,41 +629,82 @@
 }
 
 .example-control.example-replay {
-  color: var(--muted);
-  border-color: var(--border);
-  background: transparent;
+  color: #f0f4f5;
+  border: 1px solid #4d5c64;
+  background: rgba(22, 29, 33, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 2px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  transition: background 0.16s ease-out, border-color 0.16s ease-out, color 0.16s ease-out, transform var(--motion-fast) ease-out;
 }
 
 .example-control.example-replay::before {
   content: "\21BA";
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1;
-  opacity: 0.8;
+  color: var(--signal);
+  opacity: 0.95;
 }
 
 .example-control.example-replay:hover {
-  color: var(--text);
-  border-color: var(--text);
-  background: rgba(15, 20, 23, 0.04);
+  color: #ffffff;
+  border-color: var(--signal);
+  background: rgba(30, 40, 46, 0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35), 0 0 6px rgba(151, 215, 0, 0.25);
+}
+
+.example-control.example-replay:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
 }
 
 .example-control.example-replay:active {
-  background: rgba(15, 20, 23, 0.08);
+  background: rgba(18, 24, 27, 0.95);
+  transform: translateY(1px);
 }
 
 .ledger-hero > .hero-caveat {
-  max-width: var(--product-max);
-  margin: 24px auto 0;
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--muted);
+  max-width: var(--text-max, 680px);
+  margin: 28px 0 0;
+  font-size: 12px;
+  line-height: 1.55;
+  color: #556268;
+  position: relative;
+  z-index: 2;
 }
 
 .ledger-hero > .hero-caveat strong {
-  color: var(--text);
+  color: #1a2327;
+  font-weight: 650;
+}
+
+/* Hero Diagnostic Terminal Node (aligned with left edge of content / caveat) */
+.ledger-hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: max(24px, calc((100% - var(--hero-max, 1420px)) / 2));
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  background: var(--signal);
+  box-shadow: 0 0 4px rgba(151, 215, 0, 0.4);
+  pointer-events: none;
+  transition: box-shadow var(--motion-state) ease-out, transform var(--motion-state) ease-out;
+  z-index: 4;
+}
+
+@media (min-width: 1101px) {
+  .ledger-hero::after {
+    left: max(24px, calc((100% - var(--hero-max, 1420px)) / 2));
+  }
 }
 
 /* ==========================================================================
@@ -228,6 +712,41 @@
    ========================================================================== */
 .workflow.section {
   padding: 76px max(24px, calc((100% - 1080px) / 2)) 72px;
+  position: relative;
+}
+
+/* Short transitional connector segment: dormant at rest, activates briefly on approach, fades away */
+.workflow.section::before {
+  content: "";
+  position: absolute;
+  top: -36px;
+  left: max(24px, calc((100% - 1080px) / 2));
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(
+    to bottom,
+    rgba(151, 215, 0, 0.9) 0%,
+    rgba(151, 215, 0, 0.5) 60%,
+    transparent 100%
+  );
+  box-shadow: 0 0 6px rgba(151, 215, 0, 0.4);
+  pointer-events: none;
+  opacity: 0;
+  transform: scaleY(0.4);
+  transform-origin: top center;
+  transition: opacity 280ms ease-out, transform 280ms ease-out;
+}
+
+.workflow.section.is-signal-sweeping::before {
+  opacity: 0.95;
+  transform: scaleY(1);
+  transition: opacity 180ms ease-out, transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.workflow.section.is-signal-settled::before {
+  opacity: 0;
+  transform: scaleY(1);
+  transition: opacity 320ms ease-out 120ms;
 }
 
 .statement-head {
@@ -241,6 +760,29 @@
   font: 700 11px/1.2 var(--mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.statement-head .kicker::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 1px;
+  background: var(--graphite);
+  box-shadow: none;
+  transition: background var(--motion-state) ease-out, box-shadow var(--motion-state) ease-out;
+}
+
+.workflow.section.is-signal-sweeping .statement-head .kicker::before {
+  background: var(--signal);
+  box-shadow: 0 0 8px rgba(151, 215, 0, 0.7);
+}
+
+.workflow.section.is-signal-settled .statement-head .kicker::before {
+  background: var(--signal);
+  box-shadow: 0 0 3px rgba(151, 215, 0, 0.3);
 }
 
 .statement-head h2 {
@@ -275,6 +817,33 @@
   grid-template-columns: minmax(300px, 1fr) minmax(360px, 1.15fr);
   gap: clamp(28px, 4.5vw, 60px);
   align-items: start;
+  position: relative;
+}
+
+/* Signal Lime accent sweep across top border on entry */
+.software-pass::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(to right, var(--signal), rgba(151, 215, 0, 0.6) 60%, transparent 100%);
+  pointer-events: none;
+  opacity: 0;
+  transition: width 480ms cubic-bezier(0.16, 1, 0.3, 1), opacity 260ms ease-out;
+}
+
+.workflow.section.is-signal-sweeping .software-pass::after {
+  width: 100%;
+  opacity: 0.90;
+  box-shadow: 0 0 6px rgba(151, 215, 0, 0.35);
+}
+
+.workflow.section.is-signal-settled .software-pass::after {
+  width: 100%;
+  opacity: 0.22;
+  transition: opacity 350ms ease-out;
 }
 
 .triage-pipeline {
@@ -315,6 +884,27 @@
   padding: 8px 0;
   border-bottom: 1px solid var(--border);
   min-height: auto;
+  position: relative;
+  transition: border-bottom-color var(--motion-state) ease-out;
+}
+
+.workflow.section.is-signal-sweeping .triage-list li:nth-child(1) {
+  border-bottom-color: color-mix(in srgb, var(--border) 60%, var(--signal));
+}
+
+.workflow.section.is-signal-sweeping .triage-list li:nth-child(2) {
+  border-bottom-color: color-mix(in srgb, var(--border) 60%, var(--signal));
+  transition-delay: 90ms;
+}
+
+.workflow.section.is-signal-sweeping .triage-list li:nth-child(3) {
+  border-bottom-color: color-mix(in srgb, var(--border) 60%, var(--signal));
+  transition-delay: 180ms;
+}
+
+.workflow.section.is-signal-settled .triage-list li {
+  border-bottom-color: var(--border);
+  transition-delay: 0ms;
 }
 
 .triage-list li strong {
@@ -408,11 +998,62 @@
   font-weight: 600;
 }
 
+/* Beat 2 Terminal Node (at bottom of workflow section, aligned to left content edge) */
+.workflow.section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: max(24px, calc((100% - 1080px) / 2));
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  background: var(--signal);
+  box-shadow: 0 0 3px rgba(151, 215, 0, 0.3);
+  pointer-events: none;
+  transition: box-shadow var(--motion-state) ease-out;
+  z-index: 4;
+}
+
 /* ==========================================================================
    Beat 3: The Payoff (Handoff Section)
    ========================================================================== */
 .evidence.section {
   padding: 84px max(24px, calc((100% - 1080px) / 2)) 92px;
+  position: relative;
+}
+
+/* Short transitional connector segment: dormant at rest, activates briefly on approach, fades away */
+.evidence.section::before {
+  content: "";
+  position: absolute;
+  top: -36px;
+  left: max(24px, calc((100% - 1080px) / 2));
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(
+    to bottom,
+    rgba(151, 215, 0, 0.9) 0%,
+    rgba(151, 215, 0, 0.5) 60%,
+    transparent 100%
+  );
+  box-shadow: 0 0 6px rgba(151, 215, 0, 0.4);
+  pointer-events: none;
+  opacity: 0;
+  transform: scaleY(0.4);
+  transform-origin: top center;
+  transition: opacity 280ms ease-out, transform 280ms ease-out;
+}
+
+.evidence.section.is-signal-sweeping::before {
+  opacity: 0.95;
+  transform: scaleY(1);
+  transition: opacity 180ms ease-out, transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.evidence.section.is-signal-settled::before {
+  opacity: 0;
+  transform: scaleY(1);
+  transition: opacity 320ms ease-out 120ms;
 }
 
 .evidence-head {
@@ -426,6 +1067,29 @@
   font: 700 11px/1.2 var(--mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.evidence-head .kicker::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 1px;
+  background: var(--graphite);
+  box-shadow: none;
+  transition: background var(--motion-state) ease-out, box-shadow var(--motion-state) ease-out;
+}
+
+.evidence.section.is-signal-sweeping .evidence-head .kicker::before {
+  background: var(--signal);
+  box-shadow: 0 0 8px rgba(151, 215, 0, 0.7);
+}
+
+.evidence.section.is-signal-settled .evidence-head .kicker::before {
+  background: var(--signal);
+  box-shadow: 0 0 3px rgba(151, 215, 0, 0.3);
 }
 
 .evidence-head h2 {
@@ -449,6 +1113,33 @@
   border: 2px solid #374248;
   box-shadow: -22px 22px 0 var(--warm-2);
   background: var(--bg);
+  position: relative;
+}
+
+/* Signal Lime accent sweep across record top on entry */
+.evidence-record::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(to right, var(--signal), rgba(151, 215, 0, 0.6) 60%, transparent 100%);
+  pointer-events: none;
+  opacity: 0;
+  transition: width 480ms cubic-bezier(0.16, 1, 0.3, 1), opacity 260ms ease-out;
+}
+
+.evidence.section.is-signal-sweeping .evidence-record::after {
+  width: 100%;
+  opacity: 0.90;
+  box-shadow: 0 0 6px rgba(151, 215, 0, 0.35);
+}
+
+.evidence.section.is-signal-settled .evidence-record::after {
+  width: 100%;
+  opacity: 0.22;
+  transition: opacity 350ms ease-out;
 }
 
 .record-header {
@@ -521,6 +1212,22 @@
   max-width: 820px;
 }
 
+/* Beat 3 Terminal Node (at bottom of evidence section, aligned to left content edge) */
+.evidence.section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: max(24px, calc((100% - 1080px) / 2));
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  background: var(--signal);
+  box-shadow: 0 0 3px rgba(151, 215, 0, 0.3);
+  pointer-events: none;
+  transition: box-shadow var(--motion-state) ease-out;
+  z-index: 4;
+}
+
 /* ==========================================================================
    Controlled Beta Section
    ========================================================================== */
@@ -528,6 +1235,68 @@
   background: var(--graphite);
   color: var(--off-white);
   padding: 68px max(24px, calc((100% - var(--max)) / 2));
+  position: relative;
+  border-top: 1px solid #364147;
+}
+
+/* Short transitional connector segment into Final CTA: dormant at rest, activates briefly, fades */
+.final-cta::before {
+  content: "";
+  position: absolute;
+  top: -36px;
+  left: max(24px, calc((100% - var(--max)) / 2));
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(
+    to bottom,
+    rgba(151, 215, 0, 0.9) 0%,
+    rgba(151, 215, 0, 0.5) 60%,
+    transparent 100%
+  );
+  box-shadow: 0 0 6px rgba(151, 215, 0, 0.4);
+  pointer-events: none;
+  opacity: 0;
+  transform: scaleY(0.4);
+  transform-origin: top center;
+  transition: opacity 280ms ease-out, transform 280ms ease-out;
+}
+
+.final-cta.is-signal-sweeping::before {
+  opacity: 0.95;
+  transform: scaleY(1);
+  transition: opacity 180ms ease-out, transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.final-cta.is-signal-settled::before {
+  opacity: 0;
+  transform: scaleY(1);
+  transition: opacity 320ms ease-out 120ms;
+}
+
+/* Final CTA Top Rule Accent: sweeps across once on arrival, terminates quietly */
+.final-cta::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(to right, var(--signal), rgba(151, 215, 0, 0.6) 60%, transparent 100%);
+  pointer-events: none;
+  opacity: 0;
+  transition: width 480ms cubic-bezier(0.16, 1, 0.3, 1), opacity 260ms ease-out;
+}
+
+.final-cta.is-signal-sweeping::after {
+  width: 100%;
+  opacity: 0.90;
+  box-shadow: 0 0 6px rgba(151, 215, 0, 0.35);
+}
+
+.final-cta.is-signal-settled::after {
+  width: 100%;
+  opacity: 0.22;
+  transition: opacity 350ms ease-out;
 }
 
 .final-cta .kicker {
@@ -536,6 +1305,16 @@
 
 .final-cta .kicker::before {
   background: var(--signal);
+  box-shadow: none;
+  transition: box-shadow var(--motion-state) ease-out;
+}
+
+.final-cta.is-signal-sweeping .kicker::before {
+  box-shadow: 0 0 8px rgba(151, 215, 0, 0.7);
+}
+
+.final-cta.is-signal-settled .kicker::before {
+  box-shadow: 0 0 3px rgba(151, 215, 0, 0.3);
 }
 
 .final-cta .beta-company {
@@ -564,7 +1343,75 @@
 /* ==========================================================================
    Responsive Architecture
    ========================================================================== */
-@media (min-width: 901px) {
+@media (min-width: 1101px) {
+  .ledger-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+    column-gap: clamp(24px, 2.8vw, 44px);
+    align-items: start;
+    padding-top: 18px;
+    padding-bottom: 36px;
+  }
+  .ledger-hero .incident-folio {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+  .ledger-hero .hero-copy {
+    grid-column: 1;
+    grid-row: 2;
+    max-width: 550px;
+    padding-top: 6px;
+  }
+  .ledger-hero .instrument-wrap {
+    grid-column: 2;
+    grid-row: 2;
+    width: 100%;
+    max-width: 680px;
+    margin: 0;
+    justify-self: end;
+  }
+  .ledger-hero > .hero-caveat {
+    grid-column: 1;
+    grid-row: 3;
+    max-width: 550px;
+    margin-top: 24px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .ledger-hero {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    column-gap: clamp(28px, 2.8vw, 48px);
+  }
+  .ledger-hero .hero-copy {
+    max-width: 560px;
+  }
+  .ledger-hero > .hero-caveat {
+    max-width: 560px;
+  }
+  .ledger-hero .instrument-wrap {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .ledger-hero {
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+    column-gap: clamp(36px, 3.2vw, 56px);
+  }
+  .ledger-hero .hero-copy {
+    max-width: 580px;
+  }
+  .ledger-hero > .hero-caveat {
+    max-width: 580px;
+  }
+  .ledger-hero .instrument-wrap {
+    max-width: 780px;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1100px) {
   .ledger-hero {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -579,30 +1426,29 @@
     margin: 0;
   }
   .ledger-hero .hero-copy {
-    grid-column: 1 / span 7;
+    grid-column: 1 / span 8;
     grid-row: auto;
     max-width: 680px;
     margin: 0;
   }
-  .ledger-hero .instrument-wrap,
-  .ledger-hero > .hero-caveat {
+  .ledger-hero .instrument-wrap {
     grid-column: 1 / -1;
     grid-row: auto;
     width: 100%;
     margin-left: 0;
     margin-right: 0;
   }
+  .ledger-hero > .hero-caveat {
+    grid-column: 1 / span 8;
+    grid-row: auto;
+    max-width: 680px;
+    margin: 24px 0 0;
+  }
   .ledger-hero .instrument-wrap {
     margin-top: 28px;
   }
-}
-
-@media (max-width: 1100px) {
-  .ledger-hero {
-    min-height: auto;
-  }
   .ledger-hero h1 {
-    font-size: clamp(54px, 7.2vw, 84px);
+    font-size: clamp(48px, 6.4vw, 76px);
   }
   .ledger-hero .app-body {
     grid-template-columns: 1fr;
@@ -631,6 +1477,14 @@
     margin-left: 0;
     margin-right: 0;
     margin-top: 24px;
+  }
+  .hero-diagnostic-ticker {
+    margin-top: 8px;
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+  .instrument-flow {
+    padding: 0 10px;
   }
   .workflow.section,
   .evidence.section {
@@ -699,6 +1553,21 @@
     gap: 5px;
     padding-left: 10px;
     font-size: 9px;
+  }
+  .hero-diagnostic-ticker {
+    font-size: 9.5px;
+    padding: 4px 8px;
+    gap: 6px;
+  }
+  .instrument-flow {
+    height: 22px;
+    padding: 0 6px;
+  }
+  .instrument-flow .flow-node span {
+    font-size: 7.5px;
+  }
+  .instrument-flow b {
+    margin: 0 3px;
   }
   .ledger-hero .app-body {
     display: block;
@@ -805,5 +1674,81 @@ body.homepage-motion-ready.motion-reduced .motion-reveal.is-visible {
   }
   .button span[aria-hidden="true"] {
     transition: none;
+  }
+  .instrument-flow .flow-node,
+  .instrument-flow .flow-node i,
+  .instrument-flow b,
+  .hero-diagnostic-ticker,
+  .hero-diagnostic-ticker .ticker-prefix::before,
+  .conduit-pulse,
+  .conduit-glow-trail,
+  .statement-head .kicker::before,
+  .evidence-head .kicker::before,
+  .final-cta .kicker::before,
+  .software-pass::after,
+  .evidence-record::after,
+  .final-cta::after,
+  .workflow.section::before,
+  .evidence.section::before,
+  .final-cta::before,
+  .triage-list li {
+    transition: none !important;
+    animation: none !important;
+  }
+  .conduit-pulse {
+    opacity: 0.18 !important;
+    stroke-dashoffset: 0 !important;
+  }
+  .conduit-glow-trail {
+    opacity: 0.14 !important;
+    stroke-dashoffset: 0 !important;
+  }
+  .statement-head .kicker::before,
+  .evidence-head .kicker::before,
+  .final-cta .kicker::before {
+    background: var(--signal) !important;
+    box-shadow: 0 0 3px rgba(151, 215, 0, 0.3) !important;
+  }
+  .software-pass::after,
+  .evidence-record::after,
+  .final-cta::after {
+    width: 100% !important;
+    opacity: 0.22 !important;
+  }
+  .workflow.section::before,
+  .evidence.section::before,
+  .final-cta::before {
+    display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-cinematic-backdrop,
+  .hero-signal-conduit {
+    display: none;
+  }
+  .hero-status-stack {
+    font-size: 11px;
+    gap: 3px;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-signal-conduit {
+    display: none;
+  }
+  .hero-cinematic-backdrop {
+    display: none;
+  }
+  .hero-status-stack {
+    display: none;
+  }
+  .workflow.section::before,
+  .evidence.section::before,
+  .final-cta::before,
+  .ledger-hero::after,
+  .workflow.section::after,
+  .evidence.section::after {
+    display: none;
   }
 }
