@@ -424,6 +424,150 @@
         </article>
       </section>
 
+      <!-- ================================================================
+           TRANSITION: EVIDENCE → DEMO BRIDGE (Conduit Divider)
+           ================================================================ -->
+      <div class="system-conduit-divider" aria-hidden="true" id="section-demo-bridge">
+        <div class="conduit-line"></div>
+        <div class="conduit-badge">
+          <span>INTERACTIVE SCENARIO LAB &darr;</span>
+        </div>
+        <div class="conduit-line"></div>
+      </div>
+
+      <!-- ================================================================
+           LAYER 04: INTERACTIVE DEMO BRIDGE (Explore Scenarios)
+           ================================================================ -->
+      <section class="system-demo-bridge" id="demo" aria-labelledby="demo-bridge-title">
+        <div class="demo-bridge-grid">
+          <div class="demo-bridge-editorial">
+            <span class="bridge-kicker">INTERACTIVE SCENARIO LAB</span>
+            <h2 id="demo-bridge-title">See how the diagnostic changes when the network does.</h2>
+            <p class="demo-bridge-lede">
+              Triage is rarely a single happy path. Test LinkLens against 6 realistic network conditions—from active address and route timeouts to passive neighbor absences and scope boundaries.
+            </p>
+
+            <div class="demo-bridge-points">
+              <div class="bridge-point">
+                <span class="point-num">01</span>
+                <div>
+                  <strong>Deterministic Failure Stoppage</strong>
+                  <p>When DHCP or gateway route fails, dependent checks halt immediately rather than producing misleading downstream errors.</p>
+                </div>
+              </div>
+              <div class="bridge-point">
+                <span class="point-num">02</span>
+                <div>
+                  <strong>Independent Passive Capture</strong>
+                  <p>Switch discovery runs asynchronously via LLDP/CDP frames, remaining decoupled from IP and reachability test states.</p>
+                </div>
+              </div>
+              <div class="bridge-point">
+                <span class="point-num">03</span>
+                <div>
+                  <strong>Strict Scope Boundaries</strong>
+                  <p>Clear classification when an issue—such as physical-layer cabling or PoE power—requires dedicated hardware instrumentation.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="demo-bridge-actions">
+              <a href="/demo.html" class="btn-action-primary">
+                Launch Interactive Demo <span aria-hidden="true">&rarr;</span>
+              </a>
+              <a href="#beta" class="btn-link-secondary">
+                Request early access
+              </a>
+            </div>
+            <p class="bridge-footnote">
+              Interactive browser simulation &middot; Runs entirely client-side on validated fixtures &middot; No agent or software download required
+            </p>
+          </div>
+
+          <div class="demo-bridge-panel" aria-label="Available Interactive Demo Scenarios">
+            <div class="panel-header">
+              <span class="panel-tag">SIMULATED FIXTURE DIRECTORY</span>
+              <span class="panel-count">6 SCENARIOS</span>
+            </div>
+
+            <div class="scenario-directory">
+              <div class="scenario-entry is-healthy">
+                <div class="scenario-meta">
+                  <span class="scenario-id">SCN-01</span>
+                  <span class="scenario-status status-pass">PASS</span>
+                </div>
+                <div class="scenario-body">
+                  <h4>Healthy First Pass</h4>
+                  <p>1000BASE-T link, DHCP bound, gateway and DNS reachability verified, switch port identified.</p>
+                </div>
+              </div>
+
+              <div class="scenario-entry is-fail">
+                <div class="scenario-meta">
+                  <span class="scenario-id">SCN-02</span>
+                  <span class="scenario-status status-fail">ADDRESSING FAILED</span>
+                </div>
+                <div class="scenario-body">
+                  <h4>DHCP Lease Failure</h4>
+                  <p>Link negotiated, but DHCP offer times out. Gateway, DNS, and socket checks correctly marked NOT TESTED.</p>
+                </div>
+              </div>
+
+              <div class="scenario-entry is-fail">
+                <div class="scenario-meta">
+                  <span class="scenario-id">SCN-03</span>
+                  <span class="scenario-status status-fail">ROUTE TIMEOUT</span>
+                </div>
+                <div class="scenario-body">
+                  <h4>Gateway Unreachable</h4>
+                  <p>IP assigned, but default gateway does not respond to ICMP traversal. Downstream resolution halted.</p>
+                </div>
+              </div>
+
+              <div class="scenario-entry is-fail">
+                <div class="scenario-meta">
+                  <span class="scenario-id">SCN-04</span>
+                  <span class="scenario-status status-fail">RESOLUTION DROP</span>
+                </div>
+                <div class="scenario-body">
+                  <h4>DNS Resolution Failure</h4>
+                  <p>Gateway reachable, but DNS queries time out. Highlights name resolution as distinct from IP routing.</p>
+                </div>
+              </div>
+
+              <div class="scenario-entry is-observed">
+                <div class="scenario-meta">
+                  <span class="scenario-id">SCN-05</span>
+                  <span class="scenario-status status-observed">NEIGHBOR ABSENT</span>
+                </div>
+                <div class="scenario-body">
+                  <h4>No LLDP / CDP Advertisement</h4>
+                  <p>All connectivity checks pass, but no broadcast advertisement is detected. Evaluates network context without inferring fault.</p>
+                </div>
+              </div>
+
+              <div class="scenario-entry is-scope">
+                <div class="scenario-meta">
+                  <span class="scenario-id">SCN-06</span>
+                  <span class="scenario-status status-scope">OUTSIDE SCOPE</span>
+                </div>
+                <div class="scenario-body">
+                  <h4>PoE Limitation Boundary</h4>
+                  <p>Illustrates boundary discipline: flags that physical power delivery requires a hardware tester rather than software guesswork.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-footer">
+              <a href="/demo.html" class="panel-launch-link">
+                <span>OPEN WORKBENCH IN DEMO</span>
+                <span class="launch-arrow">&rarr;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="final-cta" id="beta">
         <div>
           <p class="kicker">Controlled Windows beta</p>
