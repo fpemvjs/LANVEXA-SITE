@@ -25,6 +25,7 @@
 }
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 body {
   margin: 0;
@@ -34,6 +35,7 @@ body {
   font-size: 16px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 a {
   color: inherit;
@@ -106,11 +108,11 @@ img {
   --max: var(--canvas-max);
 }
 .container { width: min(100% - (var(--gutter-desktop) * 2), var(--canvas-max)); margin-inline: auto; }
-.site-header { max-width: var(--canvas-max); padding-inline: 0; }
+.site-header { width: min(100% - (var(--gutter-desktop) * 2), var(--canvas-max)); max-width: var(--canvas-max); margin-inline: auto; padding-inline: 0; }
 .site-footer { padding-inline: max(var(--gutter-desktop), calc((100% - var(--canvas-max)) / 2)); }
-@media (max-width: 1360px) { .container { width: min(100% - 96px, var(--canvas-max)); } .site-header { margin-inline: 48px; } }
-@media (max-width: 900px) { .container { width: min(100% - (var(--gutter-tablet) * 2), var(--canvas-max)); } .site-header { margin-inline: var(--gutter-tablet); } .site-footer { padding-inline: var(--gutter-tablet); } }
-@media (max-width: 560px) { .container { width: min(100% - (var(--gutter-mobile) * 2), var(--canvas-max)); } .site-header { margin-inline: var(--gutter-mobile); } .site-footer { padding-inline: var(--gutter-mobile); } }
+@media (max-width: 1360px) { .container { width: min(100% - 96px, var(--canvas-max)); } .site-header { width: min(100% - 96px, var(--canvas-max)); margin-inline: auto; } }
+@media (max-width: 900px) { .container { width: min(100% - (var(--gutter-tablet) * 2), var(--canvas-max)); } .site-header { width: min(100% - (var(--gutter-tablet) * 2), var(--canvas-max)); margin-inline: auto; } .site-footer { padding-inline: var(--gutter-tablet); } }
+@media (max-width: 560px) { .container { width: min(100% - (var(--gutter-mobile) * 2), var(--canvas-max)); } .site-header { width: min(100% - (var(--gutter-mobile) * 2), var(--canvas-max)); margin-inline: auto; } .site-footer { padding-inline: var(--gutter-mobile); } }
 
 /* First-screen balance: modest header presence without changing the system. */
 .site-header .brand img { width: 198px; }
@@ -1156,7 +1158,7 @@ summary:focus-visible {
 }
 .footer-brand .company-identity {
   margin-top: 6px;
-  color: #717c81;
+  color: #8e9aa0;
   font: 600 10px var(--mono);
   letter-spacing: 0.03em;
 }
@@ -1169,7 +1171,7 @@ summary:focus-visible {
 .footer-group > strong {
   display: block;
   margin-bottom: 13px;
-  color: #8f999e;
+  color: #9daab0;
   font: 700 11px/1.3 var(--mono);
   letter-spacing: 0.07em;
 }
@@ -1186,7 +1188,7 @@ summary:focus-visible {
   border-top: 1px solid #293238;
   padding-top: 18px;
   font-size: 11px;
-  color: #7f8a8f;
+  color: #8e9aa0;
   margin: 0;
 }
 .subpage-head {
@@ -1596,7 +1598,8 @@ summary:focus-visible {
 @media (max-width: 760px) {
   .site-header {
     height: 65px;
-    margin: 0 18px;
+    width: min(100% - 36px, var(--canvas-max));
+    margin-inline: auto;
   }
   .brand img {
     width: 153px;

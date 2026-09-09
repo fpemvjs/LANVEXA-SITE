@@ -60,483 +60,524 @@
       </details>
     </header>
     <main id="main">
-      <section class="hero ledger-hero">
-        <div class="incident-folio">
-          <span>LANVEXA / NETWORK DIAGNOSTICS</span>
-          <span>REPORTED &rarr; OBSERVED &rarr; INTERPRETED &rarr; HANDOFF</span>
-        </div>
-        <div class="hero-copy">
-          <p class="kicker">Field network diagnostics</p>
-          <h1>Plug in.<br />Know the network.</h1>
-          <p class="lede">
-            Get a structured first pass on link, addressing, reachability, and
-            switch-port context without stitching together multiple tools.
-          </p>
-          <div class="hero-actions">
-            <a class="button" href="/demo.html"
-              >Explore LinkLens <span aria-hidden="true">&rarr;</span></a
-            ><a class="text-link" href="#beta">Request beta access</a>
+      <section class="hero ledger-hero system-hero-section" id="product" aria-labelledby="hero-title">
+        <div class="system-masthead" aria-label="System classification">
+          <div class="masthead-brand">
+            <span class="masthead-brand-title">LANVEXA</span>
+            <span>// FIELD EVIDENCE SYSTEM</span>
           </div>
-          <div class="reported-condition">
-            <small>01 / REPORTED CONDITION</small>
-            <strong>&ldquo;This Ethernet jack isn&rsquo;t working.&rdquo;</strong>
-            <span>Link, addressing, upstream reachability, and neighbor identity are still unknown.</span>
+          <div class="masthead-spec">
+            <span>LAYER 01: PHYSICAL &middot; LAYER 02: DIAGNOSTIC &middot; LAYER 03: EVIDENCE</span>
           </div>
         </div>
-        <div class="homepage-signal-path" aria-label="Diagnostic sequence">
-          <span class="path-node is-pass"><i aria-hidden="true"></i>JACK</span><b aria-hidden="true"></b>
-          <span class="path-node is-pass"><i aria-hidden="true"></i>LINK</span><b aria-hidden="true"></b>
-          <span class="path-node is-pass"><i aria-hidden="true"></i>DHCP / IP</span><b aria-hidden="true"></b>
-          <span class="path-node is-pass"><i aria-hidden="true"></i>GATEWAY</span><b aria-hidden="true"></b>
-          <span class="path-node is-pass"><i aria-hidden="true"></i>DNS</span><b aria-hidden="true"></b>
-          <span class="path-node is-pass"><i aria-hidden="true"></i>INTERNET</span><b aria-hidden="true"></b>
-          <span class="path-node is-observed"><i aria-hidden="true"></i>DISCOVERY</span><b aria-hidden="true"></b>
-          <span class="path-node is-pass"><i aria-hidden="true"></i>HANDOFF</span>
-        </div>
-        <div class="instrument-wrap" id="product">
-          <!-- LANVEXA_AUTHENTIC_MEDIA -->
-          <div class="interactive-example" data-interactive-fallback>
-            <div class="example-label">
-              <span>LANVEXA FOR WINDOWS</span
-              ><strong>INTERACTIVE EXAMPLE · NOT A PRODUCT SCREENSHOT</strong>
+
+        <div class="system-hero-grid">
+          <!-- Left Editorial -->
+          <div class="system-hero-editorial">
+            <div class="editorial-kicker-row">
+              <span class="system-kicker-tag">WINDOWS ETHERNET TRIAGE</span>
+              <span class="system-badge-live">&bull; WIRED ENDPOINT</span>
             </div>
-            <article class="instrument" aria-labelledby="instrument-title">
-              <header class="app-bar">
-                <div class="app-id">
-                  <img src="/brand/lanvexa-x-reverse.svg" alt="" width="96" height="96" /><strong
-                    id="instrument-title"
-                    >LANVEXA</strong
-                  ><span>PREVIEW</span>
-                </div>
-                <div class="window-controls" aria-hidden="true">
-                  <i></i><i></i><i></i>
-                </div>
-              </header>
-              <div class="adapter-bar">
-                <span
-                  ><small>SELECTED INTERFACE</small
-                  ><strong>Ethernet</strong></span
-                ><span>Wired adapter</span>
-              </div>
-              <div class="app-body">
-                <div class="app-status">
-                  <div>
-                    <span class="status-light" data-tone="pass"></span
-                    ><span
-                      ><small>LINK STATE</small
-                      ><strong id="link-state">CONNECTED</strong></span
-                    >
-                  </div>
-                  <span class="link-detail">1.0 Gbps negotiated</span>
-                </div>
-                <section class="switch-panel" aria-labelledby="neighbor-label">
-                  <div class="panel-heading">
-                    <span id="neighbor-label">NEIGHBOR OBSERVATION</span
-                    ><strong id="neighbor-state" data-tone="pass"
-                      >LLDP DETECTED</strong
-                    >
-                  </div>
-                  <div class="switch-primary">
-                    <small>ADVERTISED SYSTEM NAME</small
-                    ><strong id="switch-name">sw-access-03.example.net</strong>
-                  </div>
-                  <dl class="switch-meta">
-                    <div>
-                      <dt>ADVERTISED PORT</dt>
-                      <dd id="switch-port">ge-0/0/24</dd>
-                    </div>
-                    <div>
-                      <dt>PROTOCOL</dt>
-                      <dd id="switch-protocol">LLDP</dd>
-                    </div>
-                    <div>
-                      <dt>OBSERVATION</dt>
-                      <dd id="switch-time">Frame observed</dd>
-                    </div>
-                  </dl>
-                  <p class="neighbor-note" id="neighbor-note" hidden></p>
-                </section>
-                <div
-                  class="test-panel"
-                  role="table"
-                  aria-label="Example connectivity checks"
-                >
-                  <div class="panel-heading" role="row">
-                    <span role="columnheader">CONFIGURED CHECKS</span
-                    ><strong id="check-summary" role="columnheader"
-                      >4 OF 4 PASSED</strong
-                    >
-                  </div>
-                  <div class="test-row" role="row" data-test="addressing">
-                    <span class="state-symbol" role="cell" aria-label="Pass"
-                      >✓</span
-                    ><span role="rowheader">ADDRESSING</span
-                    ><strong role="cell">10.24.18.117 / DHCP</strong
-                    ><em role="cell">PASS</em>
-                  </div>
-                  <div class="test-row" role="row" data-test="gateway">
-                    <span class="state-symbol" role="cell" aria-label="Pass"
-                      >✓</span
-                    ><span role="rowheader">GATEWAY</span
-                    ><strong role="cell">10.24.18.1</strong
-                    ><em role="cell">PASS</em>
-                  </div>
-                  <div class="test-row" role="row" data-test="dns">
-                    <span class="state-symbol" role="cell" aria-label="Pass"
-                      >✓</span
-                    ><span role="rowheader">DNS</span
-                    ><strong role="cell">Name resolved</strong
-                    ><em role="cell">PASS</em>
-                  </div>
-                  <div class="test-row" role="row" data-test="tcp">
-                    <span class="state-symbol" role="cell" aria-label="Pass"
-                      >✓</span
-                    ><span role="rowheader">TCP / 443</span
-                    ><strong role="cell">Configured target</strong
-                    ><em role="cell">PASS</em>
+            <h1 id="hero-title">From physical link to advertised switch port.</h1>
+            <p class="system-hero-lede">
+              Connect a standard Windows laptop to any RJ45 wall jack. LinkLens establishes physical link state, tests local network traversal, and passively captures upstream switch identity in one automated sequence.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn-action-primary" href="/demo.html">
+                Launch Interactive Demo <span aria-hidden="true">&rarr;</span>
+              </a>
+              <a class="btn-link-secondary" href="#beta">Request early access</a>
+            </div>
+
+            <p class="hero-scope-caveat">
+              <strong>Switch discovery depends on the network.</strong> Neighbor identity appears only when an LLDP or CDP advertisement is observed. LANVEXA does not qualify Ethernet cabling or replace hardware cable testing tools.
+            </p>
+          </div>
+
+          <!-- Right: Physical Switch Reality + Integrated Evidence Surface -->
+          <div class="system-hero-visual">
+            <div class="physical-evidence-dock">
+              <!-- Physical Switch Photography Frame -->
+              <div class="physical-switch-frame">
+                <!-- PRODUCTION PLACEHOLDER — replace with real/licensed enterprise networking photography before public launch. -->
+                <img
+                  src="/switch-macro.jpg"
+                  alt="Enterprise network switch faceplate showing Port 24 with connected Cat6 patch cable and link status LEDs"
+                  class="physical-switch-photo"
+                />
+                <!-- Restrained Architectural Pointer at Port 24 -->
+                <div class="port-pointer-anchor" aria-hidden="true">
+                  <div class="pointer-pin"></div>
+                  <div class="pointer-lead-line"></div>
+                  <div class="pointer-annotation">
+                    <span class="annotation-port">PORT ge-0/0/24</span>
+                    <span class="annotation-type">1000BASE-T RJ45</span>
                   </div>
                 </div>
-                <div class="result-bar" id="result-bar" data-tone="pass">
-                  <span class="result-icon" aria-hidden="true">✓</span
-                  ><span
-                    ><small>RESULT</small
-                    ><strong id="overall-result"
-                      >CONFIGURED CONNECTIVITY CHECKS PASSED</strong
-                    ></span
-                  >
+                <!-- Mobile-Only Compact Port Anchor Badge -->
+                <div class="mobile-port-badge" aria-hidden="true">
+                  <span class="m-badge-pin"></span>
+                  <span class="m-badge-txt">PORT 24 // ge-0/0/24</span>
                 </div>
               </div>
-            </article>
-            <div
-              class="example-controls"
-              role="group"
-              aria-label="Choose diagnostic example"
-            >
-              <button
-                class="example-control active"
-                type="button"
-                data-example="passed"
-                aria-pressed="true"
-              >
-                Passed</button
-              ><button
-                class="example-control"
-                type="button"
-                data-example="partial"
-                aria-pressed="false"
-              >
-                Partial</button
-              ><button
-                class="example-control"
-                type="button"
-                data-example="noNeighbor"
-                aria-pressed="false"
-              >
-                No neighbor
-              </button>
+
+              <!-- Integrated LinkLens Evidence Surface (Docked Directly to Physical Frame) -->
+              <article class="integrated-evidence-surface" aria-label="LinkLens Evidence Ledger">
+                <header class="evidence-surface-hdr">
+                  <div class="surface-indicator">
+                    <span class="indicator-dot"></span>
+                    <strong>OBSERVED PORT: ge-0/0/24</strong>
+                  </div>
+                  <span class="surface-spec">SPEC: IEEE 802.3 &middot; 802.1AB</span>
+                </header>
+
+                <div class="evidence-surface-grid">
+                  <div class="surface-col">
+                    <span class="col-title">CONFIGURED CONNECTIVITY</span>
+                    <div class="surface-metric">
+                      <span class="metric-label">Addressing</span>
+                      <span class="metric-value">10.24.18.117 / DHCP</span>
+                    </div>
+                    <div class="surface-metric">
+                      <span class="metric-label">Gateway</span>
+                      <span class="metric-value">10.24.18.1 (Pass)</span>
+                    </div>
+                    <div class="surface-metric">
+                      <span class="metric-label">DNS / Port 443</span>
+                      <span class="metric-value">Resolved / Open</span>
+                    </div>
+                  </div>
+
+                  <div class="surface-col">
+                    <span class="col-title">OBSERVED SWITCH ADVERTISEMENT</span>
+                    <div class="surface-metric">
+                      <span class="metric-label">Switch Hostname</span>
+                      <span class="metric-value highlight">sw-access-03.example.net</span>
+                    </div>
+                    <div class="surface-metric">
+                      <span class="metric-label">Advertised Port</span>
+                      <span class="metric-value highlight">ge-0/0/24</span>
+                    </div>
+                    <div class="surface-metric">
+                      <span class="metric-label">Discovery Protocol</span>
+                      <span class="metric-value">IEEE 802.1AB (LLDP)</span>
+                    </div>
+                  </div>
+                </div>
+
+                <footer class="evidence-surface-footer">
+                  <span>&check; RESULT: CONFIGURED CONNECTIVITY CHECKS PASSED</span>
+                  <span style="font-size: 10px; opacity: 0.9;">READY FOR HANDOFF RECORD</span>
+                </footer>
+              </article>
             </div>
-            <p
-              class="sr-only"
-              id="demo-status"
-              role="status"
-              aria-live="polite"
-            ></p>
           </div>
         </div>
-        <div class="hero-resolution" aria-hidden="true">
-          <span>UNCERTAINTY</span><i></i><span>INVESTIGATION READY</span>
-        </div>
-        <p class="hero-caveat">
-          <strong>Switch discovery depends on the network.</strong> Neighbor and
-          advertised Port ID appear only when an LLDP/CDP advertisement is
-          observed. LANVEXA does not qualify the cable or replace deeper
-          physical-layer testing.
-        </p>
       </section>
 
-      <section class="workflow section ledger-stage stage-capabilities" id="workflow">
-        <div class="ledger-coordinate" aria-hidden="true"><span>01</span><i></i></div>
-        <header class="statement-head">
-          <p class="section-index">02 / WHAT IT DOES</p>
-          <h2>One first pass.<br />Two kinds of signal.</h2>
+      <!-- ================================================================
+           TRANSITION: HERO → DIAGNOSTIC SPINE (Visual Conduit Continuity)
+           ================================================================ -->
+      <div class="system-conduit-divider" aria-hidden="true">
+        <div class="conduit-line"></div>
+        <div class="conduit-badge">
+          <span>FOLLOW THE DIAGNOSTIC PATH &darr;</span>
+        </div>
+        <div class="conduit-line"></div>
+      </div>
+
+      <!-- ================================================================
+           LAYER 02: DIAGNOSTIC (Continuous Diagnostic Path — Diagnostic Spine)
+           ================================================================ -->
+      <section class="system-spine-layer" id="workflow" aria-labelledby="spine-title">
+        <header class="system-spine-head">
+          <span class="spine-kicker">SEQUENTIAL VERIFICATION SCHEMATIC</span>
+          <h2 id="spine-title">One continuous diagnostic path from laptop to switch port.</h2>
           <p>
-            LANVEXA brings active connectivity checks and passive neighbor
-            observation into one technician workflow. The individual tests are
-            familiar; the value is having one consistent result surface.
+            Eliminate scattered command-line tools. LinkLens sequences network triage along an unbroken architectural trace—from endpoint adapter binding to passive switch neighbor discovery.
           </p>
         </header>
-        <div class="homepage-problem">
-          <p>REPORTED PROBLEM</p>
-          <strong>&ldquo;This Ethernet jack isn&rsquo;t working.&rdquo;</strong>
-          <span>Link state, addressing, reachability, and neighbor identity are still separate questions.</span>
-        </div>
-        <div class="workflow-compare">
-          <div class="manual-stack">
-            <p>ACTIVE CHECKS</p>
-            <strong
-              >Establish what basic connectivity is working.</strong
-            >
-            <span
-              >Addressing &middot; Gateway &middot; DNS &middot; Configured TCP</span
-            >
-          </div>
-          <div class="workflow-arrow" aria-hidden="true">→</div>
-          <div class="lanvexa-flow">
-            <p>PASSIVE OBSERVATION</p>
-            <ol>
-              <li><span>01</span><strong>LLDP</strong></li>
-              <li><span>02</span><strong>CDP</strong></li>
-              <li><span>03</span><strong>System information</strong></li>
-              <li><span>04</span><strong>Advertised Port ID</strong></li>
-              <li><span>05</span><strong>When available</strong></li>
-            </ol>
-            <div class="result-fields">
-              <span>SELECTED ADAPTER</span><span>LINK</span><span>ADDRESSING</span
-              ><span>GATEWAY</span><span>DNS</span><span>TCP</span
-              ><span>LLDP/CDP</span><span>NEIGHBOR</span><span>PORT ID</span
-              ><span>OBSERVED</span>
+
+        <!-- The Architectural Diagnostic Spine (Open Typography along Central Rail) -->
+        <div class="system-spine-track" aria-label="Diagnostic Sequence Schematic">
+          <div class="spine-open-schematic">
+            <!-- Sequential Stations 01 through 08 -->
+            <div class="spine-stations-track">
+              <!-- Station 01 -->
+              <div class="spine-station station-top" data-station="01">
+                <div class="station-telemetry">
+                  <span class="station-seq">01</span>
+                  <span class="station-state is-pass">READY</span>
+                  <h3 class="station-name">WINDOWS ENDPOINT</h3>
+                  <p class="station-desc">Intel NIC &middot; NDIS Hook</p>
+                </div>
+                <div class="station-stem-down"></div>
+              </div>
+
+              <!-- Station 02 -->
+              <div class="spine-station station-bottom" data-station="02">
+                <div class="station-stem-up"></div>
+                <div class="station-telemetry">
+                  <span class="station-seq">02</span>
+                  <span class="station-state is-pass">DETECTED</span>
+                  <h3 class="station-name">LINK STATE</h3>
+                  <p class="station-desc">1000BASE-T Full Duplex</p>
+                </div>
+              </div>
+
+              <!-- Station 03 -->
+              <div class="spine-station station-top" data-station="03">
+                <div class="station-telemetry">
+                  <span class="station-seq">03</span>
+                  <span class="station-state is-pass">BOUND</span>
+                  <h3 class="station-name">DHCP LEASE</h3>
+                  <p class="station-desc">10.24.18.117 /24</p>
+                </div>
+                <div class="station-stem-down"></div>
+              </div>
+
+              <!-- Station 04 -->
+              <div class="spine-station station-bottom" data-station="04">
+                <div class="station-stem-up"></div>
+                <div class="station-telemetry">
+                  <span class="station-seq">04</span>
+                  <span class="station-state is-pass">REACHABLE</span>
+                  <h3 class="station-name">GATEWAY ROUTE</h3>
+                  <p class="station-desc">10.24.18.1 (Pass)</p>
+                </div>
+              </div>
+
+              <!-- Station 05 -->
+              <div class="spine-station station-top" data-station="05">
+                <div class="station-telemetry">
+                  <span class="station-seq">05</span>
+                  <span class="station-state is-pass">RESOLVED</span>
+                  <h3 class="station-name">DNS QUERY</h3>
+                  <p class="station-desc">example.net</p>
+                </div>
+                <div class="station-stem-down"></div>
+              </div>
+
+              <!-- Station 06 -->
+              <div class="spine-station station-bottom" data-station="06">
+                <div class="station-stem-up"></div>
+                <div class="station-telemetry">
+                  <span class="station-seq">06</span>
+                  <span class="station-state is-pass">ESTABLISHED</span>
+                  <h3 class="station-name">TCP / 443</h3>
+                  <p class="station-desc">Socket Verified</p>
+                </div>
+              </div>
+
+              <!-- Station 07 -->
+              <div class="spine-station station-top" data-station="07">
+                <div class="station-telemetry">
+                  <span class="station-seq">07</span>
+                  <span class="station-state is-discovery">CAPTURED</span>
+                  <h3 class="station-name">LLDP / CDP</h3>
+                  <p class="station-desc">Frame Observed</p>
+                </div>
+                <div class="station-stem-down"></div>
+              </div>
+
+              <!-- Station 08 -->
+              <div class="spine-station station-bottom station-highlight" data-station="08">
+                <div class="station-stem-up"></div>
+                <div class="station-telemetry">
+                  <span class="station-seq">08</span>
+                  <span class="station-state is-evidence">DISCOVERED</span>
+                  <h3 class="station-name">ADVERTISED SWITCH</h3>
+                  <p class="station-desc highlight-val">sw-access-03.example.net<br />PORT: ge-0/0/24</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Continuous Central Backbone Rail (Desktop Only) -->
+            <div class="spine-central-backbone" aria-hidden="true">
+              <div class="spine-rail-track"></div>
+              <div class="spine-beads-row">
+                <div class="bead-point"><span class="bead-dot">01</span></div>
+                <div class="bead-chevron-cell"><span class="bead-chevron">&rarr;</span></div>
+                <div class="bead-point"><span class="bead-dot">02</span></div>
+                <div class="bead-chevron-cell"><span class="bead-chevron">&rarr;</span></div>
+                <div class="bead-point"><span class="bead-dot">03</span></div>
+                <div class="bead-chevron-cell"><span class="bead-chevron">&rarr;</span></div>
+                <div class="bead-point"><span class="bead-dot">04</span></div>
+                <div class="bead-chevron-cell"><span class="bead-chevron">&rarr;</span></div>
+                <div class="bead-point"><span class="bead-dot">05</span></div>
+                <div class="bead-chevron-cell"><span class="bead-chevron">&rarr;</span></div>
+                <div class="bead-point"><span class="bead-dot">06</span></div>
+                <div class="bead-chevron-cell"><span class="bead-chevron">&rarr;</span></div>
+                <div class="bead-point"><span class="bead-dot">07</span></div>
+                <div class="bead-chevron-cell"><span class="bead-chevron">&rarr;</span></div>
+                <div class="bead-point"><span class="bead-dot">08</span></div>
+              </div>
             </div>
           </div>
+
+          <!-- Scope Footnote -->
+          <p class="hero-scope-caveat" style="margin-top: 24px;">
+            <strong>Passive switch discovery depends on the network.</strong> Neighbor identity appears only when an LLDP or CDP advertisement is observed on the wire. LANVEXA does not qualify physical cabling.
+          </p>
         </div>
       </section>
 
-      <section class="discovery section dark-section ledger-stage stage-observed">
-        <div class="ledger-coordinate" aria-hidden="true"><span>02</span><i></i></div>
-        <div class="discovery-copy">
-          <p class="section-index">02 / OBSERVED</p>
-          <h2>Build the record from active checks and passive observations.</h2>
-          <p>
-            See what passed, what failed, and what the network advertised.
-            LANVEXA listens locally for LLDP and CDP advertisements without
-            logging in to the switch or using SNMP credentials for the current
-            neighbor-discovery workflow.
-          </p>
-          <p class="caveat">
-            <strong>No advertisement is also an honest result.</strong> It does
-            not mean the switch is down. LLDP/CDP may be disabled, filtered,
-            delayed, or not advertised toward the endpoint.
-          </p>
-          <a class="inline-link" href="/docs/lldp-cdp-discovery.html"
-            >Read how discovery works</a
-          >
+      <!-- ================================================================
+           TRANSITION: SPINE → EVIDENCE LAYER (Section 03 Divider)
+           ================================================================ -->
+      <div class="system-conduit-divider" aria-hidden="true" id="section-evidence">
+        <div class="conduit-line"></div>
+        <div class="conduit-badge">
+          <span>STRUCTURED ESCALATION EVIDENCE &darr;</span>
         </div>
-        <div class="protocol-output">
-          <header>
-            <span>RECEIVED FRAME</span><strong>IEEE 802.1AB / EXAMPLE</strong>
+        <div class="conduit-line"></div>
+      </div>
+
+      <!-- ================================================================
+           LAYER 03: EVIDENCE (Section 03 — Structured Handoff Record)
+           ================================================================ -->
+      <section class="system-evidence-layer" id="handoff" aria-labelledby="evidence-title-flagship">
+        <header class="system-evidence-head">
+          <span class="evidence-kicker">TECHNICAL ESCALATION RECORD</span>
+          <h2 id="evidence-title-flagship">Triage evidence ready for ticket handoff.</h2>
+          <p>
+            When a wall drop fails, eliminate vague escalation tickets. LinkLens produces a structured factual record that Tier 3 network engineering can act on immediately.
+          </p>
+        </header>
+
+        <article class="evidence-manifest-card" aria-label="LinkLens Triage Manifest">
+          <header class="manifest-card-header">
+            <div class="manifest-id-block">
+              <span class="manifest-id">RECORD REF: LX-2026-9402 // LOCAL SYSTEM TIMESTAMP RECORDED</span>
+              <h3>LANVEXA LINKLENS TRIAGE MANIFEST</h3>
+            </div>
+            <span class="manifest-badge">&check; TESTED CHECKS HEALTHY</span>
           </header>
-          <dl>
-            <div>
-              <dt>PROTOCOL</dt>
-              <dd>LLDP</dd>
-              <dd class="protocol-meta">0x88CC</dd>
+
+          <div class="manifest-card-body">
+            <div class="manifest-col">
+              <h4>ENDPOINT &middot; LOCAL TRAVERSAL</h4>
+              <dl class="manifest-list">
+                <div>
+                  <dt>Interface</dt>
+                  <dd>Wired Endpoint NIC (Intel Ethernet)</dd>
+                </div>
+                <div>
+                  <dt>Observed Link State</dt>
+                  <dd>1000BASE-T Full Duplex</dd>
+                </div>
+                <div>
+                  <dt>DHCP Lease</dt>
+                  <dd>10.24.18.117 /24</dd>
+                </div>
+                <div>
+                  <dt>Gateway Result</dt>
+                  <dd>10.24.18.1 (ICMP Echo Pass)</dd>
+                </div>
+                <div>
+                  <dt>DNS Result</dt>
+                  <dd>example.net (Resolved)</dd>
+                </div>
+                <div>
+                  <dt>TCP / 443 Result</dt>
+                  <dd>Connected / Socket Verified</dd>
+                </div>
+              </dl>
             </div>
-            <div class="identified">
-              <dt>SYSTEM NAME</dt>
-              <dd>sw-access-03.example.net</dd>
-              <dd class="protocol-meta">TLV 5</dd>
+
+            <div class="manifest-col">
+              <h4>OBSERVED INFRASTRUCTURE CONTEXT</h4>
+              <dl class="manifest-list">
+                <div>
+                  <dt>Neighbor Observation</dt>
+                  <dd>Passive Frame Captured</dd>
+                </div>
+                <div>
+                  <dt>Advertised System Name</dt>
+                  <dd class="manifest-highlight">sw-access-03.example.net</dd>
+                </div>
+                <div>
+                  <dt>Advertised Port</dt>
+                  <dd class="manifest-highlight">ge-0/0/24</dd>
+                </div>
+                <div>
+                  <dt>Discovery Protocol</dt>
+                  <dd>IEEE 802.1AB (LLDP)</dd>
+                </div>
+                <div>
+                  <dt>Observed Subnet</dt>
+                  <dd>10.24.18.0/24 (Local Lease)</dd>
+                </div>
+                <div>
+                  <dt>Diagnostic Record</dt>
+                  <dd>Structured for Ticket Attachment</dd>
+                </div>
+              </dl>
             </div>
-            <div class="identified">
-              <dt>PORT ID</dt>
-              <dd>ge-0/0/24</dd>
-              <dd class="protocol-meta">TLV 2</dd>
+          </div>
+
+          <footer class="manifest-card-footer">
+            <span>SCOPED DIAGNOSTIC EVIDENCE &middot; NOT A HARDWARE CABLE TEST</span>
+            <span>READY FOR TICKET ATTACHMENT</span>
+          </footer>
+        </article>
+      </section>
+
+      <!-- ================================================================
+           TRANSITION: EVIDENCE → DEMO BRIDGE (Conduit Divider)
+           ================================================================ -->
+      <div class="system-conduit-divider" aria-hidden="true" id="section-demo-bridge">
+        <div class="conduit-line"></div>
+        <div class="conduit-badge">
+          <span>EXPLORE DIAGNOSTIC SCENARIOS &darr;</span>
+        </div>
+        <div class="conduit-line"></div>
+      </div>
+
+      <!-- ================================================================
+           LAYER 04: INTERACTIVE DEMO BRIDGE (Explore Scenarios)
+           ================================================================ -->
+      <section class="system-demo-bridge" id="demo" aria-labelledby="demo-bridge-title">
+        <div class="demo-bridge-grid">
+          <div class="demo-bridge-editorial">
+            <span class="bridge-kicker">INTERACTIVE SCENARIO LAB</span>
+            <h2 id="demo-bridge-title">See how the diagnostic changes when the network does.</h2>
+            <p class="demo-bridge-lede">
+              Triage is rarely a single happy path. Test LinkLens against 6 realistic network conditions—from active address and route timeouts to passive neighbor absences and scope boundaries.
+            </p>
+
+            <div class="demo-bridge-points">
+              <div class="bridge-point">
+                <span class="point-num">01</span>
+                <div>
+                  <strong>Deterministic Failure Stoppage</strong>
+                  <p>When DHCP or gateway route fails, dependent checks halt immediately rather than producing misleading downstream errors.</p>
+                </div>
+              </div>
+              <div class="bridge-point">
+                <span class="point-num">02</span>
+                <div>
+                  <strong>Independent Passive Capture</strong>
+                  <p>Switch discovery runs asynchronously via LLDP/CDP frames, remaining decoupled from IP and reachability test states.</p>
+                </div>
+              </div>
+              <div class="bridge-point">
+                <span class="point-num">03</span>
+                <div>
+                  <strong>Strict Scope Boundaries</strong>
+                  <p>Clear classification when an issue—such as physical-layer cabling or PoE power—requires dedicated hardware instrumentation.</p>
+                </div>
+              </div>
             </div>
-            <div>
-              <dt>CHASSIS ID</dt>
-              <dd>02:00:00:00:00:03</dd>
-              <dd class="protocol-meta">TLV 1</dd>
+
+            <div class="demo-bridge-actions">
+              <a href="/demo.html" class="btn-action-primary">
+                Launch Interactive Demo <span aria-hidden="true">&rarr;</span>
+              </a>
+              <a href="#beta" class="btn-link-secondary">
+                Request early access
+              </a>
             </div>
-          </dl>
-          <footer><i></i> ADVERTISEMENT OBSERVED ON SELECTED INTERFACE</footer>
+            <p class="bridge-footnote">
+              Interactive browser simulation &middot; Runs entirely client-side on validated fixtures &middot; No agent or software download required
+            </p>
+          </div>
+
+          <div class="demo-bridge-panel" aria-label="Available Interactive Demo Scenarios">
+            <div class="panel-header">
+              <span class="panel-tag">SIMULATED FIXTURE DIRECTORY</span>
+              <span class="panel-count">6 SCENARIOS</span>
+            </div>
+
+            <div class="scenario-directory">
+              <div class="scenario-entry is-healthy">
+                <div class="scenario-meta">
+                  <span class="scenario-id">SCN-01</span>
+                  <span class="scenario-status status-pass">PASS</span>
+                </div>
+                <div class="scenario-body">
+                  <h4>Healthy First Pass</h4>
+                  <p>1000BASE-T link, DHCP bound, gateway and DNS reachability verified, switch port identified.</p>
+                </div>
+              </div>
+
+              <div class="scenario-entry is-fail">
+                <div class="scenario-meta">
+                  <span class="scenario-id">SCN-02</span>
+                  <span class="scenario-status status-fail">ADDRESSING FAILED</span>
+                </div>
+                <div class="scenario-body">
+                  <h4>DHCP Lease Failure</h4>
+                  <p>Link negotiated, but DHCP offer times out. Gateway, DNS, and socket checks correctly marked NOT TESTED.</p>
+                </div>
+              </div>
+
+              <div class="scenario-entry is-fail">
+                <div class="scenario-meta">
+                  <span class="scenario-id">SCN-03</span>
+                  <span class="scenario-status status-fail">ROUTE TIMEOUT</span>
+                </div>
+                <div class="scenario-body">
+                  <h4>Gateway Unreachable</h4>
+                  <p>IP assigned, but default gateway does not respond to ICMP traversal. Downstream resolution halted.</p>
+                </div>
+              </div>
+
+              <div class="scenario-entry is-fail">
+                <div class="scenario-meta">
+                  <span class="scenario-id">SCN-04</span>
+                  <span class="scenario-status status-fail">RESOLUTION DROP</span>
+                </div>
+                <div class="scenario-body">
+                  <h4>DNS Resolution Failure</h4>
+                  <p>Gateway reachable, but DNS queries time out. Highlights name resolution as distinct from IP routing.</p>
+                </div>
+              </div>
+
+              <div class="scenario-entry is-observed">
+                <div class="scenario-meta">
+                  <span class="scenario-id">SCN-05</span>
+                  <span class="scenario-status status-observed">NEIGHBOR ABSENT</span>
+                </div>
+                <div class="scenario-body">
+                  <h4>No LLDP / CDP Advertisement</h4>
+                  <p>All connectivity checks pass, but no broadcast advertisement is detected. Evaluates network context without inferring fault.</p>
+                </div>
+              </div>
+
+              <div class="scenario-entry is-scope">
+                <div class="scenario-meta">
+                  <span class="scenario-id">SCN-06</span>
+                  <span class="scenario-status status-scope">OUTSIDE SCOPE</span>
+                </div>
+                <div class="scenario-body">
+                  <h4>PoE Limitation Boundary</h4>
+                  <p>Illustrates boundary discipline: flags that physical power delivery requires a hardware tester rather than software guesswork.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-footer">
+              <a href="/demo.html" class="panel-launch-link">
+                <span>OPEN WORKBENCH IN DEMO</span>
+                <span class="launch-arrow">&rarr;</span>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="interpretation section ledger-stage stage-interpreted">
-        <div class="ledger-coordinate" aria-hidden="true"><span>03</span><i></i></div>
-        <header class="interpretation-head">
-          <p class="section-index">03 / INTERPRETED</p>
-          <h2>See what passed, what failed, and what was not observed.</h2>
-          <p>
-            Interpretation remains bounded by the checks that ran and the
-            advertisements actually observed. Missing passive evidence does not
-            overwrite an active connectivity result.
-          </p>
-        </header>
-        <div class="homepage-transformation" aria-label="From reported problem to technician handoff">
-          <div class="transform-stage transform-reported">
-            <p>REPORTED PROBLEM</p><strong>&ldquo;This jack isn&rsquo;t working.&rdquo;</strong>
-          </div>
-          <div class="transform-connector" aria-hidden="true">&rarr;</div>
-          <div class="transform-stage transform-observed">
-            <p>OBSERVED EVIDENCE</p>
-            <dl>
-              <div><dt>LINK</dt><dd>1 Gbps</dd></div>
-              <div><dt>DHCP / IP</dt><dd>10.20.120.51</dd></div>
-              <div><dt>GATEWAY</dt><dd>10.20.120.1 &middot; 4 ms</dd></div>
-              <div><dt>DNS</dt><dd>10.10.10.20 &middot; 9 ms</dd></div>
-              <div><dt>DISCOVERY</dt><dd>LLDP observed</dd></div>
-            </dl>
-          </div>
-          <div class="transform-connector" aria-hidden="true">&rarr;</div>
-          <div class="transform-stage transform-interpreted">
-            <p>INTERPRETED RESULT</p><strong>TESTED CHECKS HEALTHY</strong>
-            <dl><div><dt>SWITCH</dt><dd>switch-01.example</dd></div><div><dt>PORT</dt><dd>ge-0/0/24</dd></div><div><dt>VLAN</dt><dd>120</dd></div></dl>
-          </div>
-          <div class="transform-connector" aria-hidden="true">&rarr;</div>
-          <div class="transform-stage transform-handoff">
-            <p>HANDOFF READY</p><strong>8 checks &middot; 1.8 sec</strong>
-            <a href="/demo.html">View the full report <span aria-hidden="true">&rarr;</span></a>
-          </div>
+      <!-- ================================================================
+           TRANSITION: DEMO BRIDGE → BETA (Conduit Divider)
+           ================================================================ -->
+      <div class="system-conduit-divider" aria-hidden="true">
+        <div class="conduit-line"></div>
+        <div class="conduit-badge">
+          <span>CONTROLLED WINDOWS BETA &darr;</span>
         </div>
-        <div class="state-ledger" aria-label="LANVEXA result-state definitions">
-          <div data-state="pass"><strong>PASS</strong><span>The configured check met its success condition.</span></div>
-          <div data-state="fail"><strong>FAIL</strong><span>The configured check did not meet its success condition.</span></div>
-          <div data-state="untested"><strong>NOT TESTED</strong><span>The check was not run or could not appropriately proceed.</span></div>
-          <div data-state="absent"><strong>NOT DETECTED</strong><span>Passive evidence was not observed during the observation window.</span></div>
-        </div>
-        <aside class="no-neighbor-ledger">
-          <span>ACTIVE RESULT</span><strong>Connectivity checks remain independently meaningful.</strong>
-          <span>PASSIVE RESULT</span><strong>NO NEIGHBOR DETECTED &ne; NETWORK FAILURE</strong>
-        </aside>
-      </section>
-
-      <section class="evidence section ledger-stage stage-handoff">
-        <div class="ledger-coordinate" aria-hidden="true"><span>04</span><i></i></div>
-        <div class="evidence-continuity" aria-hidden="true">
-          <span>OBSERVATIONS</span><i></i><span>HANDOFF READY</span>
-        </div>
-        <header class="evidence-head">
-          <p class="section-index">04 / HANDOFF</p>
-          <h2>Give networking the observations, not just the symptom.</h2>
-        </header>
-        <div class="evidence-record">
-          <header class="record-header">
-            <span>FIELD DIAGNOSTIC RECORD</span>
-            <strong>EXAMPLE / ON-SCREEN OBSERVATIONS</strong>
-          </header>
-          <div class="record-row record-situation">
-            <p class="record-label">SITUATION</p>
-            <div>
-              <strong
-                >&ldquo;This Ethernet jack isn&rsquo;t working.&rdquo;</strong
-              >
-              <span
-                >Establish what basic network functions are working and whether
-                neighbor information is advertised.</span
-              >
-            </div>
-          </div>
-          <div class="record-row record-observations">
-            <p class="record-label">OBSERVATIONS</p>
-            <dl>
-              <div>
-                <dt>ADAPTER</dt>
-                <dd>Ethernet</dd>
-              </div>
-              <div>
-                <dt>LINK</dt>
-                <dd>Connected / 1.0 Gbps negotiated</dd>
-              </div>
-              <div>
-                <dt>ADDRESS</dt>
-                <dd>10.24.18.117 / DHCP</dd>
-              </div>
-              <div>
-                <dt>GATEWAY</dt>
-                <dd>10.24.18.1 / Pass</dd>
-              </div>
-              <div>
-                <dt>DNS</dt>
-                <dd>Pass</dd>
-              </div>
-              <div>
-                <dt>TCP / 443</dt>
-                <dd>Configured target / Pass</dd>
-              </div>
-              <div>
-                <dt>NEIGHBOR</dt>
-                <dd>sw-access-03.example.net</dd>
-              </div>
-              <div>
-                <dt>PORT</dt>
-                <dd>ge-0/0/24 / LLDP</dd>
-              </div>
-            </dl>
-          </div>
-          <div class="record-row record-action">
-            <p class="record-label">NEXT ACTION</p>
-            <div>
-              <strong
-                >Continue locally or escalate with a consistent set of
-                observations.</strong
-              >
-              <span
-                >Relay the selected adapter, completed checks, unresolved
-                checks, and advertised neighbor or Port ID when observed.</span
-              ><small
-                >LANVEXA does not claim a root cause or present report export as
-                a current capability.</small
-              >
-            </div>
-          </div>
-        </div>
-        <p class="evidence-next">
-          A failed configured check can narrow the next investigation. A check
-          marked not tested remains unresolved. Neighbor information can be
-          relayed when advertised; when it is not detected, connectivity must be
-          judged from the connectivity checks rather than the missing
-          advertisement.
-        </p>
-      </section>
-
-      <section class="scope-section section">
-        <div class="scope-statement">
-          <p class="section-index">04 / RIGHT TOOL, RIGHT TICKET</p>
-          <h2>
-            Logical connectivity first.<br />Physical validation when required.
-          </h2>
-          <p>
-            LANVEXA uses the existing Windows laptop for a software-based first
-            pass. It complements dedicated network test hardware and does not
-            measure the cable.
-          </p>
-        </div>
-        <div class="scope-rails">
-          <div>
-            <strong>LANVEXA CURRENT SCOPE</strong
-            ><span>IP and DHCP information</span
-            ><span>Gateway, DNS, configured TCP checks</span
-            ><span>LLDP/CDP neighbor observation</span
-            ><span>Advertised switch and port fields</span>
-          </div>
-          <div>
-            <strong>DEDICATED HARDWARE</strong
-            ><span>May provide wiremap and cable qualification</span
-            ><span>May provide TDR length and fault location</span
-            ><span>May provide PoE load testing</span
-            ><span>May provide SFP optical measurements</span>
-          </div>
-        </div>
-      </section>
-
-      <aside
-        class="technical-bridge"
-        id="technical"
-        aria-labelledby="technical-bridge-title"
-      >
-        <div>
-          <p class="section-index">TECHNICAL REVIEW</p>
-          <h2 id="technical-bridge-title">Need the technical details?</h2>
-        </div>
-        <p>
-          Review current architecture, connectivity-check scope, packet-capture
-          disclosures, and the facts that still require product verification.
-        </p>
-        <nav aria-label="Technical review links">
-          <a href="/security.html">Security disclosure</a>
-          <a href="/docs/">Documentation</a>
-          <a href="/faq.html">Common questions</a>
-        </nav>
-      </aside>
+        <div class="conduit-line"></div>
+      </div>
 
       <section class="final-cta" id="beta">
         <div>
