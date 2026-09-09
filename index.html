@@ -176,68 +176,163 @@
         </div>
       </section>
 
-      <section class="workflow section" id="workflow">
-        <header class="statement-head">
-          <p class="kicker">The Software-First Pass</p>
-          <h2>Use the laptop you already carry.</h2>
+      <!-- ================================================================
+           TRANSITION: HERO → DIAGNOSTIC SPINE (Visual Conduit Continuity)
+           ================================================================ -->
+      <div class="system-conduit-divider" aria-hidden="true">
+        <div class="conduit-line"></div>
+        <div class="conduit-badge">
+          <span>FOLLOW THE DIAGNOSTIC PATH &darr;</span>
+        </div>
+        <div class="conduit-line"></div>
+      </div>
+
+      <!-- ================================================================
+           LAYER 02: DIAGNOSTIC (Continuous Diagnostic Path — Diagnostic Spine)
+           ================================================================ -->
+      <section class="system-spine-layer" id="workflow" aria-labelledby="spine-title">
+        <header class="system-spine-head">
+          <span class="spine-kicker">SEQUENTIAL VERIFICATION SCHEMATIC</span>
+          <h2 id="spine-title">One continuous diagnostic path from laptop to switch port.</h2>
           <p>
-            Run connectivity checks, capture passive switch context when advertised, and
-            package the findings for handoff &mdash; from Windows.
+            Eliminate scattered command-line tools. LinkLens sequences network triage along an unbroken architectural trace—from endpoint adapter binding to passive switch neighbor discovery.
           </p>
         </header>
-        <div class="software-pass" aria-label="Software-first field triage flow">
-          <div class="triage-pipeline">
-            <div class="laptop-node">
-              <p class="contrast-label">WINDOWS LAPTOP</p>
-            </div>
-            <div class="pipeline-connector" aria-hidden="true">&darr;</div>
-            <div class="first-pass-card">
-              <p class="contrast-label">LINKLENS FIRST PASS</p>
-              <ul class="triage-list" aria-label="LinkLens coordinated steps">
-                <li>
-                  <strong>Connectivity</strong>
-                  <span>Link &middot; DHCP &middot; Gateway &middot; DNS</span>
-                </li>
-                <li>
-                  <strong>Discovery</strong>
-                  <span>Passive LLDP/CDP neighbor observation</span>
-                </li>
-                <li>
-                  <strong>Handoff</strong>
-                  <span>Structured findings for the ticket</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="triage-proof">
-            <p class="contrast-label">FIELD EVIDENCE</p>
-            <div class="neighbor-proof">
-              <header class="proof-header">
-                <span>ADVERTISED NEIGHBOR</span>
-                <small>PASSIVE OBSERVATION</small>
-              </header>
-              <div class="proof-body">
-                <div>
-                  <small>SWITCH</small>
-                  <strong>sw-access-03.example.net</strong>
+
+        <!-- The Architectural Diagnostic Spine (Open Typography along Central Rail) -->
+        <div class="system-spine-track" aria-label="Diagnostic Sequence Schematic">
+          <div class="spine-open-schematic">
+            <!-- Sequential Stations 01 through 08 -->
+            <div class="spine-stations-track">
+              <!-- Station 01 -->
+              <div class="spine-station station-top" data-station="01">
+                <div class="station-telemetry">
+                  <span class="station-seq">01</span>
+                  <span class="station-state is-pass">READY</span>
+                  <h3 class="station-name">WINDOWS ENDPOINT</h3>
+                  <p class="station-desc">Intel NIC &middot; NDIS Hook</p>
                 </div>
-                <div>
-                  <small>PORT</small>
-                  <strong>ge-0/0/24</strong>
-                </div>
-                <div>
-                  <small>PROTOCOL</small>
-                  <strong>LLDP / CDP</strong>
+                <div class="station-stem-down"></div>
+              </div>
+
+              <!-- Station 02 -->
+              <div class="spine-station station-bottom" data-station="02">
+                <div class="station-stem-up"></div>
+                <div class="station-telemetry">
+                  <span class="station-seq">02</span>
+                  <span class="station-state is-pass">DETECTED</span>
+                  <h3 class="station-name">LINK STATE</h3>
+                  <p class="station-desc">1000BASE-T Full Duplex</p>
                 </div>
               </div>
-              <p class="caveat">
-                <strong>No neighbor detected &ne; network failure.</strong>
-                Switch advertisements appear only when LLDP or CDP is transmitted on the connected port.
-              </p>
+
+              <!-- Station 03 -->
+              <div class="spine-station station-top" data-station="03">
+                <div class="station-telemetry">
+                  <span class="station-seq">03</span>
+                  <span class="station-state is-pass">BOUND</span>
+                  <h3 class="station-name">DHCP LEASE</h3>
+                  <p class="station-desc">10.24.18.117 /24</p>
+                </div>
+                <div class="station-stem-down"></div>
+              </div>
+
+              <!-- Station 04 -->
+              <div class="spine-station station-bottom" data-station="04">
+                <div class="station-stem-up"></div>
+                <div class="station-telemetry">
+                  <span class="station-seq">04</span>
+                  <span class="station-state is-pass">REACHABLE</span>
+                  <h3 class="station-name">GATEWAY ROUTE</h3>
+                  <p class="station-desc">10.24.18.1 (Pass)</p>
+                </div>
+              </div>
+
+              <!-- Station 05 -->
+              <div class="spine-station station-top" data-station="05">
+                <div class="station-telemetry">
+                  <span class="station-seq">05</span>
+                  <span class="station-state is-pass">RESOLVED</span>
+                  <h3 class="station-name">DNS QUERY</h3>
+                  <p class="station-desc">example.net</p>
+                </div>
+                <div class="station-stem-down"></div>
+              </div>
+
+              <!-- Station 06 -->
+              <div class="spine-station station-bottom" data-station="06">
+                <div class="station-stem-up"></div>
+                <div class="station-telemetry">
+                  <span class="station-seq">06</span>
+                  <span class="station-state is-pass">ESTABLISHED</span>
+                  <h3 class="station-name">TCP / 443</h3>
+                  <p class="station-desc">Socket Verified</p>
+                </div>
+              </div>
+
+              <!-- Station 07 -->
+              <div class="spine-station station-top" data-station="07">
+                <div class="station-telemetry">
+                  <span class="station-seq">07</span>
+                  <span class="station-state is-discovery">CAPTURED</span>
+                  <h3 class="station-name">LLDP / CDP</h3>
+                  <p class="station-desc">Frame Observed</p>
+                </div>
+                <div class="station-stem-down"></div>
+              </div>
+
+              <!-- Station 08 -->
+              <div class="spine-station station-bottom station-highlight" data-station="08">
+                <div class="station-stem-up"></div>
+                <div class="station-telemetry">
+                  <span class="station-seq">08</span>
+                  <span class="station-state is-evidence">DISCOVERED</span>
+                  <h3 class="station-name">ADVERTISED SWITCH</h3>
+                  <p class="station-desc highlight-val">sw-access-03.example.net<br />PORT: ge-0/0/24</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Continuous Central Backbone Rail (Desktop Only) -->
+            <div class="spine-central-backbone" aria-hidden="true">
+              <div class="spine-rail-track"></div>
+              <div class="spine-beads-row">
+                <div class="bead-point"><span class="bead-dot">01</span></div>
+                <div class="bead-chevron-cell"><span class="bead-chevron">&rarr;</span></div>
+                <div class="bead-point"><span class="bead-dot">02</span></div>
+                <div class="bead-chevron-cell"><span class="bead-chevron">&rarr;</span></div>
+                <div class="bead-point"><span class="bead-dot">03</span></div>
+                <div class="bead-chevron-cell"><span class="bead-chevron">&rarr;</span></div>
+                <div class="bead-point"><span class="bead-dot">04</span></div>
+                <div class="bead-chevron-cell"><span class="bead-chevron">&rarr;</span></div>
+                <div class="bead-point"><span class="bead-dot">05</span></div>
+                <div class="bead-chevron-cell"><span class="bead-chevron">&rarr;</span></div>
+                <div class="bead-point"><span class="bead-dot">06</span></div>
+                <div class="bead-chevron-cell"><span class="bead-chevron">&rarr;</span></div>
+                <div class="bead-point"><span class="bead-dot">07</span></div>
+                <div class="bead-chevron-cell"><span class="bead-chevron">&rarr;</span></div>
+                <div class="bead-point"><span class="bead-dot">08</span></div>
+              </div>
             </div>
           </div>
+
+          <!-- Scope Footnote -->
+          <p class="hero-scope-caveat" style="margin-top: 24px;">
+            <strong>Switch discovery depends on the network.</strong> Neighbor identity appears only when an LLDP or CDP advertisement is observed. LANVEXA does not qualify Ethernet cabling or replace hardware cable testing tools.
+          </p>
         </div>
       </section>
+
+      <!-- ================================================================
+           TRANSITION: SPINE → EVIDENCE LAYER (Section 03 Divider)
+           ================================================================ -->
+      <div class="system-conduit-divider" aria-hidden="true" id="section-evidence">
+        <div class="conduit-line"></div>
+        <div class="conduit-badge">
+          <span>STRUCTURED ESCALATION EVIDENCE &darr;</span>
+        </div>
+        <div class="conduit-line"></div>
+      </div>
 
       <section class="evidence section" id="handoff">
         <header class="evidence-head">

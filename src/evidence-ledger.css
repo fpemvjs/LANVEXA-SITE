@@ -425,315 +425,294 @@
 }
 
 /* ==========================================================================
-   Beat 2: The Relief (Workflow Section)
+   TRANSITION CONDUITS (Continuous Downward Narrative Connection)
    ========================================================================== */
-.workflow.section {
-  padding: 76px max(24px, calc((100% - 1080px) / 2)) 72px;
-  position: relative;
-}
 
-/* Short transitional connector segment: dormant at rest, activates briefly on approach, fades away */
-.workflow.section::before {
-  content: "";
-  position: absolute;
-  top: -36px;
-  left: max(24px, calc((100% - 1080px) / 2));
-  width: 1px;
-  height: 36px;
-  background: linear-gradient(
-    to bottom,
-    rgba(151, 215, 0, 0.9) 0%,
-    rgba(151, 215, 0, 0.5) 60%,
-    transparent 100%
-  );
-  box-shadow: 0 0 6px rgba(151, 215, 0, 0.4);
-  pointer-events: none;
-  opacity: 0;
-  transform: scaleY(0.4);
-  transform-origin: top center;
-  transition: opacity 280ms ease-out, transform 280ms ease-out;
-}
-
-.workflow.section.is-signal-sweeping::before {
-  opacity: 0.95;
-  transform: scaleY(1);
-  transition: opacity 180ms ease-out, transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.workflow.section.is-signal-settled::before {
-  opacity: 0;
-  transform: scaleY(1);
-  transition: opacity 320ms ease-out 120ms;
-}
-
-.statement-head {
-  display: flex;
-  flex-direction: column;
-}
-
-.statement-head .kicker {
-  margin: 0 0 12px;
-  color: var(--muted);
-  font: 700 11px/1.2 var(--mono);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.system-conduit-divider {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  margin: 44px auto 52px;
+  max-width: 900px;
 }
 
-.statement-head .kicker::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 1px;
-  background: var(--graphite);
-  box-shadow: none;
-  transition: background var(--motion-state) ease-out, box-shadow var(--motion-state) ease-out;
+.conduit-line {
+  flex: 1;
+  height: 1px;
+  background: var(--lab-rule);
 }
 
-.workflow.section.is-signal-sweeping .statement-head .kicker::before {
-  background: var(--signal);
-  box-shadow: 0 0 8px rgba(151, 215, 0, 0.7);
+.conduit-badge {
+  padding: 5px 18px;
+  background: var(--lab-canvas);
+  border: 1px solid var(--lab-rule);
+  border-radius: 2px;
+  font: 700 10.5px/1.2 var(--sans);
+  letter-spacing: 0.12em;
+  color: var(--lab-ink-secondary);
 }
 
-.workflow.section.is-signal-settled .statement-head .kicker::before {
-  background: var(--signal);
-  box-shadow: 0 0 3px rgba(151, 215, 0, 0.3);
+/* ==========================================================================
+   LAYER 02: THE DIAGNOSTIC SPINE (OPEN ARCHITECTURAL SCHEMATIC)
+   ========================================================================== */
+
+.system-spine-layer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 40px 56px;
+  border-top: 1px solid var(--lab-rule);
+  background: var(--lab-canvas);
 }
 
-.statement-head h2 {
-  max-width: 760px;
-  margin: 0 0 18px;
-  font-size: var(--type-major);
-  line-height: 1.02;
-  letter-spacing: -0.05em;
+.system-spine-head {
+  max-width: 820px;
+  margin-bottom: 40px;
 }
 
-.statement-head > p:last-child {
-  max-width: 620px;
-  margin: 0 0 28px;
-  color: var(--muted);
-  font-size: 17px;
-  line-height: 1.55;
-}
-
-.contrast-label {
-  margin: 0 0 8px;
-  color: #455258;
-  font: 700 10px/1.2 var(--mono);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.software-pass {
-  margin-top: 36px;
-  border-top: 2px solid var(--graphite);
-  padding-top: 28px;
-  display: grid;
-  grid-template-columns: minmax(300px, 1fr) minmax(360px, 1.15fr);
-  gap: clamp(28px, 4.5vw, 60px);
-  align-items: start;
-  position: relative;
-}
-
-/* Signal Lime accent sweep across top border on entry */
-.software-pass::after {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: linear-gradient(to right, var(--signal), rgba(151, 215, 0, 0.6) 60%, transparent 100%);
-  pointer-events: none;
-  opacity: 0;
-  transition: width 480ms cubic-bezier(0.16, 1, 0.3, 1), opacity 260ms ease-out;
-}
-
-.workflow.section.is-signal-sweeping .software-pass::after {
-  width: 100%;
-  opacity: 0.90;
-  box-shadow: 0 0 6px rgba(151, 215, 0, 0.35);
-}
-
-.workflow.section.is-signal-settled .software-pass::after {
-  width: 100%;
-  opacity: 0.22;
-  transition: opacity 350ms ease-out;
-}
-
-.triage-pipeline {
-  display: flex;
-  flex-direction: column;
-}
-
-.laptop-node .contrast-label {
-  margin: 0;
-}
-
-.pipeline-connector {
-  color: var(--muted);
-  font: 15px/1 var(--mono);
-  padding: 4px 0 6px;
-  user-select: none;
-}
-
-.first-pass-card {
-  display: flex;
-  flex-direction: column;
-}
-
-.triage-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  border-top: 1px solid var(--border);
-}
-
-.triage-list li {
-  display: grid;
-  grid-template-columns: 104px 1fr;
-  gap: 16px;
-  align-items: baseline;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--border);
-  min-height: auto;
-  position: relative;
-  transition: border-bottom-color var(--motion-state) ease-out;
-}
-
-.workflow.section.is-signal-sweeping .triage-list li:nth-child(1) {
-  border-bottom-color: color-mix(in srgb, var(--border) 60%, var(--signal));
-}
-
-.workflow.section.is-signal-sweeping .triage-list li:nth-child(2) {
-  border-bottom-color: color-mix(in srgb, var(--border) 60%, var(--signal));
-  transition-delay: 90ms;
-}
-
-.workflow.section.is-signal-sweeping .triage-list li:nth-child(3) {
-  border-bottom-color: color-mix(in srgb, var(--border) 60%, var(--signal));
-  transition-delay: 180ms;
-}
-
-.workflow.section.is-signal-settled .triage-list li {
-  border-bottom-color: var(--border);
-  transition-delay: 0ms;
-}
-
-.triage-list li strong {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text);
-}
-
-.triage-list li span {
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.35;
-}
-
-.triage-proof {
-  display: flex;
-  flex-direction: column;
-}
-
-.neighbor-proof {
-  padding: 16px 20px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-left: 4px solid var(--signal);
-  box-shadow: -4px 4px 0 rgba(0, 0, 0, 0.03);
-}
-
-.proof-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border);
-  font: 700 10px var(--mono);
-  letter-spacing: 0.07em;
-  color: var(--muted);
-}
-
-.proof-header span {
-  color: var(--text);
-}
-
-.proof-header small {
+.spine-kicker {
+  font: 750 10.5px/1.2 var(--sans);
+  letter-spacing: 0.12em;
   color: var(--signal-ink);
-  font-size: 10px;
+  background: rgba(118, 214, 0, 0.18);
+  padding: 3px 8px;
+  border-radius: 2px;
+  border: 1px solid rgba(118, 214, 0, 0.35);
+  display: inline-block;
+  margin-bottom: 12px;
 }
 
-.proof-body {
-  display: grid;
-  grid-template-columns: minmax(190px, 1.45fr) minmax(80px, 0.75fr) minmax(85px, 0.8fr);
-  gap: 16px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border);
+.system-spine-head h2 {
+  font-size: 34px;
+  line-height: 1.2;
+  font-weight: 780;
+  letter-spacing: -0.025em;
+  color: var(--lab-ink);
+  margin: 0 0 14px;
 }
 
-.proof-body div {
+.system-spine-head p {
+  font-size: 16.5px;
+  line-height: 1.55;
+  color: var(--lab-ink-secondary);
+  margin: 0;
+}
+
+.system-spine-track {
+  background: var(--lab-canvas-card);
+  border: 1px solid var(--lab-rule);
+  border-radius: 4px;
+  padding: 40px 32px 32px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+
+.spine-open-schematic {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0;
+  width: 100%;
 }
 
-.proof-body small {
-  font: 700 9.5px var(--mono);
-  color: #455258;
+.spine-stations-track {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: auto auto;
+  gap: 12px;
+}
+
+.spine-station {
+  display: flex;
+  flex-direction: column;
+}
+
+.spine-station[data-station="01"] { grid-column: 1; grid-row: 1; align-self: end; }
+.spine-station[data-station="02"] { grid-column: 2; grid-row: 2; align-self: start; }
+.spine-station[data-station="03"] { grid-column: 3; grid-row: 1; align-self: end; }
+.spine-station[data-station="04"] { grid-column: 4; grid-row: 2; align-self: start; }
+.spine-station[data-station="05"] { grid-column: 5; grid-row: 1; align-self: end; }
+.spine-station[data-station="06"] { grid-column: 6; grid-row: 2; align-self: start; }
+.spine-station[data-station="07"] { grid-column: 7; grid-row: 1; align-self: end; }
+.spine-station[data-station="08"] { grid-column: 8; grid-row: 2; align-self: start; }
+
+.spine-station.station-top {
+  flex-direction: column;
+}
+
+.spine-station.station-bottom {
+  flex-direction: column;
+}
+
+.station-telemetry {
+  background: #fdfdfc;
+  border: 1px solid var(--lab-rule);
+  border-radius: 3px;
+  padding: 12px 14px;
+  transition: border-color 0.15s ease;
+}
+
+.station-telemetry:hover {
+  border-color: #9cb1b9;
+}
+
+/* Station 08 Refined: Destination authority without blinding lime dominance */
+.spine-station.station-highlight .station-telemetry {
+  background: #0f1619;
+  border-color: #558711;
+  color: #ffffff;
+}
+
+.station-seq {
+  font: 700 9.5px/1.2 var(--mono);
   letter-spacing: 0.08em;
+  color: var(--lab-muted);
+  display: inline-block;
+  margin-right: 6px;
 }
 
-.proof-body strong {
-  font: 700 14px/1.25 var(--mono);
-  color: var(--text);
-  letter-spacing: -0.01em;
-  overflow-wrap: break-word;
+.station-highlight .station-seq {
+  color: #9cb1b9;
 }
 
-.proof-body div:last-child strong {
-  font-weight: 600;
-  font-size: 13px;
-  color: var(--muted);
+.station-state {
+  font: 750 9px/1.2 var(--sans);
+  letter-spacing: 0.08em;
+  padding: 1px 5px;
+  border-radius: 2px;
+  display: inline-block;
 }
 
-.neighbor-proof .caveat {
-  margin: 10px 0 0;
+.station-state.is-pass {
+  background: rgba(118, 214, 0, 0.18);
+  color: var(--signal-ink);
+  border: 1px solid rgba(118, 214, 0, 0.35);
+}
+
+.station-state.is-discovery {
+  background: rgba(0, 163, 224, 0.14);
+  color: #005a7d;
+  border: 1px solid rgba(0, 163, 224, 0.3);
+}
+
+.station-state.is-evidence {
+  background: rgba(118, 214, 0, 0.28);
+  color: var(--signal-lime);
+  border: 1px solid var(--signal-lime);
+  font-weight: 750;
+}
+
+.station-name {
+  font: 750 12.5px/1.25 var(--sans);
+  letter-spacing: 0.02em;
+  margin: 6px 0 4px;
+  color: var(--lab-ink);
+}
+
+.station-highlight .station-name {
+  color: #ffffff;
+}
+
+.station-desc {
+  font: 500 11.5px/1.3 var(--sans);
+  color: var(--lab-ink-secondary);
+  margin: 0;
+}
+
+.station-desc.highlight-val {
+  font-family: var(--mono);
   font-size: 11px;
-  line-height: 1.45;
-  color: var(--muted);
-  opacity: 0.88;
-}
-
-.neighbor-proof .caveat strong {
-  color: var(--text);
+  color: var(--signal-lime);
   font-weight: 600;
 }
 
-/* Beat 2 Terminal Node (at bottom of workflow section, aligned to left content edge) */
-.workflow.section::after {
-  content: "";
+/* Stems connecting station to central backbone */
+.station-stem-down {
+  width: 2px;
+  height: 20px;
+  background: var(--lab-rule-dark);
+  margin: 0 auto;
+}
+
+.station-stem-up {
+  width: 2px;
+  height: 20px;
+  background: var(--lab-rule-dark);
+  margin: 0 auto;
+}
+
+.station-highlight .station-stem-up {
+  background: #558711;
+}
+
+/* Central Backbone Rail with 8 numbered beads and chevrons */
+.spine-central-backbone {
+  position: relative;
+  width: 100%;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  grid-column: 1 / -1;
+  margin: 4px 0;
+}
+
+.spine-rail-track {
   position: absolute;
-  bottom: 0;
-  left: max(24px, calc((100% - 1080px) / 2));
-  width: 6px;
-  height: 6px;
-  border-radius: 1px;
-  background: var(--signal);
-  box-shadow: 0 0 3px rgba(151, 215, 0, 0.3);
-  pointer-events: none;
-  transition: box-shadow var(--motion-state) ease-out;
-  z-index: 4;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--lab-rule-dark);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.spine-beads-row {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 0.3fr 1fr 0.3fr 1fr 0.3fr 1fr 0.3fr 1fr 0.3fr 1fr 0.3fr 1fr 0.3fr 1fr;
+  align-items: center;
+}
+
+.bead-point {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bead-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid var(--lab-rule-dark);
+  font: 700 8.5px/16px var(--mono);
+  text-align: center;
+  color: var(--lab-ink);
+  box-shadow: 0 0 0 2px #f7f7f4;
+}
+
+.bead-chevron-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bead-chevron {
+  font: 700 10px/1 var(--mono);
+  color: #7d8f96;
+  background: #ffffff;
+  padding: 0 2px;
+}
+
+.bead-point:last-child .bead-dot {
+  background: var(--signal-lime);
+  border-color: #0c1013;
+  color: #0c1013;
+  box-shadow: 0 0 0 3px rgba(118, 214, 0, 0.3);
 }
 
 /* ==========================================================================
    Beat 3: The Payoff (Handoff Section)
-   ========================================================================== */
 .evidence.section {
   padding: 84px max(24px, calc((100% - 1080px) / 2)) 92px;
   position: relative;
@@ -1096,6 +1075,10 @@
     padding: 0 28px 48px;
   }
 
+  .system-spine-layer {
+    padding: 20px 28px 48px;
+  }
+
   .system-hero-grid {
     grid-template-columns: 1fr 1fr;
     gap: 36px;
@@ -1103,6 +1086,18 @@
 
   .system-hero-editorial h1 {
     font-size: 38px;
+  }
+
+  .spine-row {
+    gap: 8px;
+  }
+
+  .station-telemetry {
+    padding: 10px 10px;
+  }
+
+  .station-name {
+    font-size: 12px;
   }
 }
 
@@ -1113,6 +1108,10 @@
 
   .ledger-hero.system-hero-section {
     padding: 0 24px 40px;
+  }
+
+  .system-spine-layer {
+    padding: 16px 24px 44px;
   }
 
   .system-hero-grid {
@@ -1126,6 +1125,91 @@
 
   .evidence-surface-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  /* Transform horizontal spine into a continuous vertical schematic trace */
+  .spine-open-schematic {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 48px; /* Room for the vertical rail */
+    gap: 16px;
+  }
+
+  /* Continuous vertical spine rail running down the left */
+  .spine-open-schematic::before {
+    content: "";
+    position: absolute;
+    top: 24px;
+    bottom: 24px;
+    left: 17px;
+    width: 2px;
+    background: var(--lab-rule-dark);
+    z-index: 1;
+  }
+
+  .spine-central-backbone {
+    display: none; /* Replaced by vertical continuous trace */
+  }
+
+  .spine-stations-track {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: auto;
+  }
+
+  .spine-station {
+    position: relative;
+    width: 100%;
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+
+  /* Station bead dot pinned directly to the vertical rail */
+  .spine-station::before {
+    content: attr(data-station);
+    position: absolute;
+    left: -48px;
+    top: 14px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid var(--lab-rule-dark);
+    font: 700 8.5px/18px var(--mono);
+    text-align: center;
+    color: var(--lab-ink);
+    z-index: 2;
+    box-shadow: 0 0 0 2px #f7f7f4;
+  }
+
+  .spine-station.station-highlight::before {
+    background: var(--signal-lime);
+    border-color: #0c1013;
+    color: #0c1013;
+    box-shadow: 0 0 0 3px rgba(118, 214, 0, 0.3);
+  }
+
+  /* Horizontal stem connecting vertical rail to station telemetry */
+  .spine-station::after {
+    content: "";
+    position: absolute;
+    left: -26px;
+    top: 24px;
+    width: 26px;
+    height: 2px;
+    background: var(--lab-rule-dark);
+    z-index: 1;
+  }
+
+  .spine-station.station-highlight::after {
+    background: #558711;
+  }
+
+  .station-stem-down,
+  .station-stem-up {
+    display: none;
   }
 }
 
@@ -1160,6 +1244,10 @@
 
   .ledger-hero.system-hero-section {
     padding: 0 16px 36px;
+  }
+
+  .system-spine-layer {
+    padding: 16px 16px 40px;
   }
 
   .system-masthead {
