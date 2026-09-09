@@ -60,236 +60,120 @@
       </details>
     </header>
     <main id="main">
-      <section class="hero ledger-hero">
-        <div class="hero-cinematic-backdrop" aria-hidden="true">
-          <div class="hero-env-surface"></div>
-          <div class="hero-env-transition"></div>
-          <div class="rack-glow-ambient"></div>
-          <div class="rack-vignette-right"></div>
-        </div>
-        <div class="incident-folio">
-          <span>LANVEXA / LINKLENS</span>
-          <span>WINDOWS ETHERNET DIAGNOSTICS</span>
-        </div>
-        <div class="hero-copy">
-          <p class="kicker">Windows Ethernet Diagnostics</p>
-          <h1>Ethernet diagnostics from your Windows laptop.</h1>
-          <p class="lede">
-            Run first-pass connectivity checks and capture advertised switch and port context in one automated sequence.
-          </p>
-          <div class="hero-status-stack" id="hero-status-stack" aria-hidden="true">
-            <div class="status-stack-line" data-state="pass"><span class="status-glyph">&gt;&gt;</span><span class="status-msg">Detecting wired interface…</span></div>
-            <div class="status-stack-line" data-state="pending"><span class="status-glyph">&gt;</span><span class="status-msg">Link detected</span></div>
-            <div class="status-stack-line" data-state="pending"><span class="status-glyph">&gt;</span><span class="status-msg">DHCP acquired</span></div>
-            <div class="status-stack-line" data-state="pending"><span class="status-glyph">&gt;</span><span class="status-msg">Gateway reachable</span></div>
-            <div class="status-stack-line" data-state="pending"><span class="status-glyph">&gt;</span><span class="status-msg">DNS resolved</span></div>
-            <div class="status-stack-line" data-state="pending"><span class="status-glyph">&gt;</span><span class="status-msg">Discovering neighbors…</span></div>
+      <section class="hero ledger-hero system-hero-section" id="product" aria-labelledby="hero-title">
+        <div class="system-masthead" aria-label="System classification">
+          <div class="masthead-brand">
+            <span class="masthead-brand-title">LANVEXA</span>
+            <span>// FIELD EVIDENCE SYSTEM</span>
           </div>
-          <div class="hero-actions">
-            <a class="button" href="/demo.html"
-              >Launch Interactive Demo <span aria-hidden="true">&rarr;</span></a
-            ><a class="text-link" href="#beta">Request early access</a>
+          <div class="masthead-spec">
+            <span>LAYER 01: PHYSICAL &middot; LAYER 02: DIAGNOSTIC &middot; LAYER 03: EVIDENCE</span>
           </div>
         </div>
-        <div class="instrument-wrap" id="product">
-          <!-- Signal energy conduit (routed behind/around instrument) -->
-          <div class="hero-signal-conduit" id="hero-signal-conduit" aria-hidden="true">
-            <svg class="conduit-svg" viewBox="0 0 760 480" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="conduit-grad" x1="0%" y1="90%" x2="100%" y2="10%">
-                  <stop offset="0%" stop-color="#7dff57" stop-opacity="0.25" />
-                  <stop offset="35%" stop-color="#97d700" stop-opacity="0.70" />
-                  <stop offset="75%" stop-color="#c6ff00" stop-opacity="0.95" />
-                  <stop offset="100%" stop-color="#eaff75" stop-opacity="1" />
-                </linearGradient>
-                <filter id="conduit-glow" x="-30%" y="-30%" width="160%" height="160%">
-                  <feGaussianBlur stdDeviation="3.5" result="blur1" />
-                  <feGaussianBlur stdDeviation="7" result="blur2" />
-                  <feMerge>
-                    <feMergeNode in="blur2" />
-                    <feMergeNode in="blur1" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-              </defs>
-              <!-- Base quiescent conduit track -->
-              <path class="conduit-track" d="M 0,410 C 20,290 35,90 90,45 C 190,10 380,8 550,18 C 630,22 670,45 680,95" />
-              <!-- Trailing glow path -->
-              <path class="conduit-glow-trail" id="conduit-trail" d="M 0,410 C 20,290 35,90 90,45 C 190,10 380,8 550,18 C 630,22 670,45 680,95" />
-              <!-- Active energy pulse -->
-              <path class="conduit-pulse" id="conduit-pulse" d="M 0,410 C 20,290 35,90 90,45 C 190,10 380,8 550,18 C 630,22 670,45 680,95" filter="url(#conduit-glow)" />
-            </svg>
-          </div>
-          <!-- LANVEXA_AUTHENTIC_MEDIA -->
-          <div class="interactive-example" data-interactive-fallback>
-            <div class="example-label">
-              <span>LANVEXA FOR WINDOWS</span
-              ><strong>INTERACTIVE EXAMPLE · NOT A PRODUCT SCREENSHOT</strong>
+
+        <div class="system-hero-grid">
+          <!-- Left Editorial -->
+          <div class="system-hero-editorial">
+            <div class="editorial-kicker-row">
+              <span class="system-kicker-tag">WINDOWS ETHERNET TRIAGE</span>
+              <span class="system-badge-live">&bull; WIRED ENDPOINT</span>
             </div>
-            <article class="instrument" aria-labelledby="instrument-title">
-              <header class="app-bar">
-                <div class="app-id">
-                  <img src="/brand/lanvexa-x-reverse.svg" alt="" width="96" height="96" /><strong
-                    id="instrument-title"
-                    >LANVEXA</strong
-                  ><span>PREVIEW</span>
-                </div>
-                <div class="window-controls" aria-hidden="true">
-                  <i></i><i></i><i></i>
-                </div>
-              </header>
-              <div class="adapter-bar">
-                <span
-                  ><small>SELECTED INTERFACE</small
-                  ><strong>Ethernet</strong></span
-                ><span>Wired adapter</span>
-              </div>
-              <div class="hero-diagnostic-ticker" id="hero-ticker" aria-live="polite">
-                <span class="ticker-prefix" data-state="pass">PASS</span>
-                <span class="ticker-text" id="ticker-text">FIRST-PASS COMPLETE · 4 CHECKS PASSED · NEIGHBOR OBSERVED</span>
-              </div>
-              <nav class="instrument-flow" aria-label="Diagnostic sequence progression">
-                <div class="flow-node is-complete" data-step="link">
-                  <i aria-hidden="true"></i><span>LINK</span>
-                </div>
-                <b aria-hidden="true"></b>
-                <div class="flow-node is-complete" data-step="dhcp">
-                  <i aria-hidden="true"></i><span>DHCP</span>
-                </div>
-                <b aria-hidden="true"></b>
-                <div class="flow-node is-complete" data-step="gateway">
-                  <i aria-hidden="true"></i><span>GATEWAY</span>
-                </div>
-                <b aria-hidden="true"></b>
-                <div class="flow-node is-complete" data-step="dns">
-                  <i aria-hidden="true"></i><span>DNS</span>
-                </div>
-                <b aria-hidden="true"></b>
-                <div class="flow-node is-complete" data-step="discovery">
-                  <i aria-hidden="true"></i><span>DISCOVERY</span>
-                </div>
-                <b aria-hidden="true"></b>
-                <div class="flow-node is-complete" data-step="handoff">
-                  <i aria-hidden="true"></i><span>HANDOFF</span>
-                </div>
-              </nav>
-              <div class="app-body">
-                <div class="app-status">
-                  <div>
-                    <span class="status-light" data-tone="pass"></span
-                    ><span
-                      ><small>LINK STATE</small
-                      ><strong id="link-state">CONNECTED</strong></span
-                    >
-                  </div>
-                  <span class="link-detail">1.0 Gbps negotiated</span>
-                </div>
-                <section class="switch-panel" aria-labelledby="neighbor-label">
-                  <div class="panel-heading">
-                    <span id="neighbor-label">NEIGHBOR OBSERVATION</span
-                    ><strong id="neighbor-state" data-tone="pass"
-                      >LLDP DETECTED</strong
-                    >
-                  </div>
-                  <div class="switch-primary">
-                    <small>ADVERTISED SYSTEM NAME</small
-                    ><strong id="switch-name">sw-access-03.example.net</strong>
-                  </div>
-                  <dl class="switch-meta">
-                    <div>
-                      <dt>ADVERTISED PORT</dt>
-                      <dd id="switch-port">ge-0/0/24</dd>
-                    </div>
-                    <div>
-                      <dt>PROTOCOL</dt>
-                      <dd id="switch-protocol">LLDP</dd>
-                    </div>
-                    <div>
-                      <dt>OBSERVATION</dt>
-                      <dd id="switch-time">Frame observed</dd>
-                    </div>
-                  </dl>
-                  <p class="neighbor-note" id="neighbor-note" hidden></p>
-                </section>
-                <div
-                  class="test-panel"
-                  role="table"
-                  aria-label="Example connectivity checks"
-                >
-                  <div class="panel-heading" role="row">
-                    <span role="columnheader">CONFIGURED CHECKS</span
-                    ><strong id="check-summary" role="columnheader"
-                      >4 OF 4 PASSED</strong
-                    >
-                  </div>
-                  <div class="test-row" role="row" data-test="addressing">
-                    <span class="state-symbol" role="cell" aria-label="Pass"
-                      >✓</span
-                    ><span role="rowheader">ADDRESSING</span
-                    ><strong role="cell">10.24.18.117 / DHCP</strong
-                    ><em role="cell">PASS</em>
-                  </div>
-                  <div class="test-row" role="row" data-test="gateway">
-                    <span class="state-symbol" role="cell" aria-label="Pass"
-                      >✓</span
-                    ><span role="rowheader">GATEWAY</span
-                    ><strong role="cell">10.24.18.1</strong
-                    ><em role="cell">PASS</em>
-                  </div>
-                  <div class="test-row" role="row" data-test="dns">
-                    <span class="state-symbol" role="cell" aria-label="Pass"
-                      >✓</span
-                    ><span role="rowheader">DNS</span
-                    ><strong role="cell">Name resolved</strong
-                    ><em role="cell">PASS</em>
-                  </div>
-                  <div class="test-row" role="row" data-test="tcp">
-                    <span class="state-symbol" role="cell" aria-label="Pass"
-                      >✓</span
-                    ><span role="rowheader">TCP / 443</span
-                    ><strong role="cell">Configured target</strong
-                    ><em role="cell">PASS</em>
-                  </div>
-                </div>
-                <div class="result-bar" id="result-bar" data-tone="pass">
-                  <span class="result-icon" aria-hidden="true">✓</span
-                  ><span
-                    ><small>RESULT</small
-                    ><strong id="overall-result"
-                      >CONFIGURED CONNECTIVITY CHECKS PASSED</strong
-                    ></span
-                  >
-                </div>
-              </div>
-            </article>
-            <div
-              class="example-controls"
-              role="group"
-              aria-label="Diagnostic controls"
-            >
-              <button
-                class="example-control example-replay"
-                type="button"
-                id="hero-replay"
-                aria-label="Replay diagnostic sequence"
-              >
-                Replay
-              </button>
+            <h1 id="hero-title">From physical link to advertised switch port.</h1>
+            <p class="system-hero-lede">
+              Connect a standard Windows laptop to any RJ45 wall jack. LinkLens establishes physical link state, tests local network traversal, and passively captures upstream switch identity in one automated sequence.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn-action-primary" href="/demo.html">
+                Launch Interactive Demo <span aria-hidden="true">&rarr;</span>
+              </a>
+              <a class="btn-link-secondary" href="#beta">Request early access</a>
             </div>
-            <p
-              class="sr-only"
-              id="demo-status"
-              role="status"
-              aria-live="polite"
-            ></p>
+
+            <p class="hero-scope-caveat">
+              <strong>Switch discovery depends on the network.</strong> Neighbor identity appears only when an LLDP or CDP advertisement is observed. LANVEXA does not qualify Ethernet cabling or replace hardware cable testing tools.
+            </p>
+          </div>
+
+          <!-- Right: Physical Switch Reality + Integrated Evidence Surface -->
+          <div class="system-hero-visual">
+            <div class="physical-evidence-dock">
+              <!-- Physical Switch Photography Frame -->
+              <div class="physical-switch-frame">
+                <!-- PRODUCTION PLACEHOLDER — replace with real/licensed enterprise networking photography before public launch. -->
+                <img
+                  src="/switch-macro.jpg"
+                  alt="Enterprise network switch faceplate showing Port 24 with connected Cat6 patch cable and link status LEDs"
+                  class="physical-switch-photo"
+                />
+                <!-- Restrained Architectural Pointer at Port 24 -->
+                <div class="port-pointer-anchor" aria-hidden="true">
+                  <div class="pointer-pin"></div>
+                  <div class="pointer-lead-line"></div>
+                  <div class="pointer-annotation">
+                    <span class="annotation-port">PORT ge-0/0/24</span>
+                    <span class="annotation-type">1000BASE-T RJ45</span>
+                  </div>
+                </div>
+                <!-- Mobile-Only Compact Port Anchor Badge -->
+                <div class="mobile-port-badge" aria-hidden="true">
+                  <span class="m-badge-pin"></span>
+                  <span class="m-badge-txt">PORT 24 // ge-0/0/24</span>
+                </div>
+              </div>
+
+              <!-- Integrated LinkLens Evidence Surface (Docked Directly to Physical Frame) -->
+              <article class="integrated-evidence-surface" aria-label="LinkLens Evidence Ledger">
+                <header class="evidence-surface-hdr">
+                  <div class="surface-indicator">
+                    <span class="indicator-dot"></span>
+                    <strong>OBSERVED PORT: ge-0/0/24</strong>
+                  </div>
+                  <span class="surface-spec">SPEC: IEEE 802.3 &middot; 802.1AB</span>
+                </header>
+
+                <div class="evidence-surface-grid">
+                  <div class="surface-col">
+                    <span class="col-title">CONFIGURED CONNECTIVITY</span>
+                    <div class="surface-metric">
+                      <span class="metric-label">Addressing</span>
+                      <span class="metric-value">10.24.18.117 / DHCP</span>
+                    </div>
+                    <div class="surface-metric">
+                      <span class="metric-label">Gateway</span>
+                      <span class="metric-value">10.24.18.1 (Pass)</span>
+                    </div>
+                    <div class="surface-metric">
+                      <span class="metric-label">DNS / Port 443</span>
+                      <span class="metric-value">Resolved / Open</span>
+                    </div>
+                  </div>
+
+                  <div class="surface-col">
+                    <span class="col-title">OBSERVED SWITCH ADVERTISEMENT</span>
+                    <div class="surface-metric">
+                      <span class="metric-label">Switch Hostname</span>
+                      <span class="metric-value highlight">sw-access-03.example.net</span>
+                    </div>
+                    <div class="surface-metric">
+                      <span class="metric-label">Advertised Port</span>
+                      <span class="metric-value highlight">ge-0/0/24</span>
+                    </div>
+                    <div class="surface-metric">
+                      <span class="metric-label">Discovery Protocol</span>
+                      <span class="metric-value">IEEE 802.1AB (LLDP)</span>
+                    </div>
+                  </div>
+                </div>
+
+                <footer class="evidence-surface-footer">
+                  <span>&check; RESULT: CONFIGURED CONNECTIVITY CHECKS PASSED</span>
+                  <span style="font-size: 10px; opacity: 0.9;">READY FOR HANDOFF RECORD</span>
+                </footer>
+              </article>
+            </div>
           </div>
         </div>
-        <p class="hero-caveat">
-          <strong>Switch discovery depends on the network.</strong> Neighbor and
-          advertised Port ID appear only when an LLDP/CDP advertisement is
-          observed. LANVEXA does not qualify the cable or replace deeper
-          physical-layer testing.
-        </p>
       </section>
 
       <section class="workflow section" id="workflow">

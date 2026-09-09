@@ -609,13 +609,13 @@ if (homepageHero) {
     element.style.setProperty("--motion-delay", `${delay}ms`);
   };
   [
-    [homepageHero.querySelector(".incident-folio"), 0],
-    [homepageHero.querySelector(".hero-copy .kicker"), 60],
-    [homepageHero.querySelector(".hero-copy h1"), 130],
-    [homepageHero.querySelector(".hero-copy .lede"), 210],
-    [homepageHero.querySelector(".hero-copy .hero-actions"), 290],
-    [homepageHero.querySelector(".instrument-wrap"), 380],
-    [homepageHero.querySelector(".hero-caveat"), 460],
+    [homepageHero.querySelector(".system-masthead") || homepageHero.querySelector(".incident-folio"), 0],
+    [homepageHero.querySelector(".editorial-kicker-row") || homepageHero.querySelector(".hero-copy .kicker"), 60],
+    [homepageHero.querySelector(".system-hero-editorial h1") || homepageHero.querySelector(".hero-copy h1"), 130],
+    [homepageHero.querySelector(".system-hero-editorial .system-hero-lede") || homepageHero.querySelector(".hero-copy .lede"), 210],
+    [homepageHero.querySelector(".system-hero-editorial .hero-actions") || homepageHero.querySelector(".hero-copy .hero-actions"), 290],
+    [homepageHero.querySelector(".system-hero-visual") || homepageHero.querySelector(".instrument-wrap"), 380],
+    [homepageHero.querySelector(".hero-scope-caveat") || homepageHero.querySelector(".hero-caveat"), 460],
   ].forEach(([element, delay]) => reveal(element, delay));
 
   const sections = [...document.querySelectorAll("main > section:not(.ledger-hero)")];
