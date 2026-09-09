@@ -334,66 +334,94 @@
         <div class="conduit-line"></div>
       </div>
 
-      <section class="evidence section" id="handoff">
-        <header class="evidence-head">
-          <p class="kicker">The Handoff Payoff</p>
-          <h2>Give the next team facts, not guesses.</h2>
+      <!-- ================================================================
+           LAYER 03: EVIDENCE (Section 03 — Structured Handoff Record)
+           ================================================================ -->
+      <section class="system-evidence-layer" id="handoff" aria-labelledby="evidence-title-flagship">
+        <header class="system-evidence-head">
+          <span class="evidence-kicker">TECHNICAL ESCALATION RECORD</span>
+          <h2 id="evidence-title-flagship">Triage evidence ready for ticket handoff.</h2>
           <p>
-            Relay verified connectivity states and advertised switch context directly into your escalation ticket.
+            When a wall drop fails, eliminate vague escalation tickets. LinkLens produces a structured factual record that Tier 3 network engineering can act on immediately.
           </p>
         </header>
-        <div class="evidence-record">
-          <header class="record-header">
-            <span>FIELD DIAGNOSTIC RECORD</span>
-            <strong>EXAMPLE / FIRST-PASS OBSERVATIONS</strong>
+
+        <article class="evidence-manifest-card" aria-label="LinkLens Triage Manifest">
+          <header class="manifest-card-header">
+            <div class="manifest-id-block">
+              <span class="manifest-id">RECORD REF: LX-2026-9402 // LOCAL SYSTEM TIMESTAMP RECORDED</span>
+              <h3>LANVEXA LINKLENS TRIAGE MANIFEST</h3>
+            </div>
+            <span class="manifest-badge">&check; TESTED CHECKS HEALTHY</span>
           </header>
-          <div class="record-row record-situation">
-            <p class="record-label">SITUATION</p>
-            <div>
-              <strong>&ldquo;This Ethernet jack isn&rsquo;t working.&rdquo;</strong>
-              <span>Wall jack triage at Reception Desk B &mdash; active checks completed, neighbor observed.</span>
+
+          <div class="manifest-card-body">
+            <div class="manifest-col">
+              <h4>ENDPOINT &middot; LOCAL TRAVERSAL</h4>
+              <dl class="manifest-list">
+                <div>
+                  <dt>Interface</dt>
+                  <dd>Wired Endpoint NIC (Intel Ethernet)</dd>
+                </div>
+                <div>
+                  <dt>Observed Link State</dt>
+                  <dd>1000BASE-T Full Duplex</dd>
+                </div>
+                <div>
+                  <dt>DHCP Lease</dt>
+                  <dd>10.24.18.117 /24</dd>
+                </div>
+                <div>
+                  <dt>Gateway Result</dt>
+                  <dd>10.24.18.1 (ICMP Echo Pass)</dd>
+                </div>
+                <div>
+                  <dt>DNS Result</dt>
+                  <dd>example.net (Resolved)</dd>
+                </div>
+                <div>
+                  <dt>TCP / 443 Result</dt>
+                  <dd>Connected / Socket Verified</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div class="manifest-col">
+              <h4>OBSERVED INFRASTRUCTURE CONTEXT</h4>
+              <dl class="manifest-list">
+                <div>
+                  <dt>Neighbor Observation</dt>
+                  <dd>Passive Frame Captured</dd>
+                </div>
+                <div>
+                  <dt>Advertised System Name</dt>
+                  <dd class="manifest-highlight">sw-access-03.example.net</dd>
+                </div>
+                <div>
+                  <dt>Advertised Port</dt>
+                  <dd class="manifest-highlight">ge-0/0/24</dd>
+                </div>
+                <div>
+                  <dt>Discovery Protocol</dt>
+                  <dd>IEEE 802.1AB (LLDP)</dd>
+                </div>
+                <div>
+                  <dt>Observed Subnet</dt>
+                  <dd>10.24.18.0/24 (Local Lease)</dd>
+                </div>
+                <div>
+                  <dt>Diagnostic Record</dt>
+                  <dd>Structured for Ticket Attachment</dd>
+                </div>
+              </dl>
             </div>
           </div>
-          <div class="record-row record-observations">
-            <p class="record-label">OBSERVATIONS</p>
-            <dl class="record-grid">
-              <div>
-                <dt>LINK</dt>
-                <dd>Connected / 1.0 Gbps</dd>
-              </div>
-              <div>
-                <dt>IP / DHCP</dt>
-                <dd>10.24.18.117 (DHCP)</dd>
-              </div>
-              <div>
-                <dt>GATEWAY</dt>
-                <dd>10.24.18.1 (Pass)</dd>
-              </div>
-              <div>
-                <dt>DNS</dt>
-                <dd>Pass</dd>
-              </div>
-              <div>
-                <dt>NEIGHBOR</dt>
-                <dd>sw-access-03.example.net</dd>
-              </div>
-              <div>
-                <dt>PORT</dt>
-                <dd>ge-0/0/24 (LLDP)</dd>
-              </div>
-            </dl>
-          </div>
-          <div class="record-row record-action">
-            <p class="record-label">NEXT ACTION</p>
-            <div>
-              <strong>Escalate with verified findings.</strong>
-              <span>Paste verified connectivity states and advertised switch port context directly into the ticket note.</span>
-            </div>
-          </div>
-        </div>
-        <p class="scope-note">
-          LinkLens is a software tool for first-pass connectivity diagnostics, not physical cable qualification.
-        </p>
+
+          <footer class="manifest-card-footer">
+            <span>SCOPED DIAGNOSTIC EVIDENCE &middot; NOT A HARDWARE CABLE TEST</span>
+            <span>READY FOR TICKET ATTACHMENT</span>
+          </footer>
+        </article>
       </section>
 
       <section class="final-cta" id="beta">
